@@ -24,6 +24,7 @@ async function updateAssets() {
     {
       $set: {
         'sections.hero.bannerImage': HERO_IMAGE,
+        'sections.hero.videoUrl': '/videos/hero-athlete.webm',
         'sections.hero.subheadline':
           'Sports footwear engineered around tournament-grade performance, anatomical comfort and large-scale institutional supply.',
       },

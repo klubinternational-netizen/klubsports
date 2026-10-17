@@ -387,6 +387,7 @@ export async function runSeed() {
           secondaryCtaText: 'Business Enquiries',
           secondaryCtaLink: '/contact',
           bannerImage: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1600&q=85',
+          videoUrl: '/videos/hero-athlete.webm',
         },
         highlights: {
           title: 'Manufacturing & Operational Strength',

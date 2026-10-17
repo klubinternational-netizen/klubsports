@@ -39,6 +39,7 @@ export default async function HomePage() {
     secondaryCtaText: 'Business Enquiries',
     secondaryCtaLink: '/contact',
     bannerImage: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1600&q=85',
+    videoUrl: '/videos/hero-athlete.webm',
   };
 
   const highlights = page?.sections?.highlights?.metrics || [
@@ -51,25 +52,10 @@ export default async function HomePage() {
   return (
     <div className="flex flex-col">
       {/* SECTION 2: HERO */}
-      <section className="relative overflow-hidden bg-[#0c0d0e] text-white py-20 lg:py-28 border-b border-stone-800/80 min-h-[640px] flex items-center">
-        {/* Background Athletic Performance Video */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster={hero.bannerImage || 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1600&q=85'}
-          className="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none scale-105"
-        >
-          <source src="/videos/hero-athlete.webm" type="video/webm" />
-        </video>
-
-        {/* Ambient Dark Luxury Gradients Overlay for crisp text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0c0d0e] via-[#0c0d0e]/90 to-[#0c0d0e]/60 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0d0e] via-transparent to-[#0c0d0e]/80 pointer-events-none" />
-
+      <section className="relative overflow-hidden bg-[#0c0d0e] text-white py-20 lg:py-28 border-b border-stone-800/80">
         {/* Subtle architectural ambient lighting */}
-        <div className="absolute -top-32 right-1/4 w-96 h-96 bg-brand-orange/15 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute -top-32 right-1/4 w-96 h-96 bg-brand-orange/15 rounded-full blur-[140px] pointer-events-none"></div>
+        <div className="absolute -bottom-24 left-10 w-80 h-80 bg-stone-800/20 rounded-full blur-[100px] pointer-events-none"></div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
@@ -124,24 +110,28 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* Right Product Showcase */}
+            {/* Right Showcase: Dynamic Video Player Managed Through Admin Panel */}
             <div className="lg:col-span-5 relative">
-              <div className="relative mx-auto w-full max-w-md lg:max-w-none aspect-[4/3] rounded-2xl overflow-hidden bg-stone-900 p-2 shadow-2xl border border-stone-800 group">
-                <Image
-                  src={hero.bannerImage || 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1600&q=85'}
-                  alt="Klub Sports Athletic Footwear"
-                  fill
-                  priority
-                  className="object-cover rounded-xl transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent rounded-xl" />
-                <div className="absolute bottom-5 left-5 right-5 text-white">
-                  <div className="inline-block px-2.5 py-0.5 rounded bg-brand-orange text-[10px] uppercase font-bold tracking-wider text-white mb-1.5">
+              <div className="relative mx-auto w-full max-w-md lg:max-w-none aspect-[4/3] rounded-2xl overflow-hidden bg-stone-900 shadow-2xl border border-stone-800 group">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster={hero.bannerImage || 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1600&q=85'}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  key={hero.videoUrl || '/videos/hero-athlete.webm'}
+                >
+                  <source src={hero.videoUrl || '/videos/hero-athlete.webm'} type="video/webm" />
+                  <source src={hero.videoUrl || '/videos/hero-athlete.webm'} type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-5 left-5 right-5 text-white pointer-events-none">
+                  <div className="inline-block px-2.5 py-0.5 rounded bg-brand-orange text-[10px] uppercase font-bold tracking-wider text-white mb-1.5 shadow-sm">
                     Engineering Grade
                   </div>
                   <p className="text-xs font-semibold text-stone-200">
-                    Precision traction patterns & multi-density cushioning compounds.
+                    Precision athletic performance, traction and durability testing.
                   </p>
                 </div>
               </div>

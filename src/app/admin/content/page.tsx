@@ -13,6 +13,7 @@ export default function AdminContentPage() {
   const [homeHeadline, setHomeHeadline] = useState('');
   const [homeSubheadline, setHomeSubheadline] = useState('');
   const [homeHeroImage, setHomeHeroImage] = useState('');
+  const [homeHeroVideo, setHomeHeroVideo] = useState('');
   const [homeMetrics, setHomeMetrics] = useState<any[]>([]);
 
   // About state
@@ -35,6 +36,7 @@ export default function AdminContentPage() {
           setHomeHeadline(h.page.sections.hero.headline || '');
           setHomeSubheadline(h.page.sections.hero.subheadline || '');
           setHomeHeroImage(h.page.sections.hero.bannerImage || '');
+          setHomeHeroVideo(h.page.sections.hero.videoUrl || '/videos/hero-athlete.webm');
         }
         if (h.page?.sections?.highlights?.metrics) {
           setHomeMetrics(h.page.sections.highlights.metrics);
@@ -68,6 +70,7 @@ export default function AdminContentPage() {
               secondaryCtaText: 'Business Enquiries',
               secondaryCtaLink: '/contact',
               bannerImage: homeHeroImage,
+              videoUrl: homeHeroVideo || '/videos/hero-athlete.webm',
             },
             highlights: {
               title: 'Manufacturing & Operational Strength',
@@ -262,14 +265,57 @@ export default function AdminContentPage() {
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
-                  Hero Showcase Image URL
+                  Hero Showcase Image / Fallback Poster URL
                 </label>
                 <input
                   type="url"
                   value={homeHeroImage}
                   onChange={(e) => setHomeHeroImage(e.target.value)}
+                  placeholder="https://images.unsplash.com/..."
                   className="w-full px-4 py-2.5 text-xs bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange"
                 />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
+                  Hero Showcase Video URL (MP4 / WebM)
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={homeHeroVideo}
+                    onChange={(e) => setHomeHeroVideo(e.target.value)}
+                    placeholder="/videos/hero-athlete.webm or https://..."
+                    className="flex-1 px-4 py-2.5 text-xs bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setHomeHeroVideo('/videos/hero-athlete.webm')}
+                    className="px-3 py-2 text-xs font-semibold text-stone-700 bg-stone-100 hover:bg-stone-200 rounded-lg border border-stone-200 transition-colors shrink-0"
+                  >
+                    Reset Default Video
+                  </button>
+                </div>
+                <p className="text-[11px] text-stone-500 mt-1">
+                  This video plays in the right showcase card in place of the static shoe photo on the homepage hero. Enter any local path or hosted CDN video link.
+                </p>
+
+                {homeHeroVideo && (
+                  <div className="mt-3 aspect-[4/3] max-w-xs rounded-xl overflow-hidden border border-stone-200 bg-stone-950 shadow-sm relative">
+                    <video
+                      key={homeHeroVideo}
+                      src={homeHeroVideo}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/70 text-[10px] text-white font-mono">
+                      Live Showcase Video
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className="pt-4 border-t border-stone-100">
