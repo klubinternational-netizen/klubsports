@@ -38,10 +38,10 @@ export default async function ProductsPage({ searchParams }: Props) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
         <div className="max-w-3xl mb-10">
-          <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">
+          <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange">
             Official Catalogue
           </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-stone-900 tracking-tight mt-1">
+          <h1 className="font-display text-3xl sm:text-5xl font-extrabold text-stone-950 uppercase tracking-tight mt-1.5">
             Sports Footwear Catalogue
           </h1>
           <p className="text-stone-600 text-sm sm:text-base mt-3 leading-relaxed">

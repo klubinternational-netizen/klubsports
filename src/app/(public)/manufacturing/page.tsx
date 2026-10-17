@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Factory, ShieldAlert, Cpu, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Factory, ShieldAlert, Cpu, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { connectToDatabase } from '@/lib/db/connection';
 import { Page } from '@/models/Page';
 
@@ -49,8 +49,8 @@ export default async function ManufacturingPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero */}
-      <section className="bg-stone-900 text-white py-20 lg:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(#ee7700_1px,transparent_1px)] [background-size:24px_24px]"></div>
+      <section className="bg-stone-950 text-white py-20 lg:py-24 relative overflow-hidden border-b border-stone-800">
+        <div className="absolute inset-0 bg-gradient-to-b from-stone-900 via-stone-950 to-stone-950 opacity-90 pointer-events-none"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-brand-orange text-xs font-semibold uppercase tracking-wider">
@@ -130,7 +130,7 @@ export default async function ManufacturingPage() {
                   <p className="text-xs text-stone-400 mt-1">High-pressure hydraulic press bonding for zero sole separation.</p>
                 </div>
                 <div className="p-4 rounded-lg bg-stone-800/80 border border-stone-700">
-                  <Sparkles className="w-5 h-5 text-brand-orange mb-2" />
+                  <ShieldCheck className="w-5 h-5 text-brand-orange mb-2" />
                   <h4 className="text-sm font-bold text-white">Dimensional Quality Checks</h4>
                   <p className="text-xs text-stone-400 mt-1">Strict tolerance verification across all standard size runs.</p>
                 </div>

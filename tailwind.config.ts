@@ -22,8 +22,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-manrope)", "var(--font-inter)", "system-ui", "sans-serif"],
-        manrope: ["var(--font-manrope)", "sans-serif"],
+        sans: ["var(--font-jakarta)", "system-ui", "sans-serif"],
+        display: ["var(--font-outfit)", "var(--font-jakarta)", "sans-serif"],
+        heading: ["var(--font-outfit)", "sans-serif"],
       },
       boxShadow: {
         premium: "0 10px 30px -10px rgba(28, 25, 23, 0.08)",

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, ChevronRight, ShieldCheck, Factory, Layers, Award, Sparkles } from 'lucide-react';
+import { ArrowRight, ChevronRight, ShieldCheck, Factory, Layers, Award } from 'lucide-react';
 import { connectToDatabase } from '@/lib/db/connection';
 import { Category } from '@/models/Category';
 import { Page } from '@/models/Page';
@@ -37,7 +37,7 @@ export default async function HomePage() {
     primaryCtaLink: '/products',
     secondaryCtaText: 'Business Enquiries',
     secondaryCtaLink: '/contact',
-    bannerImage: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1600&q=85',
+    bannerImage: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1600&q=85',
   };
 
   const highlights = page?.sections?.highlights?.metrics || [
@@ -50,74 +50,84 @@ export default async function HomePage() {
   return (
     <div className="flex flex-col">
       {/* SECTION 2: HERO */}
-      <section className="relative overflow-hidden bg-stone-900 text-white py-20 lg:py-28">
-        {/* Subtle structural background overlay */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(#ee7700_1px,transparent_1px)] [background-size:24px_24px]"></div>
-        
+      <section className="relative overflow-hidden bg-[#0c0d0e] text-white py-20 lg:py-28 border-b border-stone-800/80">
+        {/* Subtle architectural ambient lighting */}
+        <div className="absolute -top-32 right-1/4 w-96 h-96 bg-brand-orange/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute -bottom-24 left-10 w-80 h-80 bg-stone-800/20 rounded-full blur-[100px] pointer-events-none"></div>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
             {/* Left Content */}
-            <div className="lg:col-span-7 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-brand-orange text-xs font-semibold uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Premium Corporate Sports Footwear</span>
+            <div className="lg:col-span-7 space-y-7 text-left">
+              {/* Minimalist Live Architectural Tag (No Sparkle AI icons) */}
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/10 text-white text-[11px] font-bold tracking-[0.16em] uppercase">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-orange"></span>
+                </span>
+                <span>Corporate Sports Footwear</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white uppercase leading-[1.1]">
+              <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white uppercase leading-[1.05]">
                 {hero.headline}
               </h1>
 
-              <p className="text-lg sm:text-xl text-stone-300 font-normal leading-relaxed max-w-2xl">
+              <p className="text-base sm:text-lg text-stone-300 font-normal leading-relaxed max-w-xl">
                 {hero.subheadline}
               </p>
 
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <Link
                   href={hero.primaryCtaLink || '/products'}
-                  className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-orange-dark active:scale-[0.98] rounded-md transition-all shadow-lg hover:shadow-brand-orange/20"
+                  className="inline-flex items-center gap-2 px-8 py-4 text-xs font-bold uppercase tracking-[0.14em] text-white bg-brand-orange hover:bg-white hover:text-stone-950 active:scale-[0.98] transition-all duration-300 shadow-xl shadow-brand-orange/20 group"
                 >
                   <span>{hero.primaryCtaText || 'Explore Our Products'}</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
 
                 <Link
                   href={hero.secondaryCtaLink || '/contact'}
-                  className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold tracking-wide text-stone-200 bg-white/5 hover:bg-white/10 hover:text-white border border-white/20 active:scale-[0.98] rounded-md transition-all"
+                  className="inline-flex items-center gap-2 px-8 py-4 text-xs font-bold uppercase tracking-[0.14em] text-stone-200 bg-white/5 hover:bg-white/10 hover:text-white border border-white/20 active:scale-[0.98] transition-all duration-300"
                 >
                   <span>{hero.secondaryCtaText || 'Business Enquiries'}</span>
                 </Link>
               </div>
 
-              <div className="pt-6 border-t border-stone-800 flex items-center gap-8 text-xs text-stone-400">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-brand-orange" />
-                  <span>Institutional Procurement Ready</span>
+              {/* Manufacturing Metrics Bar */}
+              <div className="pt-8 border-t border-stone-800/80 grid grid-cols-2 sm:grid-cols-3 gap-6 text-xs text-stone-400">
+                <div>
+                  <div className="text-stone-100 font-bold uppercase tracking-wider text-[11px]">4 Factories</div>
+                  <div className="text-stone-400 mt-0.5">Manufacturing Base</div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Factory className="w-4 h-4 text-brand-orange" />
-                  <span>Multi-Category Manufacturing</span>
+                <div>
+                  <div className="text-stone-100 font-bold uppercase tracking-wider text-[11px]">4,00,000 / Mo</div>
+                  <div className="text-stone-400 mt-0.5">Production Output</div>
+                </div>
+                <div className="col-span-2 sm:col-span-1">
+                  <div className="text-stone-100 font-bold uppercase tracking-wider text-[11px]">Pan-India</div>
+                  <div className="text-stone-400 mt-0.5">Institutional Supply</div>
                 </div>
               </div>
             </div>
 
             {/* Right Product Showcase */}
             <div className="lg:col-span-5 relative">
-              <div className="relative mx-auto w-full max-w-md lg:max-w-none aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-tr from-stone-800 to-stone-700 p-2 shadow-2xl border border-stone-700/60 group">
+              <div className="relative mx-auto w-full max-w-md lg:max-w-none aspect-[4/3] rounded-2xl overflow-hidden bg-stone-900 p-2 shadow-2xl border border-stone-800 group">
                 <Image
-                  src={hero.bannerImage || '/brand/logo-stacked.png'}
+                  src={hero.bannerImage || 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1600&q=85'}
                   alt="Klub Sports Athletic Footwear"
                   fill
                   priority
                   className="object-cover rounded-xl transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 40vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl" />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent rounded-xl" />
                 <div className="absolute bottom-5 left-5 right-5 text-white">
-                  <span className="text-xs uppercase font-bold tracking-wider text-brand-orange">
-                    High Performance Engineering
-                  </span>
-                  <p className="text-sm font-medium text-stone-200 mt-0.5">
-                    Designed for peak torque, cushioning and court endurance.
+                  <div className="inline-block px-2.5 py-0.5 rounded bg-brand-orange text-[10px] uppercase font-bold tracking-wider text-white mb-1.5">
+                    Engineering Grade
+                  </div>
+                  <p className="text-xs font-semibold text-stone-200">
+                    Precision traction patterns & multi-density cushioning compounds.
                   </p>
                 </div>
               </div>
@@ -127,19 +137,19 @@ export default async function HomePage() {
       </section>
 
       {/* SECTION 3: COMPANY HIGHLIGHTS */}
-      <section className="bg-stone-50 border-y border-stone-200 py-12">
+      <section className="bg-stone-50/70 border-b border-stone-200 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-2">
+          <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">
-                Industrial Footprint
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange">
+                Operational Infrastructure
               </span>
-              <h2 className="text-2xl font-bold text-stone-900 tracking-tight">
-                Manufacturing & Operational Scale
+              <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-stone-950 uppercase tracking-tight mt-1">
+                Manufacturing & Supply Capabilities
               </h2>
             </div>
-            <p className="text-xs text-stone-500 italic">
-              *Figures sourced from client presentation deck (pending audit certification).
+            <p className="text-xs text-stone-500 font-medium tracking-wide">
+              *Figures sourced from client presentation deck (pending certified audit).
             </p>
           </div>
 
@@ -147,19 +157,21 @@ export default async function HomePage() {
             {highlights.map((item: any, idx: number) => (
               <div
                 key={idx}
-                className="bg-white p-6 rounded-xl border border-stone-200 shadow-sm hover:border-brand-orange/40 transition-colors"
+                className="bg-white p-7 rounded-xl border border-stone-200/90 shadow-sm hover:border-brand-orange/60 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
               >
-                <div className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
+                <div className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-stone-950 tracking-tight">
                   {item.value}
                 </div>
-                <div className="text-sm font-medium text-stone-600 mt-2">
-                  {item.label}
-                </div>
-                {item.note && (
-                  <div className="text-[11px] text-stone-400 mt-1 uppercase tracking-wider">
-                    {item.note}
+                <div className="mt-3">
+                  <div className="text-xs font-bold uppercase tracking-wider text-stone-700">
+                    {item.label}
                   </div>
-                )}
+                  {item.note && (
+                    <div className="text-[10px] text-stone-400 mt-1 uppercase tracking-widest">
+                      {item.note}
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -167,26 +179,26 @@ export default async function HomePage() {
       </section>
 
       {/* SECTION 4: FOOTWEAR CATEGORIES */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange">
                 Multi-Sport Catalogue
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight mt-1">
+              <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-stone-950 uppercase tracking-tight mt-1.5">
                 Footwear Designed for Every Discipline
               </h2>
-              <p className="text-stone-600 text-sm sm:text-base mt-2 max-w-2xl">
-                Explore dedicated sports footwear tailored to tournament surfaces, traction mechanics, and athlete biomechanics.
+              <p className="text-stone-600 text-sm sm:text-base mt-2.5 max-w-2xl font-normal leading-relaxed">
+                Explore sport-specific footwear engineered to the surface demands, traction dynamics, and biomechanics of competitive athletes.
               </p>
             </div>
             <Link
               href="/products"
-              className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-orange hover:text-brand-orange-dark transition-colors group self-start md:self-auto"
+              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-stone-950 hover:text-brand-orange transition-colors group self-start md:self-auto border-b-2 border-stone-950 hover:border-brand-orange pb-0.5"
             >
               <span>View Full Catalogue</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
 
@@ -196,28 +208,28 @@ export default async function HomePage() {
               <Link
                 key={cat._id}
                 href={`/categories/${cat.slug}`}
-                className="group flex flex-col bg-stone-50 hover:bg-white rounded-xl overflow-hidden border border-stone-200 hover:border-brand-orange/40 hover:shadow-premium transition-all duration-300"
+                className="group flex flex-col bg-stone-50/50 hover:bg-white rounded-xl overflow-hidden border border-stone-200 hover:border-stone-900 hover:shadow-xl transition-all duration-300"
               >
                 <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-200">
                   <Image
-                    src={cat.coverImage || '/brand/logo-stacked.png'}
+                    src={cat.coverImage || 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80'}
                     alt={cat.imageAlt || cat.name}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-stone-900/10 group-hover:bg-stone-900/0 transition-colors" />
+                  <div className="absolute inset-0 bg-stone-950/10 group-hover:bg-transparent transition-colors duration-300" />
                 </div>
-                <div className="p-6 flex flex-col flex-grow justify-between">
+                <div className="p-7 flex flex-col flex-grow justify-between">
                   <div>
-                    <h3 className="text-lg font-bold text-stone-900 group-hover:text-brand-orange transition-colors">
+                    <h3 className="font-display text-xl font-bold uppercase tracking-tight text-stone-950 group-hover:text-brand-orange transition-colors">
                       {cat.name}
                     </h3>
-                    <p className="text-sm text-stone-600 mt-2 line-clamp-2 leading-relaxed">
-                      {cat.description || 'Specialized sports footwear engineered for athletic performance.'}
+                    <p className="text-xs sm:text-sm text-stone-600 mt-2 line-clamp-2 leading-relaxed">
+                      {cat.description || 'Specialized athletic footwear engineered for professional sports performance.'}
                     </p>
                   </div>
-                  <div className="mt-5 pt-4 border-t border-stone-200/80 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-brand-orange">
+                  <div className="mt-6 pt-4 border-t border-stone-200/80 flex items-center justify-between text-[11px] font-bold uppercase tracking-[0.14em] text-brand-orange group-hover:text-stone-950 transition-colors">
                     <span>Explore Category</span>
                     <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </div>
@@ -230,60 +242,60 @@ export default async function HomePage() {
 
       {/* SECTION 4.5: FEATURED SHOWCASE PRODUCTS */}
       {featuredProducts && featuredProducts.length > 0 && (
-        <section className="py-16 bg-stone-50 border-t border-stone-200">
+        <section className="py-20 bg-stone-50 border-t border-stone-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">
+                <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange">
                   Engineered Models
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-bold text-stone-900 tracking-tight mt-1">
+                <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-stone-950 uppercase tracking-tight mt-1">
                   Featured Athletic Footwear
                 </h2>
               </div>
               <Link
                 href="/products"
-                className="text-xs font-bold uppercase tracking-wider text-brand-orange hover:underline self-start md:self-auto"
+                className="text-xs font-bold uppercase tracking-[0.14em] text-stone-950 hover:text-brand-orange border-b-2 border-stone-950 hover:border-brand-orange pb-0.5 transition-colors self-start md:self-auto"
               >
                 Browse All Models →
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredProducts.map((product: any) => {
                 const primaryImg =
                   product.images?.find((img: any) => img.isPrimary)?.url ||
                   product.images?.[0]?.url ||
-                  '/brand/logo-stacked.png';
+                  'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80';
                 return (
                   <Link
                     key={product._id}
                     href={`/products/${product.slug}`}
-                    className="group bg-white rounded-xl border border-stone-200 overflow-hidden hover:border-brand-orange/40 hover:shadow-md transition-all duration-300 flex flex-col"
+                    className="group bg-white rounded-xl border border-stone-200 overflow-hidden hover:border-stone-900 hover:shadow-xl transition-all duration-300 flex flex-col"
                   >
                     <div className="relative aspect-[4/3] bg-stone-100 overflow-hidden">
                       <Image
                         src={primaryImg}
                         alt={product.name}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
-                      <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded text-[11px] font-bold text-stone-800 uppercase tracking-wider">
+                      <div className="absolute top-3 left-3 bg-stone-950/80 backdrop-blur-sm px-2.5 py-1 rounded text-[10px] font-bold text-white uppercase tracking-wider">
                         {product.categoryId?.name || 'Footwear'}
                       </div>
                     </div>
-                    <div className="p-5 flex flex-col flex-grow justify-between">
+                    <div className="p-6 flex flex-col flex-grow justify-between">
                       <div>
-                        <h3 className="text-base font-bold text-stone-900 group-hover:text-brand-orange transition-colors">
+                        <h3 className="font-display text-lg font-bold uppercase tracking-tight text-stone-950 group-hover:text-brand-orange transition-colors">
                           {product.name}
                         </h3>
-                        <p className="text-xs text-stone-600 mt-1.5 line-clamp-2 leading-relaxed">
+                        <p className="text-xs text-stone-600 mt-2 line-clamp-2 leading-relaxed">
                           {product.shortDescription}
                         </p>
                       </div>
-                      <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-stone-700 group-hover:text-brand-orange transition-colors">
-                        <span>View Specifications</span>
+                      <div className="mt-5 pt-4 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-stone-700 group-hover:text-brand-orange transition-colors">
+                        <span className="uppercase text-[11px] font-bold tracking-wider">View Specifications</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </div>
                     </div>
@@ -296,44 +308,44 @@ export default async function HomePage() {
       )}
 
       {/* SECTION 5: ABOUT KLUB SPORTS */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange">
                 About The Brand
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">
-                Built Around Performance, Ergonomics and Quality
+              <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-stone-950 uppercase tracking-tight">
+                Built Around Performance, Ergonomics & Scale
               </h2>
               <p className="text-stone-600 text-base leading-relaxed">
                 Klub Sports is an Indian corporate sports footwear manufacturer dedicated to producing athletic footwear built to the rigorous demands of athletes, competitive sports academies, and institutional programs nationwide.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="p-4 rounded-lg bg-stone-50 border border-stone-200">
-                  <Layers className="w-6 h-6 text-brand-orange mb-2" />
-                  <h4 className="text-sm font-bold text-stone-900">Surface-Specific Compounds</h4>
-                  <p className="text-xs text-stone-600 mt-1">Non-marking court gums, sprint Pebax plates, and cleated outsoles.</p>
+                <div className="p-5 rounded-xl bg-stone-50 border border-stone-200">
+                  <Layers className="w-6 h-6 text-brand-orange mb-3" />
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-stone-950">Surface-Specific Compounds</h4>
+                  <p className="text-xs text-stone-600 mt-1.5 leading-relaxed">Non-marking court gums, sprint Pebax plates, and cleated outsoles.</p>
                 </div>
-                <div className="p-4 rounded-lg bg-stone-50 border border-stone-200">
-                  <Award className="w-6 h-6 text-brand-orange mb-2" />
-                  <h4 className="text-sm font-bold text-stone-900">Institutional Supply</h4>
-                  <p className="text-xs text-stone-600 mt-1">Structured procurement processes for teams, tournaments, and distributors.</p>
+                <div className="p-5 rounded-xl bg-stone-50 border border-stone-200">
+                  <Award className="w-6 h-6 text-brand-orange mb-3" />
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-stone-950">Institutional Supply</h4>
+                  <p className="text-xs text-stone-600 mt-1.5 leading-relaxed">Structured procurement processes for teams, tournaments, and distributors.</p>
                 </div>
               </div>
               <div className="pt-2">
                 <Link
                   href="/about"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-brand-orange hover:text-brand-orange-dark transition-colors group"
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-stone-950 hover:text-brand-orange transition-colors border-b-2 border-stone-950 hover:border-brand-orange pb-0.5"
                 >
                   <span>Read More About Our Company</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
             </div>
 
             <div className="lg:col-span-6">
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-stone-200">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-stone-200">
                 <Image
                   src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1000&q=80"
                   alt="Klub Sports Industrial Production"
@@ -348,13 +360,13 @@ export default async function HomePage() {
       </section>
 
       {/* SECTION 6: MANUFACTURING CAPABILITIES */}
-      <section className="py-20 bg-stone-900 text-white relative">
+      <section className="py-24 bg-stone-950 text-white relative border-y border-stone-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-4">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">
+            <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange">
               Infrastructure
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+            <h2 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-white uppercase">
               Industrial Footwear Manufacturing & Quality Execution
             </h2>
             <p className="text-stone-300 text-base leading-relaxed">
@@ -363,20 +375,20 @@ export default async function HomePage() {
           </div>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-stone-800/80 p-6 rounded-xl border border-stone-700">
-              <h3 className="text-lg font-bold text-white mb-2">Sole Molding & Compounds</h3>
+            <div className="bg-stone-900/90 p-7 rounded-xl border border-stone-800">
+              <h3 className="font-display text-lg font-bold uppercase tracking-tight text-white mb-2">Sole Molding & Compounds</h3>
               <p className="text-xs text-stone-400 leading-relaxed">
                 Precision tooling for dual-density EVA midsoles, virgin gum rubbers, and abrasion-resistant polyurethane outsoles tailored to sport-specific traction.
               </p>
             </div>
-            <div className="bg-stone-800/80 p-6 rounded-xl border border-stone-700">
-              <h3 className="text-lg font-bold text-white mb-2">Upper Construction & Mesh</h3>
+            <div className="bg-stone-900/90 p-7 rounded-xl border border-stone-800">
+              <h3 className="font-display text-lg font-bold uppercase tracking-tight text-white mb-2">Upper Construction & Mesh</h3>
               <p className="text-xs text-stone-400 leading-relaxed">
                 Engineered jacquard meshes, reinforced synthetic toe caps, and high-abrasion stitch assemblies designed for torsional stability and longevity.
               </p>
             </div>
-            <div className="bg-stone-800/80 p-6 rounded-xl border border-stone-700">
-              <h3 className="text-lg font-bold text-white mb-2">High-Capacity Scaling</h3>
+            <div className="bg-stone-900/90 p-7 rounded-xl border border-stone-800">
+              <h3 className="font-display text-lg font-bold uppercase tracking-tight text-white mb-2">High-Capacity Scaling</h3>
               <p className="text-xs text-stone-400 leading-relaxed">
                 Configured to meet large-scale seasonal sports procurement, statewide distributor channels, and institutional tenders on strict delivery schedules.
               </p>
@@ -386,7 +398,7 @@ export default async function HomePage() {
           <div className="mt-10">
             <Link
               href="/manufacturing"
-              className="inline-flex items-center gap-2 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white bg-white/10 hover:bg-white/20 border border-white/20 rounded-md transition-colors"
+              className="inline-flex items-center gap-2 px-7 py-3.5 text-xs font-bold uppercase tracking-[0.14em] text-white bg-white/10 hover:bg-white/20 border border-white/20 rounded-md transition-colors"
             >
               <span>Explore Manufacturing Facilities</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -396,12 +408,12 @@ export default async function HomePage() {
       </section>
 
       {/* SECTION 7: BUSINESS ENQUIRY CTA */}
-      <section className="py-20 bg-brand-orange-light border-y border-brand-orange/20">
+      <section className="py-24 bg-brand-orange-light/60 border-b border-brand-orange/20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <span className="text-xs font-bold uppercase tracking-wider text-brand-orange-dark">
+          <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange-dark">
             Institutional Procurement
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
+          <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-stone-950 uppercase tracking-tight">
             Looking for a Sports Footwear Partner?
           </h2>
           <p className="text-stone-700 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
@@ -410,10 +422,10 @@ export default async function HomePage() {
           <div className="pt-2 flex flex-wrap justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-orange-dark active:scale-[0.98] rounded-md transition-all shadow-md hover:shadow-lg"
+              className="inline-flex items-center gap-2 px-9 py-4 text-xs font-bold uppercase tracking-[0.14em] text-white bg-stone-950 hover:bg-brand-orange active:scale-[0.98] transition-all duration-300 shadow-xl group"
             >
               <span>Discuss Your Requirements</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </div>
         </div>

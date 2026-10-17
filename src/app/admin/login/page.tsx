@@ -42,9 +42,10 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Background motif */}
-      <div className="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#ee7700_1px,transparent_1px)] [background-size:24px_24px]"></div>
+    <div className="min-h-screen bg-[#0c0d0e] flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Subtle architectural lighting */}
+      <div className="absolute -top-32 right-1/4 w-96 h-96 bg-brand-orange/10 rounded-full blur-[140px] pointer-events-none"></div>
+      <div className="absolute -bottom-32 left-1/4 w-96 h-96 bg-stone-800/20 rounded-full blur-[140px] pointer-events-none"></div>
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 text-center space-y-4">
         {/* Brand Logo Container */}

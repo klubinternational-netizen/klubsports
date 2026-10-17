@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Save, CheckCircle2, AlertCircle, Loader2, Sparkles, Upload } from 'lucide-react';
+import { Save, CheckCircle2, AlertCircle, Loader2, Upload } from 'lucide-react';
 
 export default function AdminContentPage() {
   const [activeTab, setActiveTab] = useState<'home' | 'about' | 'manufacturing'>('home');

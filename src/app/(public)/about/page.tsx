@@ -40,18 +40,18 @@ export default async function AboutPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="bg-stone-900 text-white py-20 lg:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(#ee7700_1px,transparent_1px)] [background-size:24px_24px]"></div>
+      <section className="bg-[#0c0d0e] text-white py-20 lg:py-24 relative overflow-hidden border-b border-stone-800">
+        <div className="absolute -top-32 right-1/4 w-96 h-96 bg-brand-orange/10 rounded-full blur-[120px] pointer-events-none"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-brand-orange text-xs font-semibold uppercase tracking-wider">
-              <Target className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-white text-[11px] font-bold uppercase tracking-[0.16em]">
+              <Target className="w-3.5 h-3.5 text-brand-orange" />
               <span>Corporate Profile</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight uppercase">
+            <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight uppercase">
               About Klub Sports
             </h1>
-            <p className="text-stone-300 text-lg sm:text-xl leading-relaxed">
+            <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
               Engineering high-performance corporate sports footwear designed to meet the rigorous demands of athletes, academies, and institutional sporting programs across India.
             </p>
           </div>

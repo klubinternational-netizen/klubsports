@@ -43,10 +43,10 @@ export default async function ContactPage({ searchParams }: Props) {
           {/* Left Column: Corporate Desk Info */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange">
                 Institutional Desk
               </span>
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight mt-1">
+              <h1 className="font-display text-3xl sm:text-5xl font-extrabold text-stone-950 uppercase tracking-tight mt-1.5">
                 Business & Bulk Enquiries
               </h1>
               <p className="text-stone-600 text-sm sm:text-base mt-3 leading-relaxed">

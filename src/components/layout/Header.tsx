@@ -57,7 +57,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
+          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navItems.map((item) => {
               const isActive =
                 item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
@@ -65,10 +65,10 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-2 text-sm font-medium tracking-wide transition-colors rounded-md ${
+                  className={`relative py-1 text-[13px] font-semibold uppercase tracking-[0.08em] transition-colors duration-200 ${
                     isActive
-                      ? 'text-brand-orange font-semibold bg-brand-orange-light/60'
-                      : 'text-stone-700 hover:text-brand-orange hover:bg-stone-50'
+                      ? 'text-stone-950 font-bold after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-brand-orange'
+                      : 'text-stone-600 hover:text-stone-950 after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-stone-300 after:transition-all after:duration-300'
                   }`}
                 >
                   {item.label}
@@ -81,10 +81,10 @@ export default function Header() {
           <div className="hidden md:flex items-center">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-orange-dark active:scale-[0.98] rounded-md transition-all shadow-sm hover:shadow-md"
+              className="inline-flex items-center gap-2 px-6 py-2.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white bg-stone-950 hover:bg-brand-orange active:scale-[0.98] transition-all duration-300 shadow-sm group"
             >
               <span>Business Enquiry</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
             </Link>
           </div>
 
@@ -113,10 +113,10 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-2.5 text-base font-medium rounded-lg transition-colors ${
+                  className={`px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors ${
                     isActive
-                      ? 'text-brand-orange font-semibold bg-brand-orange-light'
-                      : 'text-stone-800 hover:text-brand-orange hover:bg-stone-50'
+                      ? 'text-brand-orange bg-brand-orange-light/50 border-l-2 border-brand-orange pl-4'
+                      : 'text-stone-800 hover:text-stone-950 hover:bg-stone-50'
                   }`}
                 >
                   {item.label}
@@ -126,10 +126,10 @@ export default function Header() {
             <div className="pt-4 border-t border-stone-100 mt-2">
               <Link
                 href="/contact"
-                className="w-full flex items-center justify-center gap-2 px-5 py-3 text-sm font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-orange-dark rounded-lg transition-colors shadow-sm"
+                className="w-full flex items-center justify-center gap-2 px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-white bg-stone-950 hover:bg-brand-orange transition-colors shadow-sm"
               >
                 <span>Business Enquiry</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </nav>

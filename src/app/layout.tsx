@@ -1,19 +1,19 @@
 import type { Metadata } from 'next';
-import { Manrope, Inter } from 'next/font/google';
+import { Outfit, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 
-const manrope = Manrope({
+const outfit = Outfit({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-manrope',
-  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-outfit',
+  weight: ['400', '500', '600', '700', '800', '900'],
 });
 
-const inter = Inter({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
-  weight: ['400', '500', '600'],
+  variable: '--font-jakarta',
+  weight: ['400', '500', '600', '700', '800'],
 });
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
+    <html lang="en" className={`${outfit.variable} ${jakarta.variable}`}>
       <body className="min-h-screen bg-white font-sans text-stone-900 antialiased selection:bg-brand-orange-light selection:text-brand-orange-dark">
         {children}
       </body>

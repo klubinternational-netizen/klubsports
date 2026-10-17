@@ -11,7 +11,6 @@ import {
   AlertCircle,
   Loader2,
   ArrowLeft,
-  Sparkles,
 } from 'lucide-react';
 import { productSchema, ProductInput } from '@/lib/validations/product';
 

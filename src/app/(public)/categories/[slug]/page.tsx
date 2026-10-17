@@ -49,8 +49,8 @@ export default async function CategoryDetailPage({ params }: Props) {
   return (
     <div className="bg-white min-h-screen">
       {/* Category Hero Banner */}
-      <section className="relative bg-stone-900 text-white py-16 lg:py-24 overflow-hidden">
-        <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(#ee7700_1px,transparent_1px)] [background-size:24px_24px]"></div>
+      <section className="relative bg-[#0c0d0e] text-white py-16 lg:py-24 overflow-hidden border-b border-stone-800">
+        <div className="absolute -top-32 right-1/4 w-96 h-96 bg-brand-orange/10 rounded-full blur-[120px] pointer-events-none"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumbs */}
           <nav className="flex items-center space-x-2 text-xs text-stone-400 mb-6">
@@ -67,10 +67,10 @@ export default async function CategoryDetailPage({ params }: Props) {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-4">
-              <span className="inline-block text-xs font-bold uppercase tracking-wider text-brand-orange">
+              <span className="inline-block text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange">
                 Footwear Category
               </span>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white uppercase">
+              <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white uppercase">
                 {serializedCategory.name}
               </h1>
               <p className="text-stone-300 text-base sm:text-lg max-w-2xl leading-relaxed">

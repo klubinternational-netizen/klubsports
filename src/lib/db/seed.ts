@@ -45,7 +45,7 @@ export async function runSeed() {
       name: 'Running Shoes',
       slug: 'running-shoes',
       description: 'Precision-engineered athletic runners designed for maximum energy return, ergonomic cushioning, and daily road endurance.',
-      coverImage: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
+      coverImage: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80',
       imageAlt: 'Klub Sports Running Shoes',
       sortOrder: 1,
     },
@@ -386,7 +386,7 @@ export async function runSeed() {
           primaryCtaLink: '/products',
           secondaryCtaText: 'Business Enquiries',
           secondaryCtaLink: '/contact',
-          bannerImage: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1600&q=85',
+          bannerImage: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1600&q=85',
         },
         highlights: {
           title: 'Manufacturing & Operational Strength',

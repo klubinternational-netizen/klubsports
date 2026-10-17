@@ -98,7 +98,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 >
                   {serializedProduct.categoryId?.name}
                 </Link>
-                <h1 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
+                <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-stone-950 uppercase tracking-tight">
                   {serializedProduct.name}
                 </h1>
                 <p className="text-stone-600 text-sm sm:text-base mt-3 leading-relaxed">
