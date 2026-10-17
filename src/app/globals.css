@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Official Brand Colors extracted from logo */
+  --brand-orange: #ee7700;
+  --brand-orange-dark: #d46500;
+  --brand-orange-light: #fff7ed;
+  --brand-orange-subtle: #ffedd5;
+  --brand-slate: #625e5d;
+  --brand-slate-dark: #3d3938;
+  --brand-slate-light: #f5f4f3;
+  --brand-charcoal: #1c1917;
+  --brand-surface: #faf9f8;
+}
+
+body {
+  color: #1c1917;
+  background-color: #ffffff;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f5f4f3;
+}
+::-webkit-scrollbar-thumb {
+  background: #d6d3d1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a29e;
+}
