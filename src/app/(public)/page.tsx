@@ -6,6 +6,7 @@ import { connectToDatabase } from '@/lib/db/connection';
 import { Category } from '@/models/Category';
 import { Page } from '@/models/Page';
 import { Product } from '@/models/Product';
+import { LiquidMetalButton } from '@/components/ui/liquid-metal-button';
 
 export const revalidate = 60; // ISR cache revalidation
 
@@ -50,17 +51,32 @@ export default async function HomePage() {
   return (
     <div className="flex flex-col">
       {/* SECTION 2: HERO */}
-      <section className="relative overflow-hidden bg-[#0c0d0e] text-white py-20 lg:py-28 border-b border-stone-800/80">
-        {/* Subtle architectural ambient lighting */}
-        <div className="absolute -top-32 right-1/4 w-96 h-96 bg-brand-orange/10 rounded-full blur-[120px] pointer-events-none"></div>
-        <div className="absolute -bottom-24 left-10 w-80 h-80 bg-stone-800/20 rounded-full blur-[100px] pointer-events-none"></div>
+      <section className="relative overflow-hidden bg-[#0c0d0e] text-white py-20 lg:py-28 border-b border-stone-800/80 min-h-[640px] flex items-center">
+        {/* Background Athletic Performance Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={hero.bannerImage || 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1600&q=85'}
+          className="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none scale-105"
+        >
+          <source src="/videos/hero-athlete.webm" type="video/webm" />
+        </video>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Ambient Dark Luxury Gradients Overlay for crisp text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0c0d0e] via-[#0c0d0e]/90 to-[#0c0d0e]/60 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0d0e] via-transparent to-[#0c0d0e]/80 pointer-events-none" />
+
+        {/* Subtle architectural ambient lighting */}
+        <div className="absolute -top-32 right-1/4 w-96 h-96 bg-brand-orange/15 rounded-full blur-[140px] pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-7 text-left">
               {/* Minimalist Live Architectural Tag (No Sparkle AI icons) */}
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/10 text-white text-[11px] font-bold tracking-[0.16em] uppercase">
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/10 text-white text-[11px] font-bold tracking-[0.16em] uppercase backdrop-blur-md">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-orange"></span>
@@ -76,21 +92,19 @@ export default async function HomePage() {
                 {hero.subheadline}
               </p>
 
-              <div className="pt-2 flex flex-wrap items-center gap-4">
-                <Link
+              {/* Liquid Metal Shader Buttons */}
+              <div className="pt-2 flex flex-wrap items-center gap-5">
+                <LiquidMetalButton
                   href={hero.primaryCtaLink || '/products'}
-                  className="inline-flex items-center gap-2 px-8 py-4 text-xs font-bold uppercase tracking-[0.14em] text-white bg-brand-orange hover:bg-white hover:text-stone-950 active:scale-[0.98] transition-all duration-300 shadow-xl shadow-brand-orange/20 group"
-                >
-                  <span>{hero.primaryCtaText || 'Explore Our Products'}</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-                </Link>
+                  label={hero.primaryCtaText || 'Explore Our Products'}
+                  variant="orange"
+                />
 
-                <Link
+                <LiquidMetalButton
                   href={hero.secondaryCtaLink || '/contact'}
-                  className="inline-flex items-center gap-2 px-8 py-4 text-xs font-bold uppercase tracking-[0.14em] text-stone-200 bg-white/5 hover:bg-white/10 hover:text-white border border-white/20 active:scale-[0.98] transition-all duration-300"
-                >
-                  <span>{hero.secondaryCtaText || 'Business Enquiries'}</span>
-                </Link>
+                  label={hero.secondaryCtaText || 'Business Enquiries'}
+                  variant="chrome"
+                />
               </div>
 
               {/* Manufacturing Metrics Bar */}
