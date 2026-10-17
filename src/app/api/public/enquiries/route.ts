@@ -4,6 +4,7 @@ import { Enquiry } from '@/models/Enquiry';
 import { Category } from '@/models/Category';
 import { publicEnquirySchema } from '@/lib/validations/enquiry';
 import { checkRateLimit } from '@/lib/security/rateLimit';
+import { sendEnquiryEmailNotification } from '@/lib/email/resend';
 
 export async function POST(req: NextRequest) {
   try {
@@ -84,36 +85,30 @@ export async function POST(req: NextRequest) {
       ipAddress: ip,
     });
 
-    // Optional Resend notification hook
-    if (process.env.RESEND_API_KEY && process.env.ENQUIRY_NOTIFICATION_EMAIL) {
+    // Email notification dispatch via Resend
+    let emailDispatched = false;
+    let emailId: string | undefined;
+
+    if (process.env.RESEND_API_KEY) {
       try {
-        // Trigger Resend asynchronously if key is provided
-        fetch('https://api.resend.com/emails', {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            from: 'Klub Sports Notifications <no-reply@klubsports.com>',
-            to: [process.env.ENQUIRY_NOTIFICATION_EMAIL],
-            subject: `New Business Enquiry from ${parsed.data.name} (${parsed.data.companyName || 'Individual'})`,
-            html: `
-              <h2>New Business Enquiry Received</h2>
-              <p><strong>Name:</strong> ${parsed.data.name}</p>
-              <p><strong>Company:</strong> ${parsed.data.companyName || 'N/A'}</p>
-              <p><strong>Email:</strong> ${parsed.data.email}</p>
-              <p><strong>Phone:</strong> ${parsed.data.phone}</p>
-              <p><strong>Interested Category:</strong> ${resolvedCategoryName || 'General Enquiry'}</p>
-              <p><strong>Source Page:</strong> ${parsed.data.sourcePage}</p>
-              <hr />
-              <p><strong>Message:</strong></p>
-              <p>${parsed.data.message.replace(/\n/g, '<br />')}</p>
-            `,
-          }),
-        }).catch((err) => console.error('Resend email error:', err));
-      } catch (e) {
-        console.error('Email dispatch error:', e);
+        const emailResult = await sendEnquiryEmailNotification({
+          name: parsed.data.name,
+          companyName: parsed.data.companyName,
+          email: parsed.data.email,
+          phone: parsed.data.phone,
+          categoryName: resolvedCategoryName,
+          message: parsed.data.message,
+          sourcePage: parsed.data.sourcePage,
+        });
+
+        if (emailResult.success) {
+          emailDispatched = true;
+          emailId = emailResult.id;
+        } else {
+          console.warn('Resend email could not be delivered:', emailResult.error);
+        }
+      } catch (e: any) {
+        console.error('Email notification failure:', e?.message);
       }
     }
 
