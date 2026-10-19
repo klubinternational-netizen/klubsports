@@ -7,15 +7,15 @@ import { Lock, Mail, Eye, EyeOff, Loader2, AlertCircle, ShieldCheck, KeyRound } 
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('admin@klubsports.com');
-  const [password, setPassword] = useState('KlubSportsAdmin2026!Secure');
+  const [email, setEmail] = useState('admin@ksports.co.in');
+  const [password, setPassword] = useState('KSportsAdmin2026!Secure');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const fillCredentials = () => {
-    setEmail('admin@klubsports.com');
-    setPassword('KlubSportsAdmin2026!Secure');
+    setEmail('admin@ksports.co.in');
+    setPassword('KSportsAdmin2026!Secure');
     setError(null);
   };
 
@@ -62,7 +62,7 @@ export default function AdminLoginPage() {
           <div className="relative h-12 w-48">
             <Image
               src="/brand/logo-horizontal.png"
-              alt="Klub Sports Administrator Portal"
+              alt="KSports Administrator Portal"
               fill
               priority
               className="object-contain"
@@ -108,7 +108,7 @@ export default function AdminLoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@klubsports.com"
+                  placeholder="admin@ksports.co.in"
                   className="w-full pl-10 pr-4 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-[#ee7700] focus:bg-white transition-all"
                 />
               </div>
@@ -176,7 +176,7 @@ export default function AdminLoginPage() {
         </div>
 
         <p className="text-center text-xs text-stone-500 mt-6">
-          Klub Sports Internal Administration System © {new Date().getFullYear()}
+          KSports Internal Administration System © {new Date().getFullYear()}
         </p>
       </div>
     </div>

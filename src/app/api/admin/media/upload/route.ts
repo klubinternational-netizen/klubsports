@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
     const file = formData.get('file') as File | null;
-    const folder = (formData.get('folder') as string) || 'klub-sports';
+    const folder = (formData.get('folder') as string) || 'ksports';
 
     if (!file) {
       return NextResponse.json({ error: 'No file provided for upload' }, { status: 400 });

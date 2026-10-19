@@ -121,7 +121,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: 'Thank you for contacting Klub Sports. Our team will review your requirement and respond shortly.',
+      message: 'Thank you for contacting KSports. Our team will review your requirement and respond shortly.',
       enquiryId: enquiry._id,
     });
   } catch (error: any) {

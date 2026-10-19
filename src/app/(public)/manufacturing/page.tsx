@@ -9,9 +9,9 @@ import { Page } from '@/models/Page';
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'Manufacturing Capabilities | Klub Sports',
+  title: 'Manufacturing Capabilities | KSports',
   description:
-    'Explore the industrial footwear manufacturing facilities, production scale, and quality standards behind Klub Sports corporate athletic footwear.',
+    'Explore the industrial footwear manufacturing facilities, production scale, and quality standards behind KSports corporate athletic footwear.',
 };
 
 export default async function ManufacturingPage() {
@@ -152,7 +152,7 @@ export default async function ManufacturingPage() {
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-stone-700">
                 <Image
                   src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1000&q=80"
-                  alt="Klub Sports Industrial Manufacturing Assembly"
+                  alt="KSports Industrial Manufacturing Assembly"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"

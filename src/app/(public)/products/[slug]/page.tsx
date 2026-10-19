@@ -24,12 +24,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!product) {
     return {
-      title: 'Product Not Found | Klub Sports',
+      title: 'Product Not Found | KSports',
     };
   }
 
   return {
-    title: product.seo?.title || `${product.name} | Klub Sports Footwear`,
+    title: product.seo?.title || `${product.name} | KSports Footwear`,
     description: product.seo?.description || product.shortDescription,
   };
 }
@@ -142,7 +142,7 @@ export default async function ProductDetailPage({ params }: Props) {
                   <span>Institutional Procurement Notice</span>
                 </div>
                 <p>
-                  Klub Sports is an institutional supplier. For sample requests, size curve matrices, and volume pricing, please connect through our business enquiry desk.
+                  KSports is an institutional supplier. For sample requests, size curve matrices, and volume pricing, please connect through our business enquiry desk.
                 </p>
               </div>
             </div>

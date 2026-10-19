@@ -20,10 +20,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   await connectToDatabase();
   const category = await Category.findOne({ slug: params.slug, isPublished: true }).lean();
   if (!category) {
-    return { title: 'Category Not Found | Klub Sports' };
+    return { title: 'Category Not Found | KSports' };
   }
   return {
-    title: category.seo?.title || `${category.name} | Klub Sports Footwear`,
+    title: category.seo?.title || `${category.name} | KSports Footwear`,
     description: category.seo?.description || category.description,
   };
 }

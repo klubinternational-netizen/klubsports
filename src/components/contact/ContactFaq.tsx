@@ -30,7 +30,7 @@ const FAQS: FaqItem[] = [
     icon: <Users className="w-5 h-5 text-stone-700" />,
     question: 'Are your sneakers unisex?',
     answer:
-      'Yes, all Klub Sports athletic footwear models are engineered with anatomical unisex biomechanics to support all male and female competitive athletes.',
+      'Yes, all KSports athletic footwear models are engineered with anatomical unisex biomechanics to support all male and female competitive athletes.',
   },
   {
     id: 'returns',

@@ -9,7 +9,7 @@ export default function AdminSettingsPage() {
   const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   // Settings State
-  const [brandName, setBrandName] = useState('Klub Sports');
+  const [brandName, setBrandName] = useState('KSports');
   const [tagline, setTagline] = useState('Shoes For Every Sport');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -31,7 +31,7 @@ export default function AdminSettingsPage() {
       .then((data) => {
         if (data.settings) {
           const s = data.settings;
-          setBrandName(s.brandName || 'Klub Sports');
+          setBrandName(s.brandName || 'KSports');
           setTagline(s.tagline || 'Shoes For Every Sport');
           setEmail(s.contactDetails?.email || '');
           setPhone(s.contactDetails?.phone || '');
@@ -173,7 +173,7 @@ export default function AdminSettingsPage() {
                     className="w-full px-3.5 py-2 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange"
                   />
                   <span className="text-[10px] text-stone-400 mt-1 block">
-                    Confirmed brand name is Klub Sports.
+                    Confirmed brand name is KSports.
                   </span>
                 </div>
 

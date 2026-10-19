@@ -165,7 +165,7 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
         isPublished,
         sortOrder: Number(sortOrder) || 0,
         seo: {
-          title: seoTitle || `${name} | Klub Sports`,
+          title: seoTitle || `${name} | KSports`,
           description: seoDescription || shortDescription,
         },
       };
@@ -259,7 +259,7 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
                 required
                 value={name}
                 onChange={(e) => handleNameChange(e.target.value)}
-                placeholder="e.g. Klub Velocity Pro Carbon"
+                placeholder="e.g. KSports Velocity Pro Carbon"
                 className="w-full px-4 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white transition-colors"
               />
 
@@ -296,7 +296,7 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
                       setIsSlugManuallyEdited(true);
                       setSlug(generateSlug(e.target.value));
                     }}
-                    placeholder="e.g. klub-velocity-pro-carbon"
+                    placeholder="e.g. ksports-velocity-pro-carbon"
                     className="w-full px-3 py-1.5 text-xs bg-white border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange"
                   />
                   <p className="text-[10px] text-stone-400">
@@ -391,7 +391,7 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
                 type="text"
                 value={seoTitle}
                 onChange={(e) => setSeoTitle(e.target.value)}
-                placeholder={`${name || 'Footwear'} | Klub Sports Catalogue`}
+                placeholder={`${name || 'Footwear'} | KSports Catalogue`}
                 className="w-full px-4 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white"
               />
             </div>

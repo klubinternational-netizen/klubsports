@@ -156,7 +156,7 @@ export default function ContactInfoCards({ contact }: Props) {
           <span className="uppercase tracking-wider text-[11px]">Strict NDA & Confidentiality Guaranteed</span>
         </div>
         <p className="leading-relaxed text-stone-600 pl-7">
-          All specifications, technical tender documents, and commercial supply matrices shared with Klub Sports remain strictly confidential under standard non-disclosure terms.
+          All specifications, technical tender documents, and commercial supply matrices shared with KSports remain strictly confidential under standard non-disclosure terms.
         </p>
       </div>
     </div>

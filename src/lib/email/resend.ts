@@ -4,9 +4,9 @@ const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 const LOGO_URL = 'https://ik.imagekit.io/x5thiitxj/branding/klub-sports-official-logo.png';
-const SENDER_NAME = 'Klub Sports';
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'Klub Sports <enquiries@ksports.co.in>';
-const DESK_EMAIL = 'info@klubsports.com';
+const SENDER_NAME = 'KSports';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'KSports <enquiries@ksports.co.in>';
+const DESK_EMAIL = 'info@ksports.co.in';
 const DESK_PHONE = '+91 98765 43210';
 
 export interface EnquiryNotificationParams {
@@ -50,14 +50,14 @@ export async function sendCustomerEnquiryConfirmation(params: EnquiryNotificatio
       from: FROM_EMAIL,
       to: [params.email],
       replyTo: DESK_EMAIL,
-      subject: `Requirement Acknowledged — Klub Sports Commercial Desk [Ref: ${refCode}]`,
+      subject: `Requirement Acknowledged — KSports Commercial Desk [Ref: ${refCode}]`,
       html: `
         <!DOCTYPE html>
         <html lang="en">
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Requirement Acknowledged — Klub Sports</title>
+          <title>Requirement Acknowledged — KSports</title>
         </head>
         <body style="margin: 0; padding: 0; background-color: #f7f6f3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f7f6f3; padding: 32px 16px;">
@@ -76,7 +76,7 @@ export async function sendCustomerEnquiryConfirmation(params: EnquiryNotificatio
                       <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                           <td>
-                            <img src="${LOGO_URL}" alt="Klub Sports" width="170" style="display: block; max-width: 170px; height: auto;" />
+                            <img src="${LOGO_URL}" alt="KSports" width="170" style="display: block; max-width: 170px; height: auto;" />
                           </td>
                           <td align="right">
                             <span style="display: inline-block; padding: 4px 10px; background-color: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; border-radius: 999px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;">
@@ -95,7 +95,7 @@ export async function sendCustomerEnquiryConfirmation(params: EnquiryNotificatio
                         Requirement Acknowledged
                       </h1>
                       <p style="margin: 0 0 24px 0; color: #57534e; font-size: 14px; line-height: 1.6;">
-                        Dear <strong>${params.name}</strong>, thank you for reaching out to the Klub Sports commercial and institutional partnerships desk. We have safely logged your footwear procurement requirement.
+                        Dear <strong>${params.name}</strong>, thank you for reaching out to the KSports commercial and institutional partnerships desk. We have safely logged your footwear procurement requirement.
                       </p>
 
                       <!-- Reference ID Pill Card -->
@@ -166,10 +166,10 @@ export async function sendCustomerEnquiryConfirmation(params: EnquiryNotificatio
                   <tr>
                     <td style="padding: 24px 36px; background-color: #fafaf9; border-top: 1px solid #f2f0ec; text-align: center;">
                       <p style="margin: 0 0 6px 0; font-size: 11px; font-weight: 600; color: #78716c;">
-                        Klub Sports Manufacturing Facilities · Performance Footwear Hub, India
+                        KSports Manufacturing Facilities · Performance Footwear Hub, India
                       </p>
                       <p style="margin: 0; font-size: 11px; color: #a8a29e;">
-                        © ${new Date().getFullYear()} Klub Sports International. All commercial submissions remain strictly confidential.
+                        © ${new Date().getFullYear()} KSports International. All commercial submissions remain strictly confidential.
                       </p>
                     </td>
                   </tr>
@@ -232,14 +232,14 @@ export async function sendCustomerStatusUpdateEmail(params: StatusUpdateEmailPar
       from: FROM_EMAIL,
       to: [params.email],
       replyTo: DESK_EMAIL,
-      subject: `Status Update: [${params.newStatus}] on Footwear Requirement (${refCode}) — Klub Sports`,
+      subject: `Status Update: [${params.newStatus}] on Footwear Requirement (${refCode}) — KSports`,
       html: `
         <!DOCTYPE html>
         <html lang="en">
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Status Update — Klub Sports</title>
+          <title>Status Update — KSports</title>
         </head>
         <body style="margin: 0; padding: 0; background-color: #f7f6f3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f7f6f3; padding: 32px 16px;">
@@ -258,7 +258,7 @@ export async function sendCustomerStatusUpdateEmail(params: StatusUpdateEmailPar
                       <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                           <td>
-                            <img src="${LOGO_URL}" alt="Klub Sports" width="170" style="display: block; max-width: 170px; height: auto;" />
+                            <img src="${LOGO_URL}" alt="KSports" width="170" style="display: block; max-width: 170px; height: auto;" />
                           </td>
                           <td align="right">
                             <span style="display: inline-block; padding: 4px 10px; background-color: ${statusBg}; color: ${statusText}; border: 1px solid ${statusBorder}; border-radius: 999px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;">
@@ -324,10 +324,10 @@ export async function sendCustomerStatusUpdateEmail(params: StatusUpdateEmailPar
                   <tr>
                     <td style="padding: 24px 36px; background-color: #fafaf9; border-top: 1px solid #f2f0ec; text-align: center;">
                       <p style="margin: 0 0 6px 0; font-size: 11px; font-weight: 600; color: #78716c;">
-                        Klub Sports Commercial Partnerships Desk
+                        KSports Commercial Partnerships Desk
                       </p>
                       <p style="margin: 0; font-size: 11px; color: #a8a29e;">
-                        © ${new Date().getFullYear()} Klub Sports International. All rights reserved.
+                        © ${new Date().getFullYear()} KSports International. All rights reserved.
                       </p>
                     </td>
                   </tr>
@@ -364,7 +364,7 @@ export async function sendEnquiryEmailNotification(params: EnquiryNotificationPa
     return { success: false, error: 'Resend API key is not configured.' };
   }
 
-  const recipient = process.env.ENQUIRY_NOTIFICATION_EMAIL || 'info@klubsports.com';
+  const recipient = process.env.ENQUIRY_NOTIFICATION_EMAIL || 'info@ksports.co.in';
 
   try {
     const { data, error } = await resend.emails.send({
@@ -375,7 +375,7 @@ export async function sendEnquiryEmailNotification(params: EnquiryNotificationPa
       html: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e7e5e4; border-radius: 12px; background-color: #ffffff;">
           <div style="border-bottom: 2px solid #ee7700; padding-bottom: 16px; margin-bottom: 20px;">
-            <img src="${LOGO_URL}" alt="Klub Sports" width="160" style="display: block; max-width: 160px; height: auto; margin-bottom: 10px;" />
+            <img src="${LOGO_URL}" alt="KSports" width="160" style="display: block; max-width: 160px; height: auto; margin-bottom: 10px;" />
             <p style="color: #625e5d; margin: 0; font-size: 13px;">Corporate & Institutional Footwear Enquiry Desk</p>
           </div>
 
@@ -414,7 +414,7 @@ export async function sendEnquiryEmailNotification(params: EnquiryNotificationPa
           </div>
 
           <div style="border-top: 1px solid #e7e5e4; padding-top: 16px; font-size: 11px; color: #a8a29e; text-align: center;">
-            This email was automatically dispatched by the Klub Sports corporate notification engine.
+            This email was automatically dispatched by the KSports corporate notification engine.
           </div>
         </div>
       `,

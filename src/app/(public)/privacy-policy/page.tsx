@@ -8,8 +8,8 @@ import { Page } from '@/models/Page';
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Klub Sports',
-  description: 'Official privacy policy and client data protection statement for Klub Sports.',
+  title: 'Privacy Policy | KSports',
+  description: 'Official privacy policy and client data protection statement for KSports.',
 };
 
 export default async function PrivacyPolicyPage() {
@@ -40,7 +40,7 @@ export default async function PrivacyPolicyPage() {
 
           <div className="prose prose-stone max-w-none text-sm sm:text-base leading-relaxed space-y-6 text-stone-700">
             <p>
-              <strong>Klub Sports</strong> is committed to preserving the privacy and data integrity of all corporate clients, institutional buyers, and business partners.
+              <strong>KSports</strong> is committed to preserving the privacy and data integrity of all corporate clients, institutional buyers, and business partners.
             </p>
 
             <h3 className="text-lg font-bold text-stone-900 mt-6">1. Information Collection</h3>
@@ -60,7 +60,7 @@ export default async function PrivacyPolicyPage() {
 
             <h3 className="text-lg font-bold text-stone-900 mt-6">4. Contacting Our Data Officer</h3>
             <p>
-              For questions regarding our privacy practices or to request data modification, contact us at <a href="mailto:info@klubsports.com" className="text-brand-orange font-semibold hover:underline">info@klubsports.com</a>.
+              For questions regarding our privacy practices or to request data modification, contact us at <a href="mailto:info@ksports.co.in" className="text-brand-orange font-semibold hover:underline">info@ksports.co.in</a>.
             </p>
           </div>
         </div>

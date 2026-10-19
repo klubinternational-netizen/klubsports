@@ -8,7 +8,7 @@ import ProductCatalogView from '@/components/products/ProductCatalogView';
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'Sports Footwear Catalogue | Klub Sports',
+  title: 'Sports Footwear Catalogue | KSports',
   description:
     'Explore our complete sports footwear catalogue engineered for athletic disciplines, institutional supply, and multi-sport competition.',
 };

@@ -351,7 +351,7 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* SECTION 5: ABOUT KLUB SPORTS */}
+      {/* SECTION 5: ABOUT KSPORTS */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -363,7 +363,7 @@ export default async function HomePage() {
                 Built Around Performance, Ergonomics & Scale
               </h2>
               <p className="text-stone-600 text-base leading-relaxed">
-                Klub Sports is an Indian corporate sports footwear manufacturer dedicated to producing athletic footwear built to the rigorous demands of athletes, competitive sports academies, and institutional programs nationwide.
+                KSports is an Indian corporate sports footwear manufacturer dedicated to producing athletic footwear built to the rigorous demands of athletes, competitive sports academies, and institutional programs nationwide.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <div className="p-5 rounded-xl bg-stone-50 border border-stone-200">
@@ -392,7 +392,7 @@ export default async function HomePage() {
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-stone-200">
                 <Image
                   src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1000&q=80"
-                  alt="Klub Sports Industrial Production"
+                  alt="KSports Industrial Production"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -414,7 +414,7 @@ export default async function HomePage() {
               Industrial Footwear Manufacturing & Quality Execution
             </h2>
             <p className="text-stone-300 text-base leading-relaxed">
-              With dedicated manufacturing units and specialized sole vulcanization, stitching, and assembly lines, Klub Sports is structured to deliver dependable consistency across high-volume institutional footwear consignments.
+              With dedicated manufacturing units and specialized sole vulcanization, stitching, and assembly lines, KSports is structured to deliver dependable consistency across high-volume institutional footwear consignments.
             </p>
           </div>
 
@@ -461,7 +461,7 @@ export default async function HomePage() {
             Looking for a Sports Footwear Partner?
           </h2>
           <p className="text-stone-700 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Partner with Klub Sports for bulk institutional orders, corporate athletic programs, tournament shoe procurement, and regional distribution partnerships.
+            Partner with KSports for bulk institutional orders, corporate athletic programs, tournament shoe procurement, and regional distribution partnerships.
           </p>
           <div className="pt-2 flex flex-wrap justify-center gap-4">
             <Link

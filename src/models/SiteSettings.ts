@@ -40,7 +40,7 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
   {
     brandName: {
       type: String,
-      default: 'Klub Sports',
+      default: 'KSports',
       required: true,
     },
     tagline: {
@@ -54,10 +54,10 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
       wordmark: { type: String, default: '/brand/logo-wordmark.png' },
     },
     contactDetails: {
-      email: { type: String, default: 'info@klubsports.com' },
+      email: { type: String, default: 'info@ksports.co.in' },
       phone: { type: String, default: '+91 98765 43210' },
       secondaryPhone: { type: String, default: '' },
-      address: { type: String, default: 'Klub Sports Manufacturing Facilities, India' },
+      address: { type: String, default: 'KSports Manufacturing Facilities, India' },
       workingHours: { type: String, default: 'Monday – Saturday: 9:00 AM – 6:00 PM IST' },
     },
     socialLinks: {
@@ -68,14 +68,14 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
       youtube: { type: String, default: '' },
     },
     footerContent: {
-      copyright: { type: String, default: '© 2026 Klub Sports. All rights reserved.' },
+      copyright: { type: String, default: '© 2026 KSports. All rights reserved.' },
       description: {
         type: String,
         default: 'Premium sports footwear manufacturer engineered for peak athletic performance and institutional procurement.',
       },
     },
     defaultSeo: {
-      title: { type: String, default: 'Klub Sports | Premium Sports Footwear Manufacturer' },
+      title: { type: String, default: 'KSports | Premium Sports Footwear Manufacturer' },
       description: {
         type: String,
         default: 'Official manufacturer and institutional partner for premium sports footwear across India.',

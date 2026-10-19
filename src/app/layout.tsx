@@ -17,9 +17,9 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Klub Sports | Premium Sports Footwear Manufacturer',
+  title: 'KSports | Premium Sports Footwear Manufacturer',
   description:
-    'Official corporate website for Klub Sports. Sports footwear engineered for performance, comfort and institutional supply.',
+    'Official corporate website for KSports. Sports footwear engineered for performance, comfort and institutional supply.',
   icons: {
     icon: '/brand/logo-icon.png',
     apple: '/brand/logo-icon.png',

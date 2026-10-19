@@ -32,7 +32,7 @@ export async function uploadMediaFile(
   buffer: Buffer,
   fileName: string,
   mimeType: string,
-  folder: string = 'klub-sports'
+  folder: string = 'ksports'
 ): Promise<UploadResult> {
   if (!ALLOWED_MIME_TYPES.includes(mimeType)) {
     throw new Error(`Unsupported file type: ${mimeType}. Allowed formats: JPG, PNG, WEBP, SVG, AVIF.`);

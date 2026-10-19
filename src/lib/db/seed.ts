@@ -11,8 +11,8 @@ const MONGODB_URI =
   process.env.MONGODB_URI ||
   'mongodb+srv://klubinternational_db_user:sNr5fKt7g5sYWJr3@cluster0.unco14l.mongodb.net/klub_sports?retryWrites=true&w=majority';
 
-const INITIAL_EMAIL = process.env.INITIAL_ADMIN_EMAIL || 'admin@klubsports.com';
-const INITIAL_PASSWORD = process.env.INITIAL_ADMIN_PASSWORD || 'KlubSportsAdmin2026!Secure';
+const INITIAL_EMAIL = process.env.INITIAL_ADMIN_EMAIL || 'admin@ksports.co.in';
+const INITIAL_PASSWORD = process.env.INITIAL_ADMIN_PASSWORD || 'KSportsAdmin2026!Secure';
 
 export async function runSeed() {
   console.log('Connecting to MongoDB Atlas...');
@@ -46,7 +46,7 @@ export async function runSeed() {
       slug: 'running-shoes',
       description: 'Precision-engineered athletic runners designed for maximum energy return, ergonomic cushioning, and daily road endurance.',
       coverImage: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80',
-      imageAlt: 'Klub Sports Running Shoes',
+      imageAlt: 'KSports Running Shoes',
       sortOrder: 1,
     },
     {
@@ -54,7 +54,7 @@ export async function runSeed() {
       slug: 'marathon-shoes',
       description: 'Ultra-lightweight high-mileage footwear with responsive carbon-infused foam compounds for elite long-distance competitors.',
       coverImage: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80',
-      imageAlt: 'Klub Sports Marathon Shoes',
+      imageAlt: 'KSports Marathon Shoes',
       sortOrder: 2,
     },
     {
@@ -62,7 +62,7 @@ export async function runSeed() {
       slug: 'track-field-shoes',
       description: 'Aerodynamic spike-plate footwear engineered for explosive acceleration, sprinting rigidity, and collegiate field competition.',
       coverImage: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=800&q=80',
-      imageAlt: 'Klub Sports Track and Field Footwear',
+      imageAlt: 'KSports Track and Field Footwear',
       sortOrder: 3,
     },
     {
@@ -70,7 +70,7 @@ export async function runSeed() {
       slug: 'badminton-shoes',
       description: 'Non-marking gum rubber court shoes engineered for rapid lateral transitions, ankle stabilization, and indoor grip.',
       coverImage: 'https://images.unsplash.com/photo-1512374382149-233c42b6a83b?auto=format&fit=crop&w=800&q=80',
-      imageAlt: 'Klub Sports Badminton Shoes',
+      imageAlt: 'KSports Badminton Shoes',
       sortOrder: 4,
     },
     {
@@ -78,7 +78,7 @@ export async function runSeed() {
       slug: 'basketball-shoes',
       description: 'High-top impact protection footwear engineered with multi-directional herringbone traction and dual-density heel dampening.',
       coverImage: 'https://images.unsplash.com/photo-1579338559194-a162d19bf842?auto=format&fit=crop&w=800&q=80',
-      imageAlt: 'Klub Sports Basketball Shoes',
+      imageAlt: 'KSports Basketball Shoes',
       sortOrder: 5,
     },
     {
@@ -86,7 +86,7 @@ export async function runSeed() {
       slug: 'football-shoes',
       description: 'Molded firm-ground cleats crafted with synthetic microfiber uppers for tactile ball control and sudden directional bursts.',
       coverImage: 'https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=800&q=80',
-      imageAlt: 'Klub Sports Football Boots',
+      imageAlt: 'KSports Football Boots',
       sortOrder: 6,
     },
     {
@@ -94,7 +94,7 @@ export async function runSeed() {
       slug: 'kabaddi-shoes',
       description: 'Specialized indoor mat shoes with flexible reinforced toe caps, aggressive ankle collars, and high-traction friction soles.',
       coverImage: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=800&q=80',
-      imageAlt: 'Klub Sports Kabaddi Shoes',
+      imageAlt: 'KSports Kabaddi Shoes',
       sortOrder: 7,
     },
     {
@@ -102,7 +102,7 @@ export async function runSeed() {
       slug: 'tennis-shoes',
       description: 'Abrasion-resistant court shoes featuring reinforced medial drag guards, TPU shank torsion control, and hard-court durability.',
       coverImage: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80',
-      imageAlt: 'Klub Sports Tennis Shoes',
+      imageAlt: 'KSports Tennis Shoes',
       sortOrder: 8,
     },
     {
@@ -110,7 +110,7 @@ export async function runSeed() {
       slug: 'jogging-shoes',
       description: 'Breathable jacquard mesh footwear designed for plush comfort, impact dispersion, and versatile fitness regimens.',
       coverImage: 'https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=800&q=80',
-      imageAlt: 'Klub Sports Jogging Shoes',
+      imageAlt: 'KSports Jogging Shoes',
       sortOrder: 9,
     },
     {
@@ -118,7 +118,7 @@ export async function runSeed() {
       slug: 'boxing-shoes',
       description: 'Featherweight mid-cut boots with flat grooved rubber outsoles engineered for pivot velocity, ring balance, and ankle support.',
       coverImage: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80',
-      imageAlt: 'Klub Sports Boxing Shoes',
+      imageAlt: 'KSports Boxing Shoes',
       sortOrder: 10,
     },
     {
@@ -126,7 +126,7 @@ export async function runSeed() {
       slug: 'trail-footwear',
       description: 'Rugged terrain footwear built with deep multidirectional lugged outsoles, stone-shield rock plates, and water-repellent mudguards.',
       coverImage: 'https://images.unsplash.com/photo-1551107696-a4b085a6d91a?auto=format&fit=crop&w=800&q=80',
-      imageAlt: 'Klub Sports Trail Footwear',
+      imageAlt: 'KSports Trail Footwear',
       sortOrder: 11,
     },
   ];
@@ -139,7 +139,7 @@ export async function runSeed() {
         ...cat,
         isPublished: true,
         seo: {
-          title: `${cat.name} | Klub Sports Corporate Footwear`,
+          title: `${cat.name} | KSports Corporate Footwear`,
           description: cat.description,
         },
       },
@@ -153,8 +153,8 @@ export async function runSeed() {
   console.log('Seeding showcase footwear products...');
   const productDefs = [
     {
-      name: 'Klub Velocity Pro Carbon',
-      slug: 'klub-velocity-pro-carbon',
+      name: 'KSports Velocity Pro Carbon',
+      slug: 'ksports-velocity-pro-carbon',
       categorySlug: 'marathon-shoes',
       shortDescription: 'Marathon racing shoe with carbon-composite propulsion plate and supercritical foam.',
       description:
@@ -169,13 +169,13 @@ export async function runSeed() {
       images: [
         {
           url: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1000&q=80',
-          alt: 'Klub Velocity Pro Carbon Profile',
+          alt: 'KSports Velocity Pro Carbon Profile',
           isPrimary: true,
           sortOrder: 0,
         },
         {
           url: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=80',
-          alt: 'Klub Velocity Pro Outsole',
+          alt: 'KSports Velocity Pro Outsole',
           isPrimary: false,
           sortOrder: 1,
         },
@@ -183,8 +183,8 @@ export async function runSeed() {
       sortOrder: 1,
     },
     {
-      name: 'Klub Aerofly Sprint Spikes',
-      slug: 'klub-aerofly-sprint-spikes',
+      name: 'KSports Aerofly Sprint Spikes',
+      slug: 'ksports-aerofly-sprint-spikes',
       categorySlug: 'track-field-shoes',
       shortDescription: 'Collegiate sprint spike footwear with 8-pin aerodynamic Pebax chassis.',
       description:
@@ -198,7 +198,7 @@ export async function runSeed() {
       images: [
         {
           url: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=1000&q=80',
-          alt: 'Klub Aerofly Sprint Spike Lateral View',
+          alt: 'KSports Aerofly Sprint Spike Lateral View',
           isPrimary: true,
           sortOrder: 0,
         },
@@ -206,8 +206,8 @@ export async function runSeed() {
       sortOrder: 2,
     },
     {
-      name: 'Klub CourtMaster Badminton Pro',
-      slug: 'klub-courtmaster-badminton-pro',
+      name: 'KSports CourtMaster Badminton Pro',
+      slug: 'ksports-courtmaster-badminton-pro',
       categorySlug: 'badminton-shoes',
       shortDescription: 'High-traction indoor court shoes with lateral claws and shock-absorbing heel cushioning.',
       description:
@@ -221,7 +221,7 @@ export async function runSeed() {
       images: [
         {
           url: 'https://images.unsplash.com/photo-1512374382149-233c42b6a83b?auto=format&fit=crop&w=1000&q=80',
-          alt: 'Klub CourtMaster Badminton Pro Lateral',
+          alt: 'KSports CourtMaster Badminton Pro Lateral',
           isPrimary: true,
           sortOrder: 0,
         },
@@ -229,8 +229,8 @@ export async function runSeed() {
       sortOrder: 3,
     },
     {
-      name: 'Klub Mat-Strike Kabaddi',
-      slug: 'klub-mat-strike-kabaddi',
+      name: 'KSports Mat-Strike Kabaddi',
+      slug: 'ksports-mat-strike-kabaddi',
       categorySlug: 'kabaddi-shoes',
       shortDescription: 'Dedicated kabaddi shoes with enhanced ankle grip and high-friction synthetic gum soles.',
       description:
@@ -244,7 +244,7 @@ export async function runSeed() {
       images: [
         {
           url: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=1000&q=80',
-          alt: 'Klub Mat-Strike Kabaddi Shoe',
+          alt: 'KSports Mat-Strike Kabaddi Shoe',
           isPrimary: true,
           sortOrder: 0,
         },
@@ -252,8 +252,8 @@ export async function runSeed() {
       sortOrder: 4,
     },
     {
-      name: 'Klub Apex FG Football Boots',
-      slug: 'klub-apex-fg-football-boots',
+      name: 'KSports Apex FG Football Boots',
+      slug: 'ksports-apex-fg-football-boots',
       categorySlug: 'football-shoes',
       shortDescription: 'Molded firm-ground football boots with 3D micro-textured touch control zones.',
       description:
@@ -267,7 +267,7 @@ export async function runSeed() {
       images: [
         {
           url: 'https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=1000&q=80',
-          alt: 'Klub Apex FG Football Boots Side Profile',
+          alt: 'KSports Apex FG Football Boots Side Profile',
           isPrimary: true,
           sortOrder: 0,
         },
@@ -275,12 +275,12 @@ export async function runSeed() {
       sortOrder: 5,
     },
     {
-      name: 'Klub Stratus Daily Runner',
-      slug: 'klub-stratus-daily-runner',
+      name: 'KSports Stratus Daily Runner',
+      slug: 'ksports-stratus-daily-runner',
       categorySlug: 'running-shoes',
       shortDescription: 'Daily athletic trainer with balanced dual-cushioning and high-durability rubber outsole.',
       description:
-        'The workhorse trainer in the Klub Sports line. Crafted for daily road mileage, gym drills, and institutional sports fitness protocols. Provides plush step-in comfort and durable abrasion-resistant rubber in high-wear zones.',
+        'The workhorse trainer in the KSports line. Crafted for daily road mileage, gym drills, and institutional sports fitness protocols. Provides plush step-in comfort and durable abrasion-resistant rubber in high-wear zones.',
       features: [
         'Dual-density EVA midsole for balanced shock absorption',
         'Seamless breathable engineered mesh upper with reflective accents',
@@ -290,7 +290,7 @@ export async function runSeed() {
       images: [
         {
           url: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=80',
-          alt: 'Klub Stratus Daily Runner Red & White',
+          alt: 'KSports Stratus Daily Runner Red & White',
           isPrimary: true,
           sortOrder: 0,
         },
@@ -298,8 +298,8 @@ export async function runSeed() {
       sortOrder: 6,
     },
     {
-      name: 'Klub Ring-Master Boxing Boots',
-      slug: 'klub-ring-master-boxing-boots',
+      name: 'KSports Ring-Master Boxing Boots',
+      slug: 'ksports-ring-master-boxing-boots',
       categorySlug: 'boxing-shoes',
       shortDescription: 'Mid-cut boxing boots with thin grip rubber soles for rapid footwork and ring canvas traction.',
       description:
@@ -313,7 +313,7 @@ export async function runSeed() {
       images: [
         {
           url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=1000&q=80',
-          alt: 'Klub Ring-Master Boxing Boots',
+          alt: 'KSports Ring-Master Boxing Boots',
           isPrimary: true,
           sortOrder: 0,
         },
@@ -321,8 +321,8 @@ export async function runSeed() {
       sortOrder: 7,
     },
     {
-      name: 'Klub Terra-Force Trail Explorer',
-      slug: 'klub-terra-force-trail-explorer',
+      name: 'KSports Terra-Force Trail Explorer',
+      slug: 'ksports-terra-force-trail-explorer',
       categorySlug: 'trail-footwear',
       shortDescription: 'All-terrain footwear with aggressive 5mm lugs, toe rock shield, and weather-resistant upper.',
       description:
@@ -336,7 +336,7 @@ export async function runSeed() {
       images: [
         {
           url: 'https://images.unsplash.com/photo-1551107696-a4b085a6d91a?auto=format&fit=crop&w=1000&q=80',
-          alt: 'Klub Terra-Force Trail Explorer',
+          alt: 'KSports Terra-Force Trail Explorer',
           isPrimary: true,
           sortOrder: 0,
         },
@@ -362,7 +362,7 @@ export async function runSeed() {
         isPublished: true,
         sortOrder: prod.sortOrder,
         seo: {
-          title: `${prod.name} | Klub Sports Catalogue`,
+          title: `${prod.name} | KSports Catalogue`,
           description: prod.shortDescription,
         },
       },
@@ -404,20 +404,20 @@ export async function runSeed() {
         aboutSnippet: {
           title: 'Engineered for Performance & Scale',
           paragraph:
-            'Klub Sports is an Indian sports footwear brand dedicated to building athletic footwear tailored to the demands of diverse sporting disciplines. From long-distance marathons and indoor court games to grass pitches and mat wrestling, our footwear is designed with precision, durability, and ergonomic support.',
-          ctaText: 'Learn About Klub Sports',
+            'KSports is an Indian sports footwear brand dedicated to building athletic footwear tailored to the demands of diverse sporting disciplines. From long-distance marathons and indoor court games to grass pitches and mat wrestling, our footwear is designed with precision, durability, and ergonomic support.',
+          ctaText: 'Learn About KSports',
           ctaLink: '/about',
         },
         partnerCta: {
           headline: 'Looking for a Sports Footwear Partner?',
           subheadline:
-            'Partner with Klub Sports for bulk institutional procurement, wholesale distribution, corporate footwear supply, and team athletic programs.',
+            'Partner with KSports for bulk institutional procurement, wholesale distribution, corporate footwear supply, and team athletic programs.',
           ctaText: 'Discuss Your Requirements',
           ctaLink: '/contact',
         },
       },
       seo: {
-        title: 'Klub Sports | Premium Sports Footwear Manufacturer',
+        title: 'KSports | Premium Sports Footwear Manufacturer',
         description: 'Discover sports footwear designed around performance, comfort and the demands of the game.',
       },
       isPublished: true,
@@ -427,14 +427,14 @@ export async function runSeed() {
       title: 'About Us',
       sections: {
         intro: {
-          title: 'The Klub Sports Story',
+          title: 'The KSports Story',
           subtitle: 'Dedicated to athletic excellence and institutional sports footwear across India.',
           content:
-            'Klub Sports represents a commitment to high-performance footwear engineering. By focusing on athlete safety, specialized traction, and anatomical shock dispersion, Klub Sports produces footwear capable of meeting the stringent requirements of competitive sports leagues, schools, academies, and athletic teams across India.',
+            'KSports represents a commitment to high-performance footwear engineering. By focusing on athlete safety, specialized traction, and anatomical shock dispersion, KSports produces footwear capable of meeting the stringent requirements of competitive sports leagues, schools, academies, and athletic teams across India.',
         },
         deckInconsistencyNote: {
           title: 'Brand Note',
-          content: 'Klub Sports is the official approved brand name for all corporate identity, footwear production, and institutional supply partnerships.',
+          content: 'KSports is the official approved brand name for all corporate identity, footwear production, and institutional supply partnerships.',
         },
         pillars: [
           {
@@ -455,8 +455,8 @@ export async function runSeed() {
         ],
       },
       seo: {
-        title: 'About Us | Klub Sports Footwear',
-        description: 'Learn about Klub Sports, our brand mission, operational strength, and commitment to sports footwear engineering.',
+        title: 'About Us | KSports Footwear',
+        description: 'Learn about KSports, our brand mission, operational strength, and commitment to sports footwear engineering.',
       },
       isPublished: true,
     },
@@ -497,8 +497,8 @@ export async function runSeed() {
         ],
       },
       seo: {
-        title: 'Manufacturing Capabilities | Klub Sports',
-        description: 'Explore the industrial manufacturing infrastructure, production capacity, and facilities behind Klub Sports footwear.',
+        title: 'Manufacturing Capabilities | KSports',
+        description: 'Explore the industrial manufacturing infrastructure, production capacity, and facilities behind KSports footwear.',
       },
       isPublished: true,
     },
@@ -507,7 +507,7 @@ export async function runSeed() {
       title: 'Contact Us',
       sections: {
         header: {
-          title: 'Partner with Klub Sports',
+          title: 'Partner with KSports',
           subtitle: 'Connect with our corporate team for bulk institutional procurement, wholesale enquiries, and sports footwear partnerships.',
         },
         notice: {
@@ -515,8 +515,8 @@ export async function runSeed() {
         },
       },
       seo: {
-        title: 'Contact & Business Enquiries | Klub Sports',
-        description: 'Submit business and bulk institutional enquiries for Klub Sports athletic footwear.',
+        title: 'Contact & Business Enquiries | KSports',
+        description: 'Submit business and bulk institutional enquiries for KSports athletic footwear.',
       },
       isPublished: true,
     },
@@ -525,12 +525,12 @@ export async function runSeed() {
       title: 'Privacy Policy',
       sections: {
         content: `
-# Privacy Policy — Klub Sports
+# Privacy Policy — KSports
 
 **Effective Date:** January 1, 2026  
 **Last Updated:** October 2026  
 
-At **Klub Sports**, we value your privacy and are committed to safeguarding any business or contact information you provide when visiting our website or submitting business enquiries.
+At **KSports**, we value your privacy and are committed to safeguarding any business or contact information you provide when visiting our website or submitting business enquiries.
 
 ### 1. Information We Collect
 When you submit a business enquiry through our website, we may collect:
@@ -556,13 +556,13 @@ Our website uses essential session cookies for administrative authentication and
 
 ### 5. Contacting Us
 For questions regarding this privacy policy or to update your business information, please reach out to:  
-**Email:** info@klubsports.com  
-**Brand:** Klub Sports
+**Email:** info@ksports.co.in  
+**Brand:** KSports
         `,
       },
       seo: {
-        title: 'Privacy Policy | Klub Sports',
-        description: 'Official privacy policy and data governance statement for Klub Sports.',
+        title: 'Privacy Policy | KSports',
+        description: 'Official privacy policy and data governance statement for KSports.',
       },
       isPublished: true,
     },
@@ -585,7 +585,7 @@ For questions regarding this privacy policy or to update your business informati
   await SiteSettings.findOneAndUpdate(
     {},
     {
-      brandName: 'Klub Sports',
+      brandName: 'KSports',
       tagline: 'Shoes For Every Sport',
       logoAsset: {
         horizontal: '/brand/logo-horizontal.png',
@@ -594,10 +594,10 @@ For questions regarding this privacy policy or to update your business informati
         wordmark: '/brand/logo-wordmark.png',
       },
       contactDetails: {
-        email: 'info@klubsports.com',
+        email: 'info@ksports.co.in',
         phone: '+91 98765 43210',
         secondaryPhone: '+91 98765 43211',
-        address: 'Klub Sports Manufacturing Facilities, Industrial Area, India',
+        address: 'KSports Manufacturing Facilities, Industrial Area, India',
         workingHours: 'Monday – Saturday: 9:00 AM – 6:00 PM IST',
       },
       socialLinks: {
@@ -608,12 +608,12 @@ For questions regarding this privacy policy or to update your business informati
         youtube: '',
       },
       footerContent: {
-        copyright: '© 2026 Klub Sports. All rights reserved.',
+        copyright: '© 2026 KSports. All rights reserved.',
         description:
-          'Klub Sports is an Indian corporate sports footwear brand engineered for athletic performance, institutional supply, and multi-sport competitions.',
+          'KSports is an Indian corporate sports footwear brand engineered for athletic performance, institutional supply, and multi-sport competitions.',
       },
       defaultSeo: {
-        title: 'Klub Sports | Premium Sports Footwear Manufacturer',
+        title: 'KSports | Premium Sports Footwear Manufacturer',
         description:
           'Official manufacturer and institutional partner for premium sports footwear across India. Shoes for every sport.',
       },

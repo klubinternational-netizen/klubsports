@@ -55,7 +55,7 @@ export default function AdminSidebar({ adminEmail }: Props) {
               <div className="relative h-8 w-36">
                 <Image
                   src="/brand/logo-horizontal.png"
-                  alt="Klub Sports Logo"
+                  alt="KSports Logo"
                   fill
                   className="object-contain"
                   sizes="150px"

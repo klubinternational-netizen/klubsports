@@ -11,9 +11,9 @@ import FlowingTitle from '@/components/contact/FlowingTitle';
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'Contact & Business Enquiries | Klub Sports',
+  title: 'Contact & Business Enquiries | KSports',
   description:
-    'Contact the Klub Sports corporate desk for bulk institutional procurement, athletic footwear supply tenders, wholesale distribution, and custom batch scheduling.',
+    'Contact the KSports corporate desk for bulk institutional procurement, athletic footwear supply tenders, wholesale distribution, and custom batch scheduling.',
 };
 
 interface Props {
@@ -26,9 +26,9 @@ interface Props {
 export default async function ContactPage({ searchParams }: Props) {
   let serializedCategories: any[] = [];
   let contact = {
-    email: 'info@klubsports.com',
+    email: 'info@ksports.co.in',
     phone: '+91 98765 43210',
-    address: 'Klub Sports Manufacturing Facilities, Industrial Footwear Hub, India',
+    address: 'KSports Manufacturing Facilities, Industrial Footwear Hub, India',
     workingHours: 'Monday – Saturday: 9:00 AM – 6:00 PM IST',
   };
 
@@ -150,7 +150,7 @@ export default async function ContactPage({ searchParams }: Props) {
                 <span>Confidential Business Review</span>
               </div>
               <p className="leading-relaxed">
-                All specifications, technical tender documents, and commercial supply matrices shared with Klub Sports remain strictly confidential.
+                All specifications, technical tender documents, and commercial supply matrices shared with KSports remain strictly confidential.
               </p>
             </div>
           </div>

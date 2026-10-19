@@ -423,14 +423,14 @@ export default function Footer() {
               <div className="relative w-5 h-5 transition-transform group-hover:scale-105">
                 <Image
                   src="/brand/logo-icon.png"
-                  alt="Klub Sports"
+                  alt="KSports"
                   fill
                   className="object-contain"
                   sizes="20px"
                 />
               </div>
               <span className="font-sans font-bold text-base text-stone-950 tracking-tight">
-                Klub Sports
+                KSports
               </span>
             </Link>
             <p className="text-stone-500 text-xs sm:text-sm font-normal">
@@ -549,7 +549,7 @@ export default function Footer() {
         {/* Legal & Terms bar matching template */}
         <div className="mt-14 pt-6 border-t border-stone-200/60 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-stone-500">
           <div className="text-center md:text-left">
-            <span>© Klub Sports International. All Rights Reserved</span>
+            <span>© KSports International. All Rights Reserved</span>
           </div>
 
           {/* Centered Built by uxitech credit */}

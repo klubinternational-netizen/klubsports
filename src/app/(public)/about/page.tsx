@@ -9,9 +9,9 @@ import { Page } from '@/models/Page';
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'About Us | Klub Sports Premium Footwear',
+  title: 'About Us | KSports Premium Footwear',
   description:
-    'Learn about Klub Sports, our sports footwear manufacturing capabilities, athlete-first engineering, and pan-India institutional distribution.',
+    'Learn about KSports, our sports footwear manufacturing capabilities, athlete-first engineering, and pan-India institutional distribution.',
 };
 
 export default async function AboutPage() {
@@ -28,7 +28,7 @@ export default async function AboutPage() {
     {
       title: 'Sport-Specific Ergonomics',
       description:
-        'Every shoe in the Klub Sports line is constructed around the kinetic demands of that specific sport — non-marking natural rubber for indoor badminton, rigid propulsion plates for sprint spikes, and rugged lugged compounds for off-road trails.',
+        'Every shoe in the KSports line is constructed around the kinetic demands of that specific sport — non-marking natural rubber for indoor badminton, rigid propulsion plates for sprint spikes, and rugged lugged compounds for off-road trails.',
     },
     {
       title: 'High-Volume Manufacturing',
@@ -54,7 +54,7 @@ export default async function AboutPage() {
               <span>Corporate Profile</span>
             </div>
             <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight uppercase">
-              About Klub Sports
+              About KSports
             </h1>
             <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
               Engineering high-performance corporate sports footwear designed to meet the rigorous demands of athletes, academies, and institutional sporting programs across India.
@@ -76,10 +76,10 @@ export default async function AboutPage() {
               </h2>
               <div className="text-stone-600 text-base space-y-4 leading-relaxed">
                 <p>
-                  <strong>Klub Sports</strong> is the official corporate brand name representing our footwear manufacturing enterprise. Our operations focus on bridging the gap between premium performance athletic footwear and accessible, high-volume institutional procurement.
+                  <strong>KSports</strong> is the official corporate brand name representing our footwear manufacturing enterprise. Our operations focus on bridging the gap between premium performance athletic footwear and accessible, high-volume institutional procurement.
                 </p>
                 <p>
-                  Whether supplying statewide school sports programs, corporate sporting events, competitive running clubs, or regional athletic academies, Klub Sports ensures consistent adherence to dimensional stability, shock absorption, and sole traction standards.
+                  Whether supplying statewide school sports programs, corporate sporting events, competitive running clubs, or regional athletic academies, KSports ensures consistent adherence to dimensional stability, shock absorption, and sole traction standards.
                 </p>
               </div>
 
@@ -89,7 +89,7 @@ export default async function AboutPage() {
                   <span>Official Brand Assurance</span>
                 </div>
                 <p className="text-xs text-stone-600 mt-1">
-                  Klub Sports operates with strict brand authenticity. All corporate communications, product labelling, and institutional contracts are executed under the registered <strong>Klub Sports</strong> identity.
+                  KSports operates with strict brand authenticity. All corporate communications, product labelling, and institutional contracts are executed under the registered <strong>KSports</strong> identity.
                 </p>
               </div>
             </div>
@@ -98,7 +98,7 @@ export default async function AboutPage() {
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-stone-200">
                 <Image
                   src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=80"
-                  alt="Klub Sports Athletic Footwear"
+                  alt="KSports Athletic Footwear"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 40vw"
@@ -152,7 +152,7 @@ export default async function AboutPage() {
               </h3>
             </div>
             <p className="text-sm text-stone-600 leading-relaxed">
-              Based on our client presentation parameters, Klub Sports is anchored by an industrial infrastructure featuring 4 dedicated manufacturing units with an aggregate factory floor area of approximately 130,000 sq. ft., supporting a monthly output capacity of four lakh units across 12 Indian states.
+              Based on our client presentation parameters, KSports is anchored by an industrial infrastructure featuring 4 dedicated manufacturing units with an aggregate factory floor area of approximately 130,000 sq. ft., supporting a monthly output capacity of four lakh units across 12 Indian states.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-stone-200">
               <div>
@@ -182,7 +182,7 @@ export default async function AboutPage() {
       {/* CTA Section */}
       <section className="py-20 bg-stone-900 text-white text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          <h2 className="text-3xl sm:text-4xl font-bold">Partner with Klub Sports</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold">Partner with KSports</h2>
           <p className="text-stone-300 text-base max-w-xl mx-auto leading-relaxed">
             Connect with our corporate team to explore institutional bulk procurement, distribution channels, and athletic partnership programs.
           </p>

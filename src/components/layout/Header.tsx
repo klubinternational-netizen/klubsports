@@ -50,7 +50,7 @@ export default function Header() {
           <div className="relative h-6 w-6 transition-transform group-hover:scale-105">
             <Image
               src="/brand/logo-icon.png"
-              alt="Klub Sports"
+              alt="KSports"
               fill
               priority
               className="object-contain"
@@ -58,7 +58,7 @@ export default function Header() {
             />
           </div>
           <span className="font-sans text-sm sm:text-base font-black tracking-tight text-stone-950 uppercase transition-colors group-hover:text-brand-orange">
-            KLUB
+            KSPORTS
           </span>
         </Link>
 

@@ -230,7 +230,7 @@ export default function EnquiryForm({
 
       {/* Privacy Notice */}
       <div className="text-[11px] text-stone-500 leading-normal pl-1">
-        By submitting this form, you acknowledge that your contact details will be used exclusively by Klub Sports corporate representatives to address your enquiry. We respect your confidentiality.
+        By submitting this form, you acknowledge that your contact details will be used exclusively by KSports corporate representatives to address your enquiry. We respect your confidentiality.
       </div>
 
       {/* Submit Button: Exact Sneako Pill with Our Text */}

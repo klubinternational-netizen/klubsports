@@ -38,7 +38,7 @@ async function updateAssets() {
     {
       $set: {
         coverImage: RUNNING_SHOE_IMAGE,
-        imageAlt: 'Klub Sports Performance Running Footwear',
+        imageAlt: 'KSports Performance Running Footwear',
       },
     }
   );
