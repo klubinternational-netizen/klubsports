@@ -3,6 +3,7 @@ import { requireAdminAuth, recordAdminActivity } from '@/lib/security/adminAuth'
 import { connectToDatabase } from '@/lib/db/connection';
 import { Enquiry } from '@/models/Enquiry';
 import { adminUpdateEnquirySchema } from '@/lib/validations/enquiry';
+import { sendCustomerStatusUpdateEmail } from '@/lib/email/resend';
 
 interface RouteContext {
   params: { id: string };
@@ -45,11 +46,29 @@ export async function PATCH(req: NextRequest, { params }: RouteContext) {
       return NextResponse.json({ error: 'Enquiry not found' }, { status: 404 });
     }
 
+    const oldStatus = enquiry.status;
+    const isStatusChanged = oldStatus !== parsed.data.status;
+    const hasNotes = Boolean(parsed.data.internalNotes && parsed.data.internalNotes.trim());
+
     enquiry.status = parsed.data.status;
     if (parsed.data.internalNotes !== undefined) {
       enquiry.internalNotes = parsed.data.internalNotes;
     }
     await enquiry.save();
+
+    // Automatically dispatch high-level status update email to the customer
+    if ((isStatusChanged || hasNotes) && enquiry.email && process.env.RESEND_API_KEY) {
+      const refCode = `KS-${enquiry._id.toString().slice(-6).toUpperCase()}`;
+      sendCustomerStatusUpdateEmail({
+        name: enquiry.name,
+        email: enquiry.email,
+        referenceId: refCode,
+        categoryName: enquiry.categoryName,
+        oldStatus,
+        newStatus: enquiry.status,
+        internalNotes: enquiry.internalNotes,
+      }).catch((err) => console.error('Status update email delivery failed:', err));
+    }
 
     await recordAdminActivity({
       adminId: authResult.adminId,

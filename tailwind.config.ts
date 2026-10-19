@@ -22,9 +22,11 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-jakarta)", "system-ui", "sans-serif"],
-        display: ["var(--font-outfit)", "var(--font-jakarta)", "sans-serif"],
-        heading: ["var(--font-outfit)", "sans-serif"],
+        sans: ["var(--font-jakarta)", "var(--font-inter)", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        display: ["var(--font-jakarta)", "var(--font-inter)", "-apple-system", "sans-serif"],
+        heading: ["var(--font-jakarta)", "var(--font-inter)", "-apple-system", "sans-serif"],
+        inter: ["var(--font-inter)", "var(--font-jakarta)", "-apple-system", "sans-serif"],
+        ranchers: ["'Ranchers'", "cursive", "sans-serif"],
       },
       boxShadow: {
         premium: "0 10px 30px -10px rgba(28, 25, 23, 0.08)",

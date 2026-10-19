@@ -5,6 +5,8 @@ import { connectToDatabase } from '@/lib/db/connection';
 import { Category } from '@/models/Category';
 import { SiteSettings } from '@/models/SiteSettings';
 import EnquiryForm from '@/components/forms/EnquiryForm';
+import ContactFaq from '@/components/contact/ContactFaq';
+import FlowingTitle from '@/components/contact/FlowingTitle';
 
 export const revalidate = 60;
 
@@ -22,47 +24,66 @@ interface Props {
 }
 
 export default async function ContactPage({ searchParams }: Props) {
-  await connectToDatabase();
-  const [categories, settings] = await Promise.all([
-    Category.find({ isPublished: true }).sort({ sortOrder: 1, name: 1 }).lean(),
-    SiteSettings.findOne().lean(),
-  ]);
-
-  const serializedCategories = JSON.parse(JSON.stringify(categories));
-  const contact = settings?.contactDetails || {
+  let serializedCategories: any[] = [];
+  let contact = {
     email: 'info@klubsports.com',
     phone: '+91 98765 43210',
     address: 'Klub Sports Manufacturing Facilities, Industrial Footwear Hub, India',
     workingHours: 'Monday – Saturday: 9:00 AM – 6:00 PM IST',
   };
 
+  try {
+    await connectToDatabase();
+    const [categories, settings] = await Promise.all([
+      Category.find({ isPublished: true }).sort({ sortOrder: 1, name: 1 }).lean(),
+      SiteSettings.findOne().lean(),
+    ]);
+    serializedCategories = JSON.parse(JSON.stringify(categories));
+    if (settings?.contactDetails) {
+      contact = settings.contactDetails;
+    }
+  } catch (error) {
+    console.warn('Database connection unavailable for contact page, using fallback defaults:', error);
+    serializedCategories = [
+      { _id: 'cat-1', name: 'Running Shoes', slug: 'running-shoes' },
+      { _id: 'cat-2', name: 'Marathon Shoes', slug: 'marathon-shoes' },
+      { _id: 'cat-3', name: 'Training & Gym', slug: 'training-gym' },
+      { _id: 'cat-4', name: 'Cricket Spikes', slug: 'cricket-shoes' },
+      { _id: 'cat-5', name: 'School Sports Shoes', slug: 'school-sports' },
+      { _id: 'cat-6', name: 'Badminton & Indoor Court', slug: 'badminton-indoor' },
+      { _id: 'cat-7', name: 'Commercial & Institutional Bulk', slug: 'bulk-institutional' },
+    ];
+  }
+
   return (
-    <div className="bg-stone-50 min-h-screen py-16 lg:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Left Column: Corporate Desk Info */}
+    <div className="bg-white min-h-screen font-inter">
+      {/* Main 2-Column Section */}
+      <section className="pt-28 sm:pt-36 pb-16 lg:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column: Institutional Desk with Flowing Words Animation */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange">
-                Institutional Desk
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange block">
+                INSTITUTIONAL DESK
               </span>
-              <h1 className="font-display text-3xl sm:text-5xl font-extrabold text-stone-950 uppercase tracking-tight mt-1.5">
-                Business & Bulk Enquiries
-              </h1>
+
+              {/* Our Actual Heading with Flowing Words Blur/Slide Animation */}
+              <FlowingTitle />
+
               <p className="text-stone-600 text-sm sm:text-base mt-3 leading-relaxed">
                 Connect with our commercial partnerships team for institutional supplies, academy team programs, sports tenders, and regional distribution channels.
               </p>
             </div>
 
-            {/* Verified Contact Details Cards */}
-            <div className="space-y-4">
-              <div className="flex items-start gap-4 p-5 rounded-xl bg-white border border-stone-200 shadow-sm">
-                <div className="w-10 h-10 rounded-lg bg-brand-orange-light text-brand-orange flex items-center justify-center shrink-0">
-                  <Mail className="w-5 h-5" />
+            {/* Verified Contact Details Cards in Clean Rounded Style */}
+            <div className="space-y-3.5">
+              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#f5f5f5] hover:bg-[#ededed] transition-colors duration-200">
+                <div className="w-10 h-10 rounded-xl bg-white text-stone-900 flex items-center justify-center shrink-0 shadow-xs">
+                  <Mail className="w-5 h-5 text-brand-orange" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-stone-500">
-                    Corporate Email
+                  <h4 className="text-[11px] font-bold uppercase tracking-wider text-stone-500">
+                    CORPORATE EMAIL
                   </h4>
                   <a
                     href={`mailto:${contact.email}`}
@@ -74,13 +95,13 @@ export default async function ContactPage({ searchParams }: Props) {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-5 rounded-xl bg-white border border-stone-200 shadow-sm">
-                <div className="w-10 h-10 rounded-lg bg-brand-orange-light text-brand-orange flex items-center justify-center shrink-0">
-                  <Phone className="w-5 h-5" />
+              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#f5f5f5] hover:bg-[#ededed] transition-colors duration-200">
+                <div className="w-10 h-10 rounded-xl bg-white text-stone-900 flex items-center justify-center shrink-0 shadow-xs">
+                  <Phone className="w-5 h-5 text-brand-orange" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-stone-500">
-                    Direct Telephone
+                  <h4 className="text-[11px] font-bold uppercase tracking-wider text-stone-500">
+                    DIRECT TELEPHONE
                   </h4>
                   <a
                     href={`tel:${contact.phone}`}
@@ -92,25 +113,25 @@ export default async function ContactPage({ searchParams }: Props) {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-5 rounded-xl bg-white border border-stone-200 shadow-sm">
-                <div className="w-10 h-10 rounded-lg bg-brand-orange-light text-brand-orange flex items-center justify-center shrink-0">
-                  <MapPin className="w-5 h-5" />
+              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#f5f5f5] hover:bg-[#ededed] transition-colors duration-200">
+                <div className="w-10 h-10 rounded-xl bg-white text-stone-900 flex items-center justify-center shrink-0 shadow-xs">
+                  <MapPin className="w-5 h-5 text-brand-orange" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-stone-500">
-                    Manufacturing Operations
+                  <h4 className="text-[11px] font-bold uppercase tracking-wider text-stone-500">
+                    MANUFACTURING OPERATIONS
                   </h4>
-                  <p className="text-sm font-semibold text-stone-900 mt-0.5">{contact.address}</p>
+                  <p className="text-sm font-semibold text-stone-900 mt-0.5 leading-relaxed">{contact.address}</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-5 rounded-xl bg-white border border-stone-200 shadow-sm">
-                <div className="w-10 h-10 rounded-lg bg-brand-orange-light text-brand-orange flex items-center justify-center shrink-0">
-                  <Clock className="w-5 h-5" />
+              <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#f5f5f5] hover:bg-[#ededed] transition-colors duration-200">
+                <div className="w-10 h-10 rounded-xl bg-white text-stone-900 flex items-center justify-center shrink-0 shadow-xs">
+                  <Clock className="w-5 h-5 text-brand-orange" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-stone-500">
-                    Operating Hours
+                  <h4 className="text-[11px] font-bold uppercase tracking-wider text-stone-500">
+                    OPERATING HOURS
                   </h4>
                   <p className="text-sm font-semibold text-stone-900 mt-0.5">{contact.workingHours}</p>
                 </div>
@@ -118,22 +139,24 @@ export default async function ContactPage({ searchParams }: Props) {
             </div>
 
             {/* Quality Commitment Notice */}
-            <div className="p-5 rounded-xl bg-white border border-stone-200 shadow-sm space-y-2 text-xs text-stone-600">
+            <div className="p-5 rounded-2xl bg-[#f5f5f5] space-y-2 text-xs text-stone-600">
               <div className="flex items-center gap-2 font-bold text-stone-900">
                 <ShieldCheck className="w-4 h-4 text-brand-orange" />
                 <span>Confidential Business Review</span>
               </div>
-              <p>
+              <p className="leading-relaxed">
                 All specifications, technical tender documents, and commercial supply matrices shared with Klub Sports remain strictly confidential.
               </p>
             </div>
           </div>
 
-          {/* Right Column: Interactive Form */}
+          {/* Right Column: Send Requirement Details Card with Sneako Pill Inputs */}
           <div className="lg:col-span-7">
-            <div className="bg-white rounded-2xl border border-stone-200 shadow-premium p-6 sm:p-10">
+            <div className="rounded-[32px] sm:rounded-[36px] bg-white border border-stone-200 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] p-7 sm:p-10">
               <div className="mb-6">
-                <h3 className="text-xl font-bold text-stone-900">Send Requirement Details</h3>
+                <h3 className="text-2xl sm:text-[28px] font-bold text-stone-950 tracking-tight">
+                  Send Requirement Details
+                </h3>
                 <p className="text-xs sm:text-sm text-stone-500 mt-1">
                   Complete the fields below to submit your institutional requirement directly to our corporate desk.
                 </p>
@@ -147,7 +170,12 @@ export default async function ContactPage({ searchParams }: Props) {
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* FAQ Section: Clear the confusions. */}
+      <section className="border-t border-stone-100 bg-[#fafafa]">
+        <ContactFaq />
+      </section>
     </div>
   );
 }

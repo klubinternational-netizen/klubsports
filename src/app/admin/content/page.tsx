@@ -285,12 +285,12 @@ export default function AdminContentPage() {
                     type="text"
                     value={homeHeroVideo}
                     onChange={(e) => setHomeHeroVideo(e.target.value)}
-                    placeholder="/videos/hero-athlete.webm or https://..."
+                    placeholder="/videos/hero-sprint.webm or https://..."
                     className="flex-1 px-4 py-2.5 text-xs bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange"
                   />
                   <button
                     type="button"
-                    onClick={() => setHomeHeroVideo('/videos/hero-athlete.webm')}
+                    onClick={() => setHomeHeroVideo('/videos/hero-sprint.webm')}
                     className="px-3 py-2 text-xs font-semibold text-stone-700 bg-stone-100 hover:bg-stone-200 rounded-lg border border-stone-200 transition-colors shrink-0"
                   >
                     Reset Default Video

@@ -18,7 +18,7 @@ export default async function PrivacyPolicyPage() {
   const content = page?.sections?.content;
 
   return (
-    <div className="bg-stone-50 min-h-screen py-16 lg:py-24">
+    <div className="bg-stone-50 min-h-screen pt-28 sm:pt-36 pb-20 lg:pb-28">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link
           href="/"

@@ -49,7 +49,7 @@ export default async function CategoryDetailPage({ params }: Props) {
   return (
     <div className="bg-white min-h-screen">
       {/* Category Hero Banner */}
-      <section className="relative bg-[#0c0d0e] text-white py-16 lg:py-24 overflow-hidden border-b border-stone-800">
+      <section className="relative bg-[#0c0d0e] text-white pt-32 pb-16 lg:pt-36 lg:pb-24 overflow-hidden border-b border-stone-800">
         <div className="absolute -top-32 right-1/4 w-96 h-96 bg-brand-orange/10 rounded-full blur-[120px] pointer-events-none"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumbs */}

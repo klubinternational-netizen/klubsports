@@ -51,16 +51,21 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [isSlugManuallyEdited, setIsSlugManuallyEdited] = useState(Boolean(initialData?.slug));
+  const [showSlugField, setShowSlugField] = useState(false);
 
-  // Auto-generate slug from name if new product
+  const generateSlug = (text: string) =>
+    text
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+
+  // Auto-generate slug continuously from name if not manually edited
   const handleNameChange = (val: string) => {
     setName(val);
-    if (!isEdit && !slug) {
-      const generated = val
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '');
-      setSlug(generated);
+    if (!isSlugManuallyEdited && !isEdit) {
+      setSlug(generateSlug(val));
     }
   };
 
@@ -144,9 +149,14 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
         })),
       ];
 
+      const finalSlug = (slug || generateSlug(name)).trim().toLowerCase();
+      if (!finalSlug) {
+        throw new Error('Please enter a product name to generate a URL web link');
+      }
+
       const payload: ProductInput = {
         name,
-        slug: slug.trim().toLowerCase(),
+        slug: finalSlug,
         categoryId,
         shortDescription,
         description,
@@ -250,27 +260,50 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
                 value={name}
                 onChange={(e) => handleNameChange(e.target.value)}
                 placeholder="e.g. Klub Velocity Pro Carbon"
-                className="w-full px-4 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white"
+                className="w-full px-4 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white transition-colors"
               />
-            </div>
 
-            {/* Slug */}
-            <div>
-              <label htmlFor="pslug" className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
-                URL Slug <span className="text-brand-orange">*</span>
-              </label>
-              <input
-                id="pslug"
-                type="text"
-                required
-                value={slug}
-                onChange={(e) => setSlug(e.target.value.toLowerCase())}
-                placeholder="e.g. klub-velocity-pro-carbon"
-                className="w-full px-4 py-2.5 text-xs sm:text-sm font-mono bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white"
-              />
-              <span className="text-[11px] text-stone-400 mt-1 block">
-                Public URL: /products/{slug || '...'}
-              </span>
+              {/* Automated Web Link Preview */}
+              <div className="mt-2.5 flex flex-wrap items-center justify-between text-xs text-stone-500 gap-2">
+                <div className="flex items-center gap-1.5 overflow-hidden">
+                  <span className="text-stone-400 text-[11px] uppercase tracking-wider font-semibold">Web Link:</span>
+                  <span className="inline-flex items-center px-2 py-0.5 rounded bg-stone-100 text-stone-700 text-xs font-medium">
+                    /products/{slug || generateSlug(name) || 'product-name'}
+                  </span>
+                  <span className="text-[11px] text-emerald-600 font-medium">
+                    (Auto-generated)
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowSlugField(!showSlugField)}
+                  className="text-[11px] font-semibold text-stone-500 hover:text-stone-900 underline transition-colors"
+                >
+                  {showSlugField ? 'Hide custom link' : 'Customize link'}
+                </button>
+              </div>
+
+              {showSlugField && (
+                <div className="mt-3 p-3.5 bg-stone-50 rounded-lg border border-stone-200 space-y-1">
+                  <label htmlFor="pslug" className="block text-[11px] font-bold uppercase tracking-wider text-stone-600">
+                    Custom URL Slug (Optional)
+                  </label>
+                  <input
+                    id="pslug"
+                    type="text"
+                    value={slug}
+                    onChange={(e) => {
+                      setIsSlugManuallyEdited(true);
+                      setSlug(generateSlug(e.target.value));
+                    }}
+                    placeholder="e.g. klub-velocity-pro-carbon"
+                    className="w-full px-3 py-1.5 text-xs bg-white border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+                  />
+                  <p className="text-[10px] text-stone-400">
+                    Only change this if you want a custom link. Letters, numbers, and hyphens only.
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Short Description */}

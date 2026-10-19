@@ -20,21 +20,33 @@ interface Props {
 }
 
 export default async function ProductsPage({ searchParams }: Props) {
-  await connectToDatabase();
+  let serializedProducts: any[] = [];
+  let serializedCategories: any[] = [];
 
-  const [products, categories] = await Promise.all([
-    Product.find({ isPublished: true })
-      .populate('categoryId', 'name slug')
-      .sort({ sortOrder: 1, createdAt: -1 })
-      .lean(),
-    Category.find({ isPublished: true }).sort({ sortOrder: 1, name: 1 }).lean(),
-  ]);
+  try {
+    await connectToDatabase();
+    const [products, categories] = await Promise.all([
+      Product.find({ isPublished: true })
+        .populate('categoryId', 'name slug')
+        .sort({ sortOrder: 1, createdAt: -1 })
+        .lean(),
+      Category.find({ isPublished: true }).sort({ sortOrder: 1, name: 1 }).lean(),
+    ]);
 
-  const serializedProducts = JSON.parse(JSON.stringify(products));
-  const serializedCategories = JSON.parse(JSON.stringify(categories));
+    serializedProducts = JSON.parse(JSON.stringify(products));
+    serializedCategories = JSON.parse(JSON.stringify(categories));
+  } catch (error) {
+    console.warn('Database connection unavailable for products page, using fallback defaults:', error);
+    serializedCategories = [
+      { _id: 'cat-1', name: 'Running Shoes', slug: 'running-shoes' },
+      { _id: 'cat-2', name: 'Marathon Shoes', slug: 'marathon-shoes' },
+      { _id: 'cat-3', name: 'Training & Gym', slug: 'training-gym' },
+      { _id: 'cat-4', name: 'Cricket Spikes', slug: 'cricket-shoes' },
+    ];
+  }
 
   return (
-    <div className="bg-stone-50/50 min-h-screen py-12 lg:py-16">
+    <div className="bg-stone-50/50 min-h-screen pt-28 sm:pt-36 pb-16 lg:pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
         <div className="max-w-3xl mb-10">

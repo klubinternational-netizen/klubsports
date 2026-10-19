@@ -4,14 +4,14 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { LiquidMetalButton } from '@/components/ui/liquid-metal-button';
 
 const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/about' },
-  { label: 'Products', href: '/products' },
+  { label: 'Shop', href: '/products' },
+  { label: 'About', href: '/about' },
   { label: 'Manufacturing', href: '/manufacturing' },
-  { label: 'Contact Us', href: '/contact' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export default function Header() {
@@ -33,106 +33,127 @@ export default function Header() {
   }, [pathname]);
 
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-stone-200/80 py-3'
-          : 'bg-white border-b border-stone-100 py-4 lg:py-5'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange rounded">
-            <div className="relative h-11 w-36 sm:h-12 sm:w-44 transition-transform group-hover:scale-[1.02]">
-              <Image
-                src="/brand/logo-horizontal.png"
-                alt="Klub Sports Official Logo"
-                fill
-                priority
-                className="object-contain object-left"
-                sizes="(max-width: 768px) 150px, 180px"
-              />
-            </div>
-          </Link>
+    <header className="fixed top-3.5 sm:top-5 left-0 right-0 z-50 px-4 sm:px-6 lg:px-10 pointer-events-none">
+      <div className="max-w-7xl mx-auto flex items-center justify-between pointer-events-auto">
+        
+        {/* ======================================================== */}
+        {/* 1. LEFT CORNER: BRAND IDENTITY GLASS PILL                */}
+        {/* ======================================================== */}
+        <Link
+          href="/"
+          className={`flex items-center gap-2.5 px-4 py-2 rounded-full transition-all duration-300 group ${
+            isScrolled
+              ? 'bg-white/90 backdrop-blur-xl border border-stone-200/80 shadow-[0_10px_30px_rgba(0,0,0,0.06)]'
+              : 'bg-white/80 backdrop-blur-md border border-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)]'
+          }`}
+        >
+          <div className="relative h-6 w-6 transition-transform group-hover:scale-105">
+            <Image
+              src="/brand/logo-icon.png"
+              alt="Klub Sports"
+              fill
+              priority
+              className="object-contain"
+              sizes="24px"
+            />
+          </div>
+          <span className="font-sans text-sm sm:text-base font-black tracking-tight text-stone-950 uppercase transition-colors group-hover:text-brand-orange">
+            KLUB
+          </span>
+        </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            {navItems.map((item) => {
-              const isActive =
-                item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`relative py-1 text-[13px] font-semibold uppercase tracking-[0.08em] transition-colors duration-200 ${
-                    isActive
-                      ? 'text-stone-950 font-bold after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-brand-orange'
-                      : 'text-stone-600 hover:text-stone-950 after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-stone-300 after:transition-all after:duration-300'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
+        {/* ======================================================== */}
+        {/* 2. CENTER: FLOATING NAVIGATION GLASS PILL                */}
+        {/* ======================================================== */}
+        <nav
+          className={`hidden md:flex items-center gap-1 sm:gap-1.5 px-3 py-1.5 rounded-full transition-all duration-300 ${
+            isScrolled
+              ? 'bg-white/90 backdrop-blur-xl border border-stone-200/80 shadow-[0_10px_30px_rgba(0,0,0,0.06)]'
+              : 'bg-white/80 backdrop-blur-md border border-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)]'
+          }`}
+        >
+          {navItems.map((item) => {
+            const isActive =
+              item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`relative px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 ${
+                  isActive
+                    ? 'bg-stone-950 text-white font-bold shadow-sm'
+                    : 'text-stone-600 hover:text-stone-950 hover:bg-stone-100/80'
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
 
-          {/* Header Action CTA */}
-          <div className="hidden md:flex items-center">
-            <Link
+        {/* ======================================================== */}
+        {/* 3. RIGHT CORNER: ENQUIRY BUTTON (OUR LIQUID METAL EFFECT)*/}
+        {/* ======================================================== */}
+        <div className="flex items-center gap-2">
+          {/* Desktop & Tablet: Our Liquid Metal Shader Button */}
+          <div className="hidden sm:flex items-center shrink-0">
+            <LiquidMetalButton
+              label="Enquiry"
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-2.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white bg-stone-950 hover:bg-brand-orange active:scale-[0.98] transition-all duration-300 shadow-sm group"
-            >
-              <span>Business Enquiry</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-            </Link>
+              variant="orange"
+              size="sm"
+              showArrow={true}
+              className="shadow-[0_4px_20px_rgba(238,119,0,0.22)]"
+            />
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden">
+          {/* Mobile Menu Toggle Button */}
+          <div className="flex md:hidden shrink-0">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-stone-700 hover:text-brand-orange hover:bg-stone-100 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange"
+              className="p-2 text-stone-800 hover:text-stone-950 rounded-full bg-white/90 backdrop-blur-md border border-stone-200/80 shadow-sm hover:bg-stone-100 transition-colors focus:outline-none"
               aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
+
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* ======================================================== */}
+      {/* MOBILE DROPDOWN DRAWER                                   */}
+      {/* ======================================================== */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-stone-200 px-4 pt-3 pb-6 animate-in slide-in-from-top-2 duration-200 shadow-xl">
-          <nav className="flex flex-col space-y-1">
-            {navItems.map((item) => {
-              const isActive =
-                item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors ${
-                    isActive
-                      ? 'text-brand-orange bg-brand-orange-light/50 border-l-2 border-brand-orange pl-4'
-                      : 'text-stone-800 hover:text-stone-950 hover:bg-stone-50'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-            <div className="pt-4 border-t border-stone-100 mt-2">
+        <div className="md:hidden max-w-md mx-auto mt-2 p-5 rounded-3xl bg-white/95 backdrop-blur-2xl border border-stone-200/90 shadow-2xl space-y-2 animate-in fade-in slide-in-from-top-3 duration-200 pointer-events-auto">
+          {navItems.map((item) => {
+            const isActive =
+              item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
+            return (
               <Link
-                href="/contact"
-                className="w-full flex items-center justify-center gap-2 px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-white bg-stone-950 hover:bg-brand-orange transition-colors shadow-sm"
+                key={item.href}
+                href={item.href}
+                className={`block px-4 py-2.5 text-sm font-semibold rounded-xl transition-colors ${
+                  isActive
+                    ? 'bg-stone-950 text-white font-bold'
+                    : 'text-stone-700 hover:text-stone-950 hover:bg-stone-100'
+                }`}
               >
-                <span>Business Enquiry</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                {item.label}
               </Link>
-            </div>
-          </nav>
+            );
+          })}
+          <div className="pt-3 border-t border-stone-100 flex justify-center">
+            <LiquidMetalButton
+              label="Submit Enquiry"
+              href="/contact"
+              variant="orange"
+              size="sm"
+              showArrow={true}
+              className="w-full justify-center shadow-md"
+            />
+          </div>
         </div>
       )}
     </header>

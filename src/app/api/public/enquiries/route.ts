@@ -4,7 +4,7 @@ import { Enquiry } from '@/models/Enquiry';
 import { Category } from '@/models/Category';
 import { publicEnquirySchema } from '@/lib/validations/enquiry';
 import { checkRateLimit } from '@/lib/security/rateLimit';
-import { sendEnquiryEmailNotification } from '@/lib/email/resend';
+import { sendEnquiryEmailNotification, sendCustomerEnquiryConfirmation } from '@/lib/email/resend';
 
 export async function POST(req: NextRequest) {
   try {
@@ -85,28 +85,35 @@ export async function POST(req: NextRequest) {
       ipAddress: ip,
     });
 
-    // Email notification dispatch via Resend
-    let emailDispatched = false;
-    let emailId: string | undefined;
+    const refCode = `KS-${enquiry._id.toString().slice(-6).toUpperCase()}`;
 
+    // Email dispatches via Resend:
+    // 1. Send High-Level Confirmation with Logo to the Customer
+    // 2. Send Notification to the Admin Corporate Desk
     if (process.env.RESEND_API_KEY) {
       try {
-        const emailResult = await sendEnquiryEmailNotification({
-          name: parsed.data.name,
-          companyName: parsed.data.companyName,
-          email: parsed.data.email,
-          phone: parsed.data.phone,
-          categoryName: resolvedCategoryName,
-          message: parsed.data.message,
-          sourcePage: parsed.data.sourcePage,
-        });
-
-        if (emailResult.success) {
-          emailDispatched = true;
-          emailId = emailResult.id;
-        } else {
-          console.warn('Resend email could not be delivered:', emailResult.error);
-        }
+        await Promise.allSettled([
+          sendCustomerEnquiryConfirmation({
+            name: parsed.data.name,
+            companyName: parsed.data.companyName,
+            email: parsed.data.email,
+            phone: parsed.data.phone,
+            categoryName: resolvedCategoryName,
+            message: parsed.data.message,
+            sourcePage: parsed.data.sourcePage,
+            referenceId: refCode,
+          }),
+          sendEnquiryEmailNotification({
+            name: parsed.data.name,
+            companyName: parsed.data.companyName,
+            email: parsed.data.email,
+            phone: parsed.data.phone,
+            categoryName: resolvedCategoryName,
+            message: parsed.data.message,
+            sourcePage: parsed.data.sourcePage,
+            referenceId: refCode,
+          }),
+        ]);
       } catch (e: any) {
         console.error('Email notification failure:', e?.message);
       }

@@ -11,6 +11,7 @@ interface LiquidMetalButtonProps {
   variant?: 'chrome' | 'orange';
   showArrow?: boolean;
   className?: string;
+  size?: 'sm' | 'md';
 }
 
 export function LiquidMetalButton({
@@ -20,6 +21,7 @@ export function LiquidMetalButton({
   variant = 'chrome',
   showArrow = true,
   className = '',
+  size = 'md',
 }: LiquidMetalButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
@@ -32,9 +34,11 @@ export function LiquidMetalButton({
   // Dynamic width based on label length to prevent truncation
   const dimensions = useMemo(() => {
     const textLength = label.length;
-    // Calculate generous width for uppercase text + arrow
-    const computedWidth = Math.max(180, Math.round(textLength * 8.5) + (showArrow ? 52 : 36));
-    const height = 48;
+    const isSm = size === 'sm';
+    const computedWidth = isSm
+      ? Math.max(122, Math.round(textLength * 7) + (showArrow ? 38 : 24))
+      : Math.max(180, Math.round(textLength * 8.5) + (showArrow ? 52 : 36));
+    const height = isSm ? 38 : 48;
     return {
       width: computedWidth,
       height,
@@ -43,7 +47,7 @@ export function LiquidMetalButton({
       shaderWidth: computedWidth,
       shaderHeight: height,
     };
-  }, [label, showArrow]);
+  }, [label, showArrow, size]);
 
   useEffect(() => {
     const styleId = 'shader-canvas-style-exploded';

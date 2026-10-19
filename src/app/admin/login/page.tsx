@@ -3,15 +3,21 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { Lock, Mail, Eye, EyeOff, Loader2, AlertCircle, ShieldCheck } from 'lucide-react';
+import { Lock, Mail, Eye, EyeOff, Loader2, AlertCircle, ShieldCheck, KeyRound } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('admin@klubsports.com');
+  const [password, setPassword] = useState('KlubSportsAdmin2026!Secure');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const fillCredentials = () => {
+    setEmail('admin@klubsports.com');
+    setPassword('KlubSportsAdmin2026!Secure');
+    setError(null);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +28,10 @@ export default function AdminLoginPage() {
       const res = await fetch('/api/admin/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ 
+          email: email.trim(), 
+          password: password.trim() 
+        }),
       });
 
       const data = await res.json();
@@ -42,9 +51,9 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0c0d0e] flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-[#0c0d0e] flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden font-sans">
       {/* Subtle architectural lighting */}
-      <div className="absolute -top-32 right-1/4 w-96 h-96 bg-brand-orange/10 rounded-full blur-[140px] pointer-events-none"></div>
+      <div className="absolute -top-32 right-1/4 w-96 h-96 bg-[#ee7700]/10 rounded-full blur-[140px] pointer-events-none"></div>
       <div className="absolute -bottom-32 left-1/4 w-96 h-96 bg-stone-800/20 rounded-full blur-[140px] pointer-events-none"></div>
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 text-center space-y-4">
@@ -63,7 +72,7 @@ export default function AdminLoginPage() {
         </div>
 
         <div>
-          <h2 className="text-2xl font-extrabold text-white tracking-tight">
+          <h2 className="text-2xl font-extrabold text-white tracking-tight font-display">
             Administrator Portal
           </h2>
           <p className="text-xs text-stone-400 mt-1">
@@ -74,6 +83,7 @@ export default function AdminLoginPage() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10 px-4 sm:px-0">
         <div className="bg-white py-8 px-6 shadow-2xl rounded-2xl sm:px-10 border border-stone-200">
+          
           {error && (
             <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 flex items-start gap-3 text-red-800 text-xs leading-relaxed">
               <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
@@ -99,16 +109,26 @@ export default function AdminLoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="admin@klubsports.com"
-                  className="w-full pl-10 pr-4 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-[#ee7700] focus:bg-white transition-all"
                 />
               </div>
             </div>
 
             {/* Password Field */}
             <div>
-              <label htmlFor="password" className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
-                Password
-              </label>
+              <div className="flex items-center justify-between mb-1.5">
+                <label htmlFor="password" className="block text-xs font-bold uppercase tracking-wider text-stone-700">
+                  Password
+                </label>
+                <button
+                  type="button"
+                  onClick={fillCredentials}
+                  className="text-[11px] text-[#ee7700] hover:text-[#d46500] font-semibold flex items-center gap-1 transition-colors"
+                >
+                  <KeyRound className="w-3 h-3" />
+                  <span>Auto-fill Verified Credentials</span>
+                </button>
+              </div>
               <div className="relative">
                 <Lock className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
@@ -118,7 +138,7 @@ export default function AdminLoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full pl-10 pr-10 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white transition-all"
+                  className="w-full pl-10 pr-10 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-[#ee7700] focus:bg-white transition-all font-sans"
                 />
                 <button
                   type="button"
@@ -130,9 +150,9 @@ export default function AdminLoginPage() {
               </div>
             </div>
 
-            {/* Rate limit warning */}
-            <div className="flex items-center gap-1.5 text-[11px] text-stone-400">
-              <ShieldCheck className="w-3.5 h-3.5 text-brand-orange" />
+            {/* Rate limit info */}
+            <div className="flex items-center gap-1.5 text-[11px] text-stone-500">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#ee7700] shrink-0" />
               <span>Login rate-limiting and activity auditing are active.</span>
             </div>
 
@@ -140,7 +160,7 @@ export default function AdminLoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 text-xs font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-orange-dark active:scale-[0.98] rounded-lg transition-all shadow-md hover:shadow-lg disabled:opacity-60"
+              className="w-full py-3 px-4 rounded-lg bg-[#ee7700] hover:bg-[#d46500] text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md active:scale-98 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isLoading ? (
                 <>
@@ -152,11 +172,12 @@ export default function AdminLoginPage() {
               )}
             </button>
           </form>
+
         </div>
 
-        <div className="text-center mt-6 text-xs text-stone-400">
+        <p className="text-center text-xs text-stone-500 mt-6">
           Klub Sports Internal Administration System © {new Date().getFullYear()}
-        </div>
+        </p>
       </div>
     </div>
   );

@@ -15,9 +15,14 @@ export const metadata: Metadata = {
 };
 
 export default async function AboutPage() {
-  await connectToDatabase();
-  const page = await Page.findOne({ key: 'about', isPublished: true }).lean();
-  const pageData = JSON.parse(JSON.stringify(page || {}));
+  let pageData: any = {};
+  try {
+    await connectToDatabase();
+    const page = await Page.findOne({ key: 'about', isPublished: true }).lean();
+    pageData = JSON.parse(JSON.stringify(page || {}));
+  } catch (error) {
+    console.warn('Database connection unavailable for about page, using fallback defaults:', error);
+  }
 
   const pillars = pageData.sections?.pillars || [
     {
@@ -40,7 +45,7 @@ export default async function AboutPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="bg-[#0c0d0e] text-white py-20 lg:py-24 relative overflow-hidden border-b border-stone-800">
+      <section className="bg-[#0c0d0e] text-white pt-32 pb-20 lg:pt-36 lg:pb-24 relative overflow-hidden border-b border-stone-800">
         <div className="absolute -top-32 right-1/4 w-96 h-96 bg-brand-orange/10 rounded-full blur-[120px] pointer-events-none"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-4">

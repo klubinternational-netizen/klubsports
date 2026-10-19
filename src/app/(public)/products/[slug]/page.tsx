@@ -59,7 +59,7 @@ export default async function ProductDetailPage({ params }: Props) {
   const serializedRelated = JSON.parse(JSON.stringify(relatedProducts));
 
   return (
-    <div className="bg-white min-h-screen py-10 lg:py-16">
+    <div className="bg-white min-h-screen pt-28 sm:pt-36 pb-16 lg:pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center space-x-2 text-xs text-stone-500 mb-8 overflow-x-auto whitespace-nowrap">
