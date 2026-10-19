@@ -40,7 +40,12 @@ export default async function ContactPage({ searchParams }: Props) {
     ]);
     serializedCategories = JSON.parse(JSON.stringify(categories));
     if (settings?.contactDetails) {
-      contact = settings.contactDetails;
+      contact = {
+        email: settings.contactDetails.email || contact.email,
+        phone: settings.contactDetails.phone || contact.phone,
+        address: settings.contactDetails.address || contact.address,
+        workingHours: settings.contactDetails.workingHours || contact.workingHours,
+      };
     }
   } catch (error) {
     console.warn('Database connection unavailable for contact page, using fallback defaults:', error);
