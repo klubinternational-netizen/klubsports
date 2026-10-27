@@ -6,7 +6,7 @@ const resend = resendApiKey ? new Resend(resendApiKey) : null;
 const LOGO_URL = 'https://ik.imagekit.io/x5thiitxj/branding/klub-sports-official-logo.png';
 const SENDER_NAME = 'KSports';
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'KSports <enquiries@ksports.co.in>';
-const DESK_EMAIL = 'info@ksports.co.in';
+const DESK_EMAIL = 'klubinternational@gmail.com';
 const DESK_PHONE = '+91 88863 03030';
 
 export interface EnquiryNotificationParams {
@@ -364,7 +364,7 @@ export async function sendEnquiryEmailNotification(params: EnquiryNotificationPa
     return { success: false, error: 'Resend API key is not configured.' };
   }
 
-  const recipient = process.env.ENQUIRY_NOTIFICATION_EMAIL || 'info@ksports.co.in';
+  const recipient = process.env.ENQUIRY_NOTIFICATION_EMAIL || 'klubinternational@gmail.com';
 
   try {
     const { data, error } = await resend.emails.send({

@@ -26,7 +26,7 @@ interface Props {
 export default async function ContactPage({ searchParams }: Props) {
   let serializedCategories: any[] = [];
   let contact = {
-    email: 'info@ksports.co.in',
+    email: 'klubinternational@gmail.com',
     phone: '+91 88863 03030',
     address: 'KSports Manufacturing Facilities, Industrial Footwear Hub, India',
     workingHours: 'Monday – Saturday: 9:00 AM – 6:00 PM IST',
@@ -45,7 +45,7 @@ export default async function ContactPage({ searchParams }: Props) {
       let address = settings.contactDetails.address || contact.address;
 
       // Sanitize any legacy strings
-      if (email.includes('klubsports.com')) email = 'info@ksports.co.in';
+      if (email.includes('klubsports.com') || email.includes('ksports.co.in') || email.includes('info@')) email = 'klubinternational@gmail.com';
       if (phone.includes('98765')) phone = '+91 88863 03030';
       if (address.includes('Klub Sports')) address = address.replace(/Klub Sports/g, 'KSports');
 

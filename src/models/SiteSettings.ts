@@ -54,7 +54,7 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
       wordmark: { type: String, default: '/brand/logo-wordmark.png' },
     },
     contactDetails: {
-      email: { type: String, default: 'info@ksports.co.in' },
+      email: { type: String, default: 'klubinternational@gmail.com' },
       phone: { type: String, default: '+91 88863 03030' },
       secondaryPhone: { type: String, default: '' },
       address: { type: String, default: 'KSports Manufacturing Facilities, India' },

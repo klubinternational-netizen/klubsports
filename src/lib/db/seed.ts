@@ -556,7 +556,7 @@ Our website uses essential session cookies for administrative authentication and
 
 ### 5. Contacting Us
 For questions regarding this privacy policy or to update your business information, please reach out to:  
-**Email:** info@ksports.co.in  
+**Email:** klubinternational@gmail.com  
 **Brand:** KSports
         `,
       },
@@ -594,7 +594,7 @@ For questions regarding this privacy policy or to update your business informati
         wordmark: '/brand/logo-wordmark.png',
       },
       contactDetails: {
-        email: 'info@ksports.co.in',
+        email: 'klubinternational@gmail.com',
         phone: '+91 88863 03030',
         secondaryPhone: '+91 88863 03030',
         address: 'KSports Manufacturing Facilities, Industrial Footwear Hub, India',

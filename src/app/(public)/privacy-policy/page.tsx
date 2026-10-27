@@ -60,7 +60,7 @@ export default async function PrivacyPolicyPage() {
 
             <h3 className="text-lg font-bold text-stone-900 mt-6">4. Contacting Our Data Officer</h3>
             <p>
-              For questions regarding our privacy practices or to request data modification, contact us at <a href="mailto:info@ksports.co.in" className="text-brand-orange font-semibold hover:underline">info@ksports.co.in</a>.
+              For questions regarding our privacy practices or to request data modification, contact us at <a href="mailto:klubinternational@gmail.com" className="text-brand-orange font-semibold hover:underline">klubinternational@gmail.com</a>.
             </p>
           </div>
         </div>
