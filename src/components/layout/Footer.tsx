@@ -112,13 +112,13 @@ export default function Footer() {
         <div className="relative flex flex-row items-center justify-center w-full min-h-[340px] sm:min-h-[460px] lg:min-h-[560px] overflow-visible">
           
           {/* =================================================== */}
-          {/* 6 VECTOR LETTER SVGS IN EXACT SNEAKO PROPORTIONS    */}
+          {/* 5 VECTOR LETTER SVGS SPELLING "SHOES"               */}
           {/* =================================================== */}
           <div className="flex flex-row items-center justify-center w-full overflow-visible relative z-0">
             
             {/* Letter 1: S (Up) */}
             <svg
-              viewBox="0 0 1498 2931"
+              viewBox="0 0 238 466"
               className="letter-svg-up relative overflow-visible pointer-events-none"
               style={{
                 flex: '1 0 0',
@@ -133,13 +133,13 @@ export default function Footer() {
               <foreignObject
                 width="100%"
                 height="100%"
-                transform="scale(0.79)"
+                transform="scale(0.77)"
                 style={{ overflow: 'visible', transformOrigin: 'center center' }}
               >
                 <p
                   style={{
                     fontFamily: "'Ranchers', sans-serif",
-                    fontSize: '3256px',
+                    fontSize: '518px',
                     lineHeight: '0.9em',
                     textAlign: 'center',
                     color: '#000000',
@@ -153,9 +153,9 @@ export default function Footer() {
               </foreignObject>
             </svg>
 
-            {/* Letter 2: N (Down) */}
+            {/* Letter 2: H (Down) */}
             <svg
-              viewBox="0 0 234 352"
+              viewBox="0 0 234 380"
               className="letter-svg-down relative overflow-visible pointer-events-none"
               style={{
                 flex: '1 0 0',
@@ -163,20 +163,20 @@ export default function Footer() {
                 height: 'auto',
                 willChange: 'transform',
                 transform: `translateY(${50 + mouseOffset.y * 0.1}px)`,
-                animationDelay: '0.2s',
+                animationDelay: '0.25s',
                 zIndex: 0,
               }}
             >
               <foreignObject
                 width="100%"
                 height="100%"
-                transform="scale(1)"
+                transform="scale(0.88)"
                 style={{ overflow: 'visible', transformOrigin: 'center center' }}
               >
                 <p
                   style={{
                     fontFamily: "'Ranchers', sans-serif",
-                    fontSize: '391px',
+                    fontSize: '430px',
                     lineHeight: '0.9em',
                     textAlign: 'center',
                     color: '#000000',
@@ -185,14 +185,14 @@ export default function Footer() {
                     userSelect: 'none',
                   }}
                 >
-                  n
+                  h
                 </p>
               </foreignObject>
             </svg>
 
-            {/* Letter 3: E (Up) */}
+            {/* Letter 3: O (Up) */}
             <svg
-              viewBox="0 0 199 432"
+              viewBox="0 0 234 380"
               className="letter-svg-up relative overflow-visible pointer-events-none"
               style={{
                 flex: '1 0 0',
@@ -200,7 +200,44 @@ export default function Footer() {
                 height: 'auto',
                 willChange: 'transform',
                 transform: `translateY(${-50 + mouseOffset.y * 0.1}px)`,
-                animationDelay: '0.4s',
+                animationDelay: '0.5s',
+                zIndex: 0,
+              }}
+            >
+              <foreignObject
+                width="100%"
+                height="100%"
+                transform="scale(0.88)"
+                style={{ overflow: 'visible', transformOrigin: 'center center' }}
+              >
+                <p
+                  style={{
+                    fontFamily: "'Ranchers', sans-serif",
+                    fontSize: '430px',
+                    lineHeight: '0.9em',
+                    textAlign: 'center',
+                    color: '#000000',
+                    textTransform: 'uppercase',
+                    margin: 0,
+                    userSelect: 'none',
+                  }}
+                >
+                  o
+                </p>
+              </foreignObject>
+            </svg>
+
+            {/* Letter 4: E (Down) */}
+            <svg
+              viewBox="0 0 199 432"
+              className="letter-svg-down relative overflow-visible pointer-events-none"
+              style={{
+                flex: '1 0 0',
+                width: '1px',
+                height: 'auto',
+                willChange: 'transform',
+                transform: `translateY(${50 + mouseOffset.y * 0.1}px)`,
+                animationDelay: '0.75s',
                 zIndex: 0,
               }}
             >
@@ -227,81 +264,7 @@ export default function Footer() {
               </foreignObject>
             </svg>
 
-            {/* Letter 4: A (Down) */}
-            <svg
-              viewBox="0 0 225 380"
-              className="letter-svg-down relative overflow-visible pointer-events-none"
-              style={{
-                flex: '1 0 0',
-                width: '1px',
-                height: 'auto',
-                willChange: 'transform',
-                transform: `translateY(${50 + mouseOffset.y * 0.1}px)`,
-                animationDelay: '0.6s',
-                zIndex: 0,
-              }}
-            >
-              <foreignObject
-                width="100%"
-                height="100%"
-                transform="scale(0.86)"
-                style={{ overflow: 'visible', transformOrigin: 'center center' }}
-              >
-                <p
-                  style={{
-                    fontFamily: "'Ranchers', sans-serif",
-                    fontSize: '422px',
-                    lineHeight: '0.9em',
-                    textAlign: 'center',
-                    color: '#000000',
-                    textTransform: 'uppercase',
-                    margin: 0,
-                    userSelect: 'none',
-                  }}
-                >
-                  a
-                </p>
-              </foreignObject>
-            </svg>
-
-            {/* Letter 5: K (Up) */}
-            <svg
-              viewBox="0 0 231 374"
-              className="letter-svg-up relative overflow-visible pointer-events-none"
-              style={{
-                flex: '1 0 0',
-                width: '1px',
-                height: 'auto',
-                willChange: 'transform',
-                transform: `translateY(${-50 + mouseOffset.y * 0.1}px)`,
-                animationDelay: '0.8s',
-                zIndex: 2,
-              }}
-            >
-              <foreignObject
-                width="100%"
-                height="100%"
-                transform="scale(0.9)"
-                style={{ overflow: 'visible', transformOrigin: 'center center' }}
-              >
-                <p
-                  style={{
-                    fontFamily: "'Ranchers', sans-serif",
-                    fontSize: '415px',
-                    lineHeight: '0.9em',
-                    textAlign: 'center',
-                    color: '#000000',
-                    textTransform: 'uppercase',
-                    margin: 0,
-                    userSelect: 'none',
-                  }}
-                >
-                  k
-                </p>
-              </foreignObject>
-            </svg>
-
-            {/* Letter 6: S (Down) */}
+            {/* Letter 5: S (Down) */}
             <svg
               viewBox="0 0 238 466"
               className="letter-svg-down relative overflow-visible pointer-events-none"
@@ -377,7 +340,7 @@ export default function Footer() {
             <div className="w-full h-full animate-lace-float drop-shadow-[0_20px_35px_rgba(0,0,0,0.12)]">
               <Image
                 src="/footer-assets/pink-lace.png"
-                alt="Sneaks Pink Lace"
+                alt="Shoes Pink Lace"
                 fill
                 priority
                 className="object-contain"
