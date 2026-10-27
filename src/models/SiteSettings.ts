@@ -55,7 +55,7 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
     },
     contactDetails: {
       email: { type: String, default: 'info@ksports.co.in' },
-      phone: { type: String, default: '+91 98765 43210' },
+      phone: { type: String, default: '+91 88863 03030' },
       secondaryPhone: { type: String, default: '' },
       address: { type: String, default: 'KSports Manufacturing Facilities, India' },
       workingHours: { type: String, default: 'Monday – Saturday: 9:00 AM – 6:00 PM IST' },

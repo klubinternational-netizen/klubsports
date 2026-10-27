@@ -460,6 +460,17 @@ export default function Footer() {
                     Contact
                   </Link>
                 </li>
+                <li>
+                  <a
+                    href="https://wa.me/918886303030?text=Hello%20KSports!%20I%20would%20like%20to%20enquire%20about%20athletic%20footwear."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-emerald-600 hover:underline transition-colors flex items-center gap-1.5"
+                  >
+                    <span>WhatsApp</span>
+                    <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold uppercase tracking-wide">Live</span>
+                  </a>
+                </li>
               </ul>
             </div>
 

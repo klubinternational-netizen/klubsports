@@ -7,7 +7,7 @@ const LOGO_URL = 'https://ik.imagekit.io/x5thiitxj/branding/klub-sports-official
 const SENDER_NAME = 'KSports';
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'KSports <enquiries@ksports.co.in>';
 const DESK_EMAIL = 'info@ksports.co.in';
-const DESK_PHONE = '+91 98765 43210';
+const DESK_PHONE = '+91 88863 03030';
 
 export interface EnquiryNotificationParams {
   name: string;

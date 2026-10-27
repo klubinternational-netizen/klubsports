@@ -27,7 +27,7 @@ export default async function ContactPage({ searchParams }: Props) {
   let serializedCategories: any[] = [];
   let contact = {
     email: 'info@ksports.co.in',
-    phone: '+91 98765 43210',
+    phone: '+91 88863 03030',
     address: 'KSports Manufacturing Facilities, Industrial Footwear Hub, India',
     workingHours: 'Monday – Saturday: 9:00 AM – 6:00 PM IST',
   };
