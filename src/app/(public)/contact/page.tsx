@@ -40,10 +40,19 @@ export default async function ContactPage({ searchParams }: Props) {
     ]);
     serializedCategories = JSON.parse(JSON.stringify(categories));
     if (settings?.contactDetails) {
+      let email = settings.contactDetails.email || contact.email;
+      let phone = settings.contactDetails.phone || contact.phone;
+      let address = settings.contactDetails.address || contact.address;
+
+      // Sanitize any legacy strings
+      if (email.includes('klubsports.com')) email = 'info@ksports.co.in';
+      if (phone.includes('98765')) phone = '+91 88863 03030';
+      if (address.includes('Klub Sports')) address = address.replace(/Klub Sports/g, 'KSports');
+
       contact = {
-        email: settings.contactDetails.email || contact.email,
-        phone: settings.contactDetails.phone || contact.phone,
-        address: settings.contactDetails.address || contact.address,
+        email,
+        phone,
+        address,
         workingHours: settings.contactDetails.workingHours || contact.workingHours,
       };
     }
@@ -97,6 +106,35 @@ export default async function ContactPage({ searchParams }: Props) {
                     {contact.email}
                   </a>
                   <p className="text-xs text-stone-500 mt-0.5">Enquiry response within 24–48 hours</p>
+                </div>
+              </div>
+
+              {/* Direct WhatsApp Chat Card */}
+              <div className="flex items-start gap-4 p-5 rounded-2xl bg-emerald-50/70 border border-emerald-100 hover:bg-emerald-50 transition-colors duration-200">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs">
+                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.79 14.16c-.24.68-1.2 1.25-1.66 1.28-.43.03-.98.15-3.19-.77-2.27-.94-3.71-3.26-3.83-3.41-.11-.15-.91-1.21-.91-2.31 0-1.1.58-1.64.78-1.87.2-.23.44-.29.59-.29.15 0 .3 0 .43.01.14.01.32-.05.5.38.19.45.64 1.57.7 1.69.06.12.1.26.02.42-.08.15-.12.25-.24.39-.12.14-.25.31-.36.42-.12.12-.24.25-.1.5.14.24.63 1.04 1.35 1.68.93.83 1.71 1.08 1.96 1.2.24.12.39.1.53-.06.15-.17.63-.73.8-.98.17-.25.35-.21.58-.12.24.08 1.52.72 1.78.85.26.13.43.2.5.31.06.12.06.69-.18 1.37z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-[11px] font-bold uppercase tracking-wider text-emerald-800">
+                      WHATSAPP DIRECT CHAT
+                    </h4>
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                      Instant
+                    </span>
+                  </div>
+                  <a
+                    href="https://wa.me/918886303030?text=Hello%20KSports!%20I%20would%20like%20to%20enquire%20about%20athletic%20footwear%20and%20bulk%20institutional%20orders."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base font-bold text-stone-900 hover:text-emerald-700 transition-colors inline-block mt-0.5"
+                  >
+                    +91 88863 03030
+                  </a>
+                  <p className="text-xs text-stone-500 mt-0.5">Direct 24/7 institutional WhatsApp line</p>
                 </div>
               </div>
 

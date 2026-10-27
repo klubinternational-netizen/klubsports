@@ -595,13 +595,13 @@ For questions regarding this privacy policy or to update your business informati
       },
       contactDetails: {
         email: 'info@ksports.co.in',
-        phone: '+91 98765 43210',
-        secondaryPhone: '+91 98765 43211',
-        address: 'KSports Manufacturing Facilities, Industrial Area, India',
+        phone: '+91 88863 03030',
+        secondaryPhone: '+91 88863 03030',
+        address: 'KSports Manufacturing Facilities, Industrial Footwear Hub, India',
         workingHours: 'Monday – Saturday: 9:00 AM – 6:00 PM IST',
       },
       socialLinks: {
-        linkedin: 'https://linkedin.com/company/klubsports',
+        linkedin: 'https://linkedin.com/company/ksports',
         instagram: '',
         facebook: '',
         twitter: '',

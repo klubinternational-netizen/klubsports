@@ -182,7 +182,7 @@ export default function EnquiryForm({
           <input
             id="phone"
             type="tel"
-            placeholder="+91 98765 43210"
+            placeholder="+91 88863 03030"
             {...register('phone')}
             className={`w-full px-4 py-3.5 text-sm bg-[#f5f5f5] rounded-2xl text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-[#005eff] focus:bg-white transition-all ${
               errors.phone ? 'ring-2 ring-red-400 bg-red-50/20' : ''
