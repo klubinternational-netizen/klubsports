@@ -9,6 +9,7 @@ import { Product } from '@/models/Product';
 import { LiquidMetalButton } from '@/components/ui/liquid-metal-button';
 import TempoHeroSection from '@/components/home/TempoHeroSection';
 import ShippingFlightSection from '@/components/home/ShippingFlightSection';
+import BambooSocksSpotlight from '@/components/home/BambooSocksSpotlight';
 
 export const revalidate = 60; // ISR cache revalidation
 
@@ -34,6 +35,7 @@ async function getHomeData() {
     console.warn('Database connection unavailable for home page, using fallback defaults:', error);
     return {
       categories: [
+        { name: 'Bamboo Socks', slug: 'bamboo-socks', coverImage: '/products/bamboo-socks-pristine.jpg', description: '100% natural organic bamboo fiber athletic socks in recyclable cylindrical eco-tubes. Naturally anti-bacterial, breathable, and ultra-soft.' },
         { name: 'Running Shoes', slug: 'running-shoes', coverImage: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80', description: 'Precision-engineered athletic runners designed for maximum energy return.' },
         { name: 'Marathon Shoes', slug: 'marathon-shoes', coverImage: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80', description: 'Ultra-lightweight high-mileage footwear with responsive carbon-infused foam.' },
         { name: 'Training & Gym', slug: 'training-gym', coverImage: 'https://images.unsplash.com/photo-1518002171953-a080ee817e1f?auto=format&fit=crop&w=800&q=80', description: 'Cross-training stability shoes with multi-directional lateral support.' },
@@ -222,6 +224,9 @@ export default async function HomePage() {
       {/* SECTION 3.5: WORLD WIDE SHIPPING (FLIGHT COMING FROM RIGHT TO LEFT WITH FALLING CARGO) */}
       <ShippingFlightSection />
 
+      {/* SECTION 3.8: BAMBOO SOCKS SPOTLIGHT (HIGHLIGHTED ACCESSORY WITH SHOES) */}
+      <BambooSocksSpotlight />
+
       {/* SECTION 4: FOOTWEAR CATEGORIES */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -263,6 +268,12 @@ export default async function HomePage() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-stone-950/10 group-hover:bg-transparent transition-colors duration-300" />
+                  {cat.slug === 'bamboo-socks' && (
+                    <div className="absolute top-3 left-3 bg-emerald-800/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider shadow-md flex items-center gap-1.5 z-10">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
+                      Eco Launch · 3 Pairs ₹499
+                    </div>
+                  )}
                 </div>
                 <div className="p-7 flex flex-col flex-grow justify-between">
                   <div>

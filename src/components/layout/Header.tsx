@@ -9,6 +9,7 @@ import { LiquidMetalButton } from '@/components/ui/liquid-metal-button';
 
 const navItems = [
   { label: 'Shop', href: '/products' },
+  { label: 'Bamboo Socks', href: '/products/bamboo-socks-3-pack', highlight: true },
   { label: 'About', href: '/about' },
   { label: 'Manufacturing', href: '/manufacturing' },
   { label: 'Contact', href: '/contact' },
@@ -79,12 +80,15 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 ${
+                className={`relative px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 inline-flex items-center gap-1.5 ${
                   isActive
                     ? 'bg-stone-950 text-white font-bold shadow-sm'
+                    : (item as any).highlight
+                    ? 'text-emerald-800 bg-emerald-50 hover:bg-emerald-100 hover:text-emerald-950 font-bold border border-emerald-200/60'
                     : 'text-stone-600 hover:text-stone-950 hover:bg-stone-100/80'
                 }`}
               >
+                {(item as any).highlight && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />}
                 {item.label}
               </Link>
             );
@@ -134,13 +138,20 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`block px-4 py-2.5 text-sm font-semibold rounded-xl transition-colors ${
+                className={`flex items-center justify-between px-4 py-2.5 text-sm font-semibold rounded-xl transition-colors ${
                   isActive
                     ? 'bg-stone-950 text-white font-bold'
+                    : (item as any).highlight
+                    ? 'text-emerald-900 bg-emerald-50 border border-emerald-200/80 font-bold'
                     : 'text-stone-700 hover:text-stone-950 hover:bg-stone-100'
                 }`}
               >
-                {item.label}
+                <span>{item.label}</span>
+                {(item as any).highlight && (
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-600 text-white uppercase tracking-wider">
+                    New
+                  </span>
+                )}
               </Link>
             );
           })}

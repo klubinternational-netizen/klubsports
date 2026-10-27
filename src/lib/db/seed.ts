@@ -42,6 +42,14 @@ export async function runSeed() {
   console.log('Seeding official footwear categories...');
   const categoryDefs = [
     {
+      name: 'Bamboo Socks',
+      slug: 'bamboo-socks',
+      description: '100% natural organic bamboo fiber athletic socks in cylindrical recyclable eco-tubes. Naturally anti-bacterial, breathable, and ultra-soft.',
+      coverImage: '/products/bamboo-socks-pristine.jpg',
+      imageAlt: 'KSports 100% Bamboo Socks',
+      sortOrder: 0,
+    },
+    {
       name: 'Running Shoes',
       slug: 'running-shoes',
       description: 'Precision-engineered athletic runners designed for maximum energy return, ergonomic cushioning, and daily road endurance.',

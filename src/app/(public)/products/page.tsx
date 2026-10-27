@@ -38,6 +38,7 @@ export default async function ProductsPage({ searchParams }: Props) {
   } catch (error) {
     console.warn('Database connection unavailable for products page, using fallback defaults:', error);
     serializedCategories = [
+      { _id: 'cat-bamboo', name: 'Bamboo Socks', slug: 'bamboo-socks' },
       { _id: 'cat-1', name: 'Running Shoes', slug: 'running-shoes' },
       { _id: 'cat-2', name: 'Marathon Shoes', slug: 'marathon-shoes' },
       { _id: 'cat-3', name: 'Training & Gym', slug: 'training-gym' },
