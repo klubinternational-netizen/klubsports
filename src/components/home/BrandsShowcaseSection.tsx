@@ -106,30 +106,6 @@ export default function BrandsShowcaseSection() {
           <div className="absolute top-0 right-1/4 w-[500px] h-[300px] bg-white/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -inset-full bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none animate-shine" />
 
-          {/* Floating Pill Nav on top edge of shoe */}
-          <div className="absolute top-4 sm:top-6 left-1/2 -translate-x-1/2 z-30">
-            <div className="inline-flex items-center gap-2 sm:gap-4 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white/95 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(0,0,0,0.12)] text-stone-900 text-xs sm:text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg">
-              <span className="w-5 h-5 rounded-full bg-brand-orange text-white text-[10px] font-black flex items-center justify-center">
-                K
-              </span>
-              <Link href="/products" className="hover:text-brand-orange transition-colors">
-                Shop
-              </Link>
-              <span className="text-stone-300 text-xs">·</span>
-              <Link href="/about" className="hover:text-brand-orange transition-colors">
-                About
-              </Link>
-              <span className="text-stone-300 text-xs">·</span>
-              <Link href="/manufacturing" className="hover:text-brand-orange transition-colors hidden xs:inline">
-                Manufacturing
-              </Link>
-              <span className="text-stone-300 text-xs hidden xs:inline">·</span>
-              <Link href="/contact" className="hover:text-brand-orange transition-colors">
-                Stores
-              </Link>
-            </div>
-          </div>
-
           {/* LEFT CONTENT: Tag & "100%" */}
           <div className="relative z-10 flex flex-col justify-center items-start max-w-[42%]">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-white text-[10px] sm:text-xs font-bold tracking-wider uppercase backdrop-blur-sm mb-2 sm:mb-3">
