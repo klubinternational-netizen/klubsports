@@ -9,6 +9,7 @@ import { Product } from '@/models/Product';
 import { LiquidMetalButton } from '@/components/ui/liquid-metal-button';
 import TempoHeroSection from '@/components/home/TempoHeroSection';
 import ShippingFlightSection from '@/components/home/ShippingFlightSection';
+import BrandsShowcaseSection from '@/components/home/BrandsShowcaseSection';
 import BambooSocksSpotlight from '@/components/home/BambooSocksSpotlight';
 
 export const revalidate = 60; // ISR cache revalidation
@@ -223,6 +224,9 @@ export default async function HomePage() {
 
       {/* SECTION 3.5: WORLD WIDE SHIPPING (FLIGHT COMING FROM RIGHT TO LEFT WITH FALLING CARGO) */}
       <ShippingFlightSection />
+
+      {/* SECTION 3.6: 100% KSPORTS ORIGINAL PERFORMANCE SHOWCASE (BLUE BANNER WITH 3D FLOATING TRACTION SOLE) */}
+      <BrandsShowcaseSection />
 
       {/* SECTION 3.8: BAMBOO SOCKS SPOTLIGHT (HIGHLIGHTED ACCESSORY WITH SHOES) */}
       <BambooSocksSpotlight />
