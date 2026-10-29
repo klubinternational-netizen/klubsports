@@ -36,10 +36,10 @@ async function getHomeData() {
     return {
       categories: [
         { name: 'Bamboo Socks', slug: 'bamboo-socks', coverImage: '/products/bamboo-socks-pristine.jpg', description: '100% natural organic bamboo fiber athletic socks in recyclable cylindrical eco-tubes. Naturally anti-bacterial, breathable, and ultra-soft.' },
-        { name: 'Running Shoes', slug: 'running-shoes', coverImage: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80', description: 'Precision-engineered athletic runners designed for maximum energy return.' },
-        { name: 'Marathon Shoes', slug: 'marathon-shoes', coverImage: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80', description: 'Ultra-lightweight high-mileage footwear with responsive carbon-infused foam.' },
-        { name: 'Training & Gym', slug: 'training-gym', coverImage: 'https://images.unsplash.com/photo-1518002171953-a080ee817e1f?auto=format&fit=crop&w=800&q=80', description: 'Cross-training stability shoes with multi-directional lateral support.' },
-        { name: 'Cricket Spikes', slug: 'cricket-shoes', coverImage: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80', description: 'Professional turf cricket spikes engineered for bowlers and batsmen.' },
+        { name: 'Running Shoes', slug: 'running-shoes', coverImage: '/categories/running-shoes.webp', description: 'Precision-engineered athletic runners designed for maximum energy return.' },
+        { name: 'Marathon Shoes', slug: 'marathon-shoes', coverImage: '/categories/marathon-shoes.webp', description: 'Ultra-lightweight high-mileage footwear with responsive carbon-infused foam.' },
+        { name: 'Track & Field Shoes', slug: 'track-field-shoes', coverImage: '/categories/track-field-shoes.webp', description: 'Aerodynamic spike-plate footwear engineered for explosive acceleration.' },
+        { name: 'Football Shoes', slug: 'football-shoes', coverImage: '/categories/football-shoes.webp', description: 'Molded firm-ground cleats crafted for tactile ball control and sudden directional bursts.' },
       ],
       page: {},
       featuredProducts: [],
@@ -253,44 +253,59 @@ export default async function HomePage() {
 
           {/* Dynamic Category Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((cat: any) => (
-              <Link
-                key={cat._id}
-                href={`/categories/${cat.slug}`}
-                className="group flex flex-col bg-stone-50/50 hover:bg-white rounded-xl overflow-hidden border border-stone-200 hover:border-stone-900 hover:shadow-xl transition-all duration-300"
-              >
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-200">
-                  <Image
-                    src={cat.coverImage || 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80'}
-                    alt={cat.imageAlt || cat.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-stone-950/10 group-hover:bg-transparent transition-colors duration-300" />
-                  {cat.slug === 'bamboo-socks' && (
-                    <div className="absolute top-3 left-3 bg-emerald-800/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider shadow-md flex items-center gap-1.5 z-10">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
-                      Eco Launch · 3 Pairs ₹499
+            {categories.map((cat: any) => {
+              let coverImg = cat.coverImage || `/categories/${cat.slug}.webp`;
+              if (
+                coverImg.includes('unsplash.com') ||
+                coverImg.includes('photo-1511556532299') ||
+                coverImg.includes('photo-1608231387042') ||
+                coverImg.includes('photo-1542291026') ||
+                coverImg.includes('photo-1584735935682') ||
+                coverImg.includes('photo-1551107696')
+              ) {
+                coverImg = `/categories/${cat.slug}.webp`;
+              }
+              const safeAlt = (cat.imageAlt || cat.name || 'KSports Athletic Footwear').replace(/Klub /gi, 'KSports ');
+
+              return (
+                <Link
+                  key={cat._id}
+                  href={`/categories/${cat.slug}`}
+                  className="group flex flex-col bg-stone-50/50 hover:bg-white rounded-xl overflow-hidden border border-stone-200 hover:border-stone-900 hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-100">
+                    <Image
+                      src={coverImg}
+                      alt={safeAlt}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-stone-950/5 group-hover:bg-transparent transition-colors duration-300" />
+                    {cat.slug === 'bamboo-socks' && (
+                      <div className="absolute top-3 left-3 bg-emerald-800/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider shadow-md flex items-center gap-1.5 z-10">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
+                        Eco Launch · 3 Pairs ₹499
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-7 flex flex-col flex-grow justify-between">
+                    <div>
+                      <h3 className="font-display text-xl font-bold uppercase tracking-tight text-stone-950 group-hover:text-brand-orange transition-colors">
+                        {cat.name}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-stone-600 mt-2 line-clamp-2 leading-relaxed">
+                        {cat.description || 'Specialized athletic footwear engineered for professional sports performance.'}
+                      </p>
                     </div>
-                  )}
-                </div>
-                <div className="p-7 flex flex-col flex-grow justify-between">
-                  <div>
-                    <h3 className="font-display text-xl font-bold uppercase tracking-tight text-stone-950 group-hover:text-brand-orange transition-colors">
-                      {cat.name}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-stone-600 mt-2 line-clamp-2 leading-relaxed">
-                      {cat.description || 'Specialized athletic footwear engineered for professional sports performance.'}
-                    </p>
+                    <div className="mt-6 pt-4 border-t border-stone-200/80 flex items-center justify-between text-[11px] font-bold uppercase tracking-[0.14em] text-brand-orange group-hover:text-stone-950 transition-colors">
+                      <span>Explore Category</span>
+                      <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </div>
                   </div>
-                  <div className="mt-6 pt-4 border-t border-stone-200/80 flex items-center justify-between text-[11px] font-bold uppercase tracking-[0.14em] text-brand-orange group-hover:text-stone-950 transition-colors">
-                    <span>Explore Category</span>
-                    <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -318,10 +333,22 @@ export default async function HomePage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredProducts.map((product: any) => {
-                const primaryImg =
+                let primaryImg =
                   product.images?.find((img: any) => img.isPrimary)?.url ||
                   product.images?.[0]?.url ||
-                  'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80';
+                  `/categories/${product.categoryId?.slug || 'marathon-shoes'}.webp`;
+                if (
+                  primaryImg.includes('unsplash.com') ||
+                  primaryImg.includes('photo-1511556532299') ||
+                  primaryImg.includes('photo-1608231387042') ||
+                  primaryImg.includes('photo-1542291026') ||
+                  primaryImg.includes('photo-1584735935682') ||
+                  primaryImg.includes('photo-1551107696')
+                ) {
+                  primaryImg = `/categories/${product.categoryId?.slug || 'marathon-shoes'}.webp`;
+                }
+                const safeName = (product.name || 'KSports Footwear').replace(/Klub /gi, 'KSports ');
+
                 return (
                   <Link
                     key={product._id}
@@ -331,7 +358,7 @@ export default async function HomePage() {
                     <div className="relative aspect-[4/3] bg-stone-100 overflow-hidden">
                       <Image
                         src={primaryImg}
-                        alt={product.name}
+                        alt={safeName}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-700"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -343,7 +370,7 @@ export default async function HomePage() {
                     <div className="p-6 flex flex-col flex-grow justify-between">
                       <div>
                         <h3 className="font-display text-lg font-bold uppercase tracking-tight text-stone-950 group-hover:text-brand-orange transition-colors">
-                          {product.name}
+                          {safeName}
                         </h3>
                         <p className="text-xs text-stone-600 mt-2 line-clamp-2 leading-relaxed">
                           {product.shortDescription}

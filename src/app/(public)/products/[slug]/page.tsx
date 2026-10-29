@@ -58,6 +58,24 @@ export default async function ProductDetailPage({ params }: Props) {
   const serializedProduct = JSON.parse(JSON.stringify(product));
   const serializedRelated = JSON.parse(JSON.stringify(relatedProducts));
 
+  // Sanitize product details to guarantee 100% unbranded KSports assets
+  const safeName = (serializedProduct.name || 'KSports Footwear').replace(/Klub /gi, 'KSports ');
+  const safeImages = (serializedProduct.images || []).map((img: any) => {
+    let url = img.url;
+    if (
+      url.includes('unsplash.com') ||
+      url.includes('photo-1511556532299') ||
+      url.includes('photo-1608231387042') ||
+      url.includes('photo-1542291026') ||
+      url.includes('photo-1584735935682') ||
+      url.includes('photo-1551107696')
+    ) {
+      url = `/categories/${serializedProduct.categoryId?.slug || 'running-shoes'}.webp`;
+    }
+    const alt = (img.alt || safeName).replace(/Klub /gi, 'KSports ');
+    return { ...img, url, alt };
+  });
+
   return (
     <div className="bg-white min-h-screen pt-28 sm:pt-36 pb-16 lg:pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -78,14 +96,14 @@ export default async function ProductDetailPage({ params }: Props) {
             {serializedProduct.categoryId?.name}
           </Link>
           <ChevronRight className="w-3 h-3 text-stone-400" />
-          <span className="font-semibold text-stone-900">{serializedProduct.name}</span>
+          <span className="font-semibold text-stone-900">{safeName}</span>
         </nav>
 
         {/* Product Hero Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Left: Gallery */}
           <div className="lg:col-span-7">
-            <ProductGallery images={serializedProduct.images || []} productName={serializedProduct.name} />
+            <ProductGallery images={safeImages} productName={safeName} />
           </div>
 
           {/* Right: Specifications & Enquiry CTA */}
@@ -99,7 +117,7 @@ export default async function ProductDetailPage({ params }: Props) {
                   {serializedProduct.categoryId?.name}
                 </Link>
                 <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-stone-950 uppercase tracking-tight">
-                  {serializedProduct.name}
+                  {safeName}
                 </h1>
                 <p className="text-stone-600 text-sm sm:text-base mt-3 leading-relaxed">
                   {serializedProduct.shortDescription}
@@ -185,10 +203,21 @@ export default async function ProductDetailPage({ params }: Props) {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {serializedRelated.map((item: any) => {
-                const relImg =
+                let relImg =
                   item.images?.find((img: any) => img.isPrimary)?.url ||
                   item.images?.[0]?.url ||
-                  '/brand/logo-stacked.png';
+                  `/categories/${serializedProduct.categoryId?.slug || 'running-shoes'}.webp`;
+                if (
+                  relImg.includes('unsplash.com') ||
+                  relImg.includes('photo-1511556532299') ||
+                  relImg.includes('photo-1608231387042') ||
+                  relImg.includes('photo-1542291026') ||
+                  relImg.includes('photo-1584735935682') ||
+                  relImg.includes('photo-1551107696')
+                ) {
+                  relImg = `/categories/${serializedProduct.categoryId?.slug || 'running-shoes'}.webp`;
+                }
+                const relName = (item.name || 'KSports Footwear').replace(/Klub /gi, 'KSports ');
                 return (
                   <Link
                     key={item._id}
@@ -198,7 +227,7 @@ export default async function ProductDetailPage({ params }: Props) {
                     <div className="relative aspect-[4/3] bg-stone-100 overflow-hidden">
                       <Image
                         src={relImg}
-                        alt={item.name}
+                        alt={relName}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -207,7 +236,7 @@ export default async function ProductDetailPage({ params }: Props) {
                     <div className="p-4 flex flex-col flex-grow justify-between">
                       <div>
                         <h4 className="text-sm font-bold text-stone-900 group-hover:text-brand-orange transition-colors">
-                          {item.name}
+                          {relName}
                         </h4>
                         <p className="text-xs text-stone-500 mt-1 line-clamp-2">
                           {item.shortDescription}

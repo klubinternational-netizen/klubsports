@@ -53,7 +53,7 @@ export async function runSeed() {
       name: 'Running Shoes',
       slug: 'running-shoes',
       description: 'Precision-engineered athletic runners designed for maximum energy return, ergonomic cushioning, and daily road endurance.',
-      coverImage: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80',
+      coverImage: '/categories/running-shoes.webp',
       imageAlt: 'KSports Running Shoes',
       sortOrder: 1,
     },
@@ -61,7 +61,7 @@ export async function runSeed() {
       name: 'Marathon Shoes',
       slug: 'marathon-shoes',
       description: 'Ultra-lightweight high-mileage footwear with responsive carbon-infused foam compounds for elite long-distance competitors.',
-      coverImage: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80',
+      coverImage: '/categories/marathon-shoes.webp',
       imageAlt: 'KSports Marathon Shoes',
       sortOrder: 2,
     },
@@ -69,7 +69,7 @@ export async function runSeed() {
       name: 'Track & Field Shoes',
       slug: 'track-field-shoes',
       description: 'Aerodynamic spike-plate footwear engineered for explosive acceleration, sprinting rigidity, and collegiate field competition.',
-      coverImage: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=800&q=80',
+      coverImage: '/categories/track-field-shoes.webp',
       imageAlt: 'KSports Track and Field Footwear',
       sortOrder: 3,
     },
@@ -77,7 +77,7 @@ export async function runSeed() {
       name: 'Badminton Shoes',
       slug: 'badminton-shoes',
       description: 'Non-marking gum rubber court shoes engineered for rapid lateral transitions, ankle stabilization, and indoor grip.',
-      coverImage: 'https://images.unsplash.com/photo-1512374382149-233c42b6a83b?auto=format&fit=crop&w=800&q=80',
+      coverImage: '/categories/badminton-shoes.webp',
       imageAlt: 'KSports Badminton Shoes',
       sortOrder: 4,
     },
@@ -85,7 +85,7 @@ export async function runSeed() {
       name: 'Basketball Shoes',
       slug: 'basketball-shoes',
       description: 'High-top impact protection footwear engineered with multi-directional herringbone traction and dual-density heel dampening.',
-      coverImage: 'https://images.unsplash.com/photo-1579338559194-a162d19bf842?auto=format&fit=crop&w=800&q=80',
+      coverImage: '/categories/basketball-shoes.webp',
       imageAlt: 'KSports Basketball Shoes',
       sortOrder: 5,
     },
@@ -93,7 +93,7 @@ export async function runSeed() {
       name: 'Football Shoes',
       slug: 'football-shoes',
       description: 'Molded firm-ground cleats crafted with synthetic microfiber uppers for tactile ball control and sudden directional bursts.',
-      coverImage: 'https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=800&q=80',
+      coverImage: '/categories/football-shoes.webp',
       imageAlt: 'KSports Football Boots',
       sortOrder: 6,
     },
@@ -101,7 +101,7 @@ export async function runSeed() {
       name: 'Kabaddi Shoes',
       slug: 'kabaddi-shoes',
       description: 'Specialized indoor mat shoes with flexible reinforced toe caps, aggressive ankle collars, and high-traction friction soles.',
-      coverImage: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=800&q=80',
+      coverImage: '/categories/kabaddi-shoes.webp',
       imageAlt: 'KSports Kabaddi Shoes',
       sortOrder: 7,
     },
@@ -109,7 +109,7 @@ export async function runSeed() {
       name: 'Tennis Shoes',
       slug: 'tennis-shoes',
       description: 'Abrasion-resistant court shoes featuring reinforced medial drag guards, TPU shank torsion control, and hard-court durability.',
-      coverImage: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80',
+      coverImage: '/categories/tennis-shoes.webp',
       imageAlt: 'KSports Tennis Shoes',
       sortOrder: 8,
     },
@@ -117,7 +117,7 @@ export async function runSeed() {
       name: 'Jogging Shoes',
       slug: 'jogging-shoes',
       description: 'Breathable jacquard mesh footwear designed for plush comfort, impact dispersion, and versatile fitness regimens.',
-      coverImage: 'https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=800&q=80',
+      coverImage: '/categories/jogging-shoes.webp',
       imageAlt: 'KSports Jogging Shoes',
       sortOrder: 9,
     },
@@ -125,7 +125,7 @@ export async function runSeed() {
       name: 'Boxing Shoes',
       slug: 'boxing-shoes',
       description: 'Featherweight mid-cut boots with flat grooved rubber outsoles engineered for pivot velocity, ring balance, and ankle support.',
-      coverImage: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80',
+      coverImage: '/categories/boxing-shoes.webp',
       imageAlt: 'KSports Boxing Shoes',
       sortOrder: 10,
     },
@@ -133,7 +133,7 @@ export async function runSeed() {
       name: 'Off-Road & Trail Footwear',
       slug: 'trail-footwear',
       description: 'Rugged terrain footwear built with deep multidirectional lugged outsoles, stone-shield rock plates, and water-repellent mudguards.',
-      coverImage: 'https://images.unsplash.com/photo-1551107696-a4b085a6d91a?auto=format&fit=crop&w=800&q=80',
+      coverImage: '/categories/trail-footwear.webp',
       imageAlt: 'KSports Trail Footwear',
       sortOrder: 11,
     },
@@ -176,16 +176,10 @@ export async function runSeed() {
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1000&q=80',
+          url: '/categories/marathon-shoes.webp',
           alt: 'KSports Velocity Pro Carbon Profile',
           isPrimary: true,
           sortOrder: 0,
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=80',
-          alt: 'KSports Velocity Pro Outsole',
-          isPrimary: false,
-          sortOrder: 1,
         },
       ],
       sortOrder: 1,
@@ -205,7 +199,7 @@ export async function runSeed() {
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=1000&q=80',
+          url: '/categories/track-field-shoes.webp',
           alt: 'KSports Aerofly Sprint Spike Lateral View',
           isPrimary: true,
           sortOrder: 0,
@@ -228,7 +222,7 @@ export async function runSeed() {
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1512374382149-233c42b6a83b?auto=format&fit=crop&w=1000&q=80',
+          url: '/categories/badminton-shoes.webp',
           alt: 'KSports CourtMaster Badminton Pro Lateral',
           isPrimary: true,
           sortOrder: 0,
@@ -251,7 +245,7 @@ export async function runSeed() {
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=1000&q=80',
+          url: '/categories/kabaddi-shoes.webp',
           alt: 'KSports Mat-Strike Kabaddi Shoe',
           isPrimary: true,
           sortOrder: 0,
@@ -274,7 +268,7 @@ export async function runSeed() {
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=1000&q=80',
+          url: '/categories/football-shoes.webp',
           alt: 'KSports Apex FG Football Boots Side Profile',
           isPrimary: true,
           sortOrder: 0,
@@ -297,7 +291,7 @@ export async function runSeed() {
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=80',
+          url: '/categories/running-shoes.webp',
           alt: 'KSports Stratus Daily Runner Red & White',
           isPrimary: true,
           sortOrder: 0,
@@ -320,7 +314,7 @@ export async function runSeed() {
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=1000&q=80',
+          url: '/categories/boxing-shoes.webp',
           alt: 'KSports Ring-Master Boxing Boots',
           isPrimary: true,
           sortOrder: 0,
@@ -343,7 +337,7 @@ export async function runSeed() {
       ],
       images: [
         {
-          url: 'https://images.unsplash.com/photo-1551107696-a4b085a6d91a?auto=format&fit=crop&w=1000&q=80',
+          url: '/categories/trail-footwear.webp',
           alt: 'KSports Terra-Force Trail Explorer',
           isPrimary: true,
           sortOrder: 0,

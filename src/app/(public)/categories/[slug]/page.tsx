@@ -79,20 +79,34 @@ export default async function CategoryDetailPage({ params }: Props) {
               </p>
             </div>
 
-            {serializedCategory.coverImage && (
-              <div className="lg:col-span-4">
-                <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-stone-700 shadow-xl">
-                  <Image
-                    src={serializedCategory.coverImage}
-                    alt={serializedCategory.imageAlt || serializedCategory.name}
-                    fill
-                    priority
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 33vw"
-                  />
+            {serializedCategory.coverImage && (() => {
+              let imgUrl = serializedCategory.coverImage;
+              if (
+                imgUrl.includes('unsplash.com') ||
+                imgUrl.includes('photo-1511556532299') ||
+                imgUrl.includes('photo-1608231387042') ||
+                imgUrl.includes('photo-1542291026') ||
+                imgUrl.includes('photo-1584735935682') ||
+                imgUrl.includes('photo-1551107696')
+              ) {
+                imgUrl = `/categories/${serializedCategory.slug}.webp`;
+              }
+              const safeAlt = (serializedCategory.imageAlt || serializedCategory.name || 'KSports Athletic Footwear').replace(/Klub /gi, 'KSports ');
+              return (
+                <div className="lg:col-span-4">
+                  <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-stone-700 shadow-xl bg-stone-900">
+                    <Image
+                      src={imgUrl}
+                      alt={safeAlt}
+                      fill
+                      priority
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
+              );
+            })()}
           </div>
         </div>
       </section>
@@ -115,10 +129,21 @@ export default async function CategoryDetailPage({ params }: Props) {
           {serializedProducts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {serializedProducts.map((product: any) => {
-                const primaryImg =
+                let primaryImg =
                   product.images?.find((img: any) => img.isPrimary)?.url ||
                   product.images?.[0]?.url ||
-                  '/brand/logo-stacked.png';
+                  `/categories/${serializedCategory.slug || 'running-shoes'}.webp`;
+                if (
+                  primaryImg.includes('unsplash.com') ||
+                  primaryImg.includes('photo-1511556532299') ||
+                  primaryImg.includes('photo-1608231387042') ||
+                  primaryImg.includes('photo-1542291026') ||
+                  primaryImg.includes('photo-1584735935682') ||
+                  primaryImg.includes('photo-1551107696')
+                ) {
+                  primaryImg = `/categories/${serializedCategory.slug || 'running-shoes'}.webp`;
+                }
+                const safeName = (product.name || 'KSports Footwear').replace(/Klub /gi, 'KSports ');
 
                 return (
                   <div
@@ -128,7 +153,7 @@ export default async function CategoryDetailPage({ params }: Props) {
                     <Link href={`/products/${product.slug}`} className="relative aspect-[4/3] bg-stone-100 overflow-hidden block">
                       <Image
                         src={primaryImg}
-                        alt={product.name}
+                        alt={safeName}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -139,7 +164,7 @@ export default async function CategoryDetailPage({ params }: Props) {
                       <div>
                         <Link href={`/products/${product.slug}`}>
                           <h3 className="text-lg font-bold text-stone-900 group-hover:text-brand-orange transition-colors">
-                            {product.name}
+                            {safeName}
                           </h3>
                         </Link>
                         <p className="text-xs sm:text-sm text-stone-600 mt-2 line-clamp-2 leading-relaxed">

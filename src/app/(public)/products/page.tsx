@@ -33,8 +33,47 @@ export default async function ProductsPage({ searchParams }: Props) {
       Category.find({ isPublished: true }).sort({ sortOrder: 1, name: 1 }).lean(),
     ]);
 
-    serializedProducts = JSON.parse(JSON.stringify(products));
-    serializedCategories = JSON.parse(JSON.stringify(categories));
+    serializedProducts = JSON.parse(JSON.stringify(products)).map((p: any) => {
+      let images = (p.images || []).map((img: any) => {
+        let url = img.url;
+        if (
+          url.includes('unsplash.com') ||
+          url.includes('photo-1511556532299') ||
+          url.includes('photo-1608231387042') ||
+          url.includes('photo-1542291026') ||
+          url.includes('photo-1584735935682') ||
+          url.includes('photo-1551107696')
+        ) {
+          url = `/categories/${p.categoryId?.slug || 'running-shoes'}.webp`;
+        }
+        return { ...img, url, alt: (img.alt || p.name).replace(/Klub /gi, 'KSports ') };
+      });
+      return {
+        ...p,
+        name: (p.name || 'KSports Footwear').replace(/Klub /gi, 'KSports '),
+        images,
+      };
+    });
+
+    serializedCategories = JSON.parse(JSON.stringify(categories)).map((c: any) => {
+      let coverImage = c.coverImage || `/categories/${c.slug}.webp`;
+      if (
+        coverImage.includes('unsplash.com') ||
+        coverImage.includes('photo-1511556532299') ||
+        coverImage.includes('photo-1608231387042') ||
+        coverImage.includes('photo-1542291026') ||
+        coverImage.includes('photo-1584735935682') ||
+        coverImage.includes('photo-1551107696')
+      ) {
+        coverImage = `/categories/${c.slug}.webp`;
+      }
+      return {
+        ...c,
+        name: (c.name || 'Category').replace(/Klub /gi, 'KSports '),
+        coverImage,
+        imageAlt: (c.imageAlt || c.name).replace(/Klub /gi, 'KSports '),
+      };
+    });
   } catch (error) {
     console.warn('Database connection unavailable for products page, using fallback defaults:', error);
     serializedCategories = [

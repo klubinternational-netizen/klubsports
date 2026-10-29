@@ -157,10 +157,21 @@ export default function ProductCatalogView({
       {filteredProducts.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProducts.map((product) => {
-            const primaryImg =
+            let primaryImg =
               product.images?.find((img) => img.isPrimary)?.url ||
               product.images?.[0]?.url ||
-              '/brand/logo-stacked.png';
+              `/categories/${product.categoryId?.slug || 'running-shoes'}.webp`;
+            if (
+              primaryImg.includes('unsplash.com') ||
+              primaryImg.includes('photo-1511556532299') ||
+              primaryImg.includes('photo-1608231387042') ||
+              primaryImg.includes('photo-1542291026') ||
+              primaryImg.includes('photo-1584735935682') ||
+              primaryImg.includes('photo-1551107696')
+            ) {
+              primaryImg = `/categories/${product.categoryId?.slug || 'running-shoes'}.webp`;
+            }
+            const safeName = (product.name || 'KSports Footwear').replace(/Klub /gi, 'KSports ');
 
             return (
               <div
@@ -171,7 +182,7 @@ export default function ProductCatalogView({
                 <Link href={`/products/${product.slug}`} className="relative aspect-[4/3] bg-stone-100 overflow-hidden block">
                   <Image
                     src={primaryImg}
-                    alt={product.name}
+                    alt={safeName}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -186,7 +197,7 @@ export default function ProductCatalogView({
                   <div>
                     <Link href={`/products/${product.slug}`}>
                       <h3 className="text-lg font-bold text-stone-900 group-hover:text-brand-orange transition-colors">
-                        {product.name}
+                        {safeName}
                       </h3>
                     </Link>
                     <p className="text-xs sm:text-sm text-stone-600 mt-2 line-clamp-2 leading-relaxed">
