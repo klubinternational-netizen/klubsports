@@ -1,12 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, ChevronRight, ShieldCheck, Factory, Layers, Award, MapPin, TrendingUp, Building2 } from 'lucide-react';
+import { ArrowRight, ChevronRight, ShieldCheck, Layers, Award } from 'lucide-react';
 import { connectToDatabase } from '@/lib/db/connection';
 import { Category } from '@/models/Category';
 import { Page } from '@/models/Page';
 import { Product } from '@/models/Product';
-import { LiquidMetalButton } from '@/components/ui/liquid-metal-button';
 import TempoHeroSection from '@/components/home/TempoHeroSection';
 import ShippingFlightSection from '@/components/home/ShippingFlightSection';
 import BrandsShowcaseSection from '@/components/home/BrandsShowcaseSection';
@@ -61,82 +60,6 @@ export default async function HomePage() {
     videoUrl: '/videos/hero-sprint.webm',
   };
 
-  const rawHighlights = page?.sections?.highlights?.metrics || [];
-  
-  // Standardized 5 core metrics with clean icons and descriptions
-  const defaultMetrics = [
-    {
-      stat: '4',
-      unit: 'Units',
-      label: 'Manufacturing Plants',
-      detail: 'Dedicated cutting, molding & vulcanization facilities',
-      icon: Factory,
-    },
-    {
-      stat: '130,000',
-      unit: 'sq. ft.',
-      label: 'Industrial Floor Space',
-      detail: 'High-volume production lines and assembly floors',
-      icon: Layers,
-    },
-    {
-      stat: '4,00,000',
-      unit: 'Pairs / Mo',
-      label: 'Monthly Production',
-      detail: 'Scalable capacity for institutional & tournament supply',
-      icon: TrendingUp,
-    },
-    {
-      stat: '12',
-      unit: 'States',
-      label: 'Operational Reach',
-      detail: 'Pan-India commercial & institutional distribution network',
-      icon: MapPin,
-    },
-    {
-      stat: '₹3 Cr+',
-      unit: 'Annual',
-      label: 'Commercial Scale',
-      detail: 'Established institutional tenders and wholesale turnover',
-      icon: ShieldCheck,
-    },
-  ];
-
-  // Map any database-provided metrics cleanly into the high-end format
-  const metricsList = defaultMetrics.map((def, idx) => {
-    const raw = rawHighlights[idx];
-    if (!raw) return def;
-
-    const rawVal = String(raw.value || '').trim();
-    let stat = def.stat;
-    let unit = def.unit;
-
-    if (idx === 0) {
-      stat = rawVal.match(/[\d,]+/)?.[0] || '4';
-      unit = 'Plants';
-    } else if (idx === 1) {
-      stat = rawVal.replace(/sq\.?\s*ft\.?/i, '').trim() || '130,000';
-      unit = 'sq. ft.';
-    } else if (idx === 2) {
-      stat = rawVal.match(/[\d,]+/)?.[0] || '4,00,000';
-      unit = 'Pairs / Mo';
-    } else if (idx === 3) {
-      stat = rawVal.match(/[\d,]+/)?.[0] || '12';
-      unit = 'States';
-    } else if (idx === 4) {
-      stat = '₹3 Cr+';
-      unit = 'Annual';
-    }
-
-    return {
-      stat,
-      unit,
-      label: def.label,
-      detail: def.detail,
-      icon: def.icon,
-    };
-  });
-
   return (
     <div className="flex flex-col">
       {/* SECTION 2: SNEAKO-STYLE 3D HERO (MATCHING SNEAKO FRAMER EFFECTS & ANIMATION) */}
@@ -150,79 +73,7 @@ export default async function HomePage() {
         videoUrl={hero.videoUrl || '/videos/hero-sprint.webm'}
       />
 
-      {/* SECTION 3: COMPANY INFRASTRUCTURE & SCALE */}
-      <section className="bg-stone-50/60 border-y border-stone-200/80 py-20 relative overflow-hidden">
-        {/* Subtle radial ambient glow */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-brand-orange/[0.03] rounded-full blur-3xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          {/* Section Header */}
-          <div className="max-w-3xl mb-12 sm:mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-[11px] font-bold tracking-[0.18em] uppercase mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse" />
-              Scale &amp; Infrastructure
-            </div>
-            <h2 className="font-sans text-2xl sm:text-4xl lg:text-[40px] font-extrabold text-stone-950 tracking-tight leading-tight">
-              Manufacturing &amp; Supply Capabilities
-            </h2>
-            <p className="text-stone-600 text-sm sm:text-base mt-2.5 leading-relaxed max-w-2xl font-normal">
-              Industrial footwear production capacity engineered for bulk commercial procurement, athlete team kits, and nationwide institutional distribution.
-            </p>
-          </div>
-
-          {/* Symmetrical 5-Column High-Level Stat Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5">
-            {metricsList.map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={idx}
-                  className="group relative bg-white rounded-2xl border border-stone-200/90 p-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_32px_-8px_rgba(0,0,0,0.08)] hover:border-brand-orange/50 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden"
-                >
-                  {/* Top subtle orange accent highlight on hover */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-orange to-brand-orange-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                  {/* Icon & Live Badge */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="w-10 h-10 rounded-xl bg-stone-100/90 border border-stone-200/60 group-hover:bg-brand-orange/10 group-hover:border-brand-orange/20 text-stone-700 group-hover:text-brand-orange flex items-center justify-center transition-colors duration-300">
-                      <Icon className="w-5 h-5 stroke-[1.8]" />
-                    </div>
-                    <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-stone-100 group-hover:bg-brand-orange/10 text-[10px] font-bold text-stone-500 group-hover:text-brand-orange transition-colors uppercase tracking-wider">
-                      Verified
-                    </span>
-                  </div>
-
-                  {/* Stat Number & Unit */}
-                  <div>
-                    <div className="flex items-baseline gap-1.5 flex-wrap">
-                      <span className="font-sans text-3xl sm:text-4xl lg:text-[38px] font-black tracking-tight text-stone-950 leading-none tabular-nums">
-                        {item.stat}
-                      </span>
-                      {item.unit && (
-                        <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-brand-orange">
-                          {item.unit}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Label & Description */}
-                    <div className="mt-3.5 pt-3.5 border-t border-stone-100">
-                      <h3 className="text-xs font-bold uppercase tracking-[0.12em] text-stone-800 leading-snug">
-                        {item.label}
-                      </h3>
-                      <p className="text-[12px] text-stone-500 mt-1.5 leading-relaxed font-normal">
-                        {item.detail}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 3.5: WORLD WIDE SHIPPING (FLIGHT COMING FROM RIGHT TO LEFT WITH FALLING CARGO) */}
+      {/* SECTION 3: WORLD WIDE SHIPPING (FLIGHT COMING FROM RIGHT TO LEFT WITH FALLING CARGO) */}
       <ShippingFlightSection />
 
       {/* SECTION 3.6: 100% KSPORTS ORIGINAL PERFORMANCE SHOWCASE (BLUE BANNER WITH 3D FLOATING TRACTION SOLE) */}
