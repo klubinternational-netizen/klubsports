@@ -12,6 +12,48 @@ interface CategoryOption {
   slug: string;
 }
 
+const INDIAN_STATES = [
+  'Andhra Pradesh',
+  'Arunachal Pradesh',
+  'Assam',
+  'Bihar',
+  'Chhattisgarh',
+  'Goa',
+  'Gujarat',
+  'Haryana',
+  'Himachal Pradesh',
+  'Jharkhand',
+  'Karnataka',
+  'Kerala',
+  'Madhya Pradesh',
+  'Maharashtra',
+  'Manipur',
+  'Meghalaya',
+  'Mizoram',
+  'Nagaland',
+  'Odisha',
+  'Punjab',
+  'Rajasthan',
+  'Sikkim',
+  'Tamil Nadu',
+  'Telangana',
+  'Tripura',
+  'Uttar Pradesh',
+  'Uttarakhand',
+  'West Bengal',
+];
+
+const UNION_TERRITORIES = [
+  'Andaman and Nicobar Islands',
+  'Chandigarh',
+  'Dadra and Nagar Haveli and Daman and Diu',
+  'Delhi (NCT)',
+  'Jammu and Kashmir',
+  'Ladakh',
+  'Lakshadweep',
+  'Puducherry',
+];
+
 interface Props {
   categories: CategoryOption[];
   initialCategory?: string;
@@ -201,13 +243,28 @@ export default function EnquiryForm({
           <label htmlFor="state" className="block text-xs font-medium text-stone-600 mb-1.5 uppercase tracking-wider">
             State
           </label>
-          <input
+          <select
             id="state"
-            type="text"
-            placeholder="e.g. Maharashtra, Karnataka, Delhi"
             {...register('state')}
-            className="w-full px-4 py-3.5 text-sm bg-[#f5f5f5] rounded-2xl text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-[#005eff] focus:bg-white transition-all"
-          />
+            className="w-full px-4 py-3.5 text-sm bg-[#f5f5f5] rounded-2xl text-stone-900 focus:outline-none focus:ring-2 focus:ring-[#005eff] focus:bg-white transition-all cursor-pointer"
+          >
+            <option value="">Select State / UT</option>
+            <optgroup label="States">
+              {INDIAN_STATES.map((stateName) => (
+                <option key={stateName} value={stateName}>
+                  {stateName}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="Union Territories">
+              {UNION_TERRITORIES.map((utName) => (
+                <option key={utName} value={utName}>
+                  {utName}
+                </option>
+              ))}
+            </optgroup>
+            <option value="Other">Other / Outside India</option>
+          </select>
         </div>
 
         {/* City */}
