@@ -168,60 +168,60 @@ export default function BambooSocksSpotlight() {
               </p>
             </div>
 
-            {/* 4 Core Specification Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              <div className="p-4 rounded-2xl bg-white border border-stone-200 shadow-xs flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+            {/* 4 Core Specification Cards - Mobile 2-by-2 Grid */}
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5">
+              <div className="p-3 sm:p-4 rounded-2xl bg-white border border-stone-200 shadow-xs flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
                   <Leaf className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wide">
-                    100% Bamboo Fiber
+                  <h4 className="text-[11px] sm:text-xs font-bold text-stone-900 uppercase tracking-wide">
+                    100% Bamboo
                   </h4>
-                  <p className="text-[11px] text-stone-500 mt-0.5 leading-snug">
-                    Naturally hypoallergenic, anti-bacterial &amp; ultra soft.
+                  <p className="text-[10px] sm:text-[11px] text-stone-500 mt-0.5 leading-snug">
+                    Hypoallergenic &amp; ultra soft.
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white border border-stone-200 shadow-xs flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+              <div className="p-3 sm:p-4 rounded-2xl bg-white border border-stone-200 shadow-xs flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
                   <PackageCheck className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wide">
-                    x3 Pairs in Eco Tube
+                  <h4 className="text-[11px] sm:text-xs font-bold text-stone-900 uppercase tracking-wide">
+                    x3 In Eco Tube
                   </h4>
-                  <p className="text-[11px] text-stone-500 mt-0.5 leading-snug">
-                    Assorted pairs packaged in recyclable kraft paper cylinders.
+                  <p className="text-[10px] sm:text-[11px] text-stone-500 mt-0.5 leading-snug">
+                    Recyclable kraft paper tubes.
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white border border-stone-200 shadow-xs flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+              <div className="p-3 sm:p-4 rounded-2xl bg-white border border-stone-200 shadow-xs flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wide">
-                    Anti-Bacterial &amp; Odorless
+                  <h4 className="text-[11px] sm:text-xs font-bold text-stone-900 uppercase tracking-wide">
+                    Anti-Bacterial
                   </h4>
-                  <p className="text-[11px] text-stone-500 mt-0.5 leading-snug">
-                    Inhibits sweat odor across intense athletic match play.
+                  <p className="text-[10px] sm:text-[11px] text-stone-500 mt-0.5 leading-snug">
+                    Inhibits match sweat odor.
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white border border-stone-200 shadow-xs flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+              <div className="p-3 sm:p-4 rounded-2xl bg-white border border-stone-200 shadow-xs flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wide">
-                    Ergonomic Free Size
+                  <h4 className="text-[11px] sm:text-xs font-bold text-stone-900 uppercase tracking-wide">
+                    Ergonomic Fit
                   </h4>
-                  <p className="text-[11px] text-stone-500 mt-0.5 leading-snug">
-                    Unisex ankle cut with blister-free seamless toe closure.
+                  <p className="text-[10px] sm:text-[11px] text-stone-500 mt-0.5 leading-snug">
+                    Seamless blister-free toe closure.
                   </p>
                 </div>
               </div>

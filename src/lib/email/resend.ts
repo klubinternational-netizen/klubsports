@@ -14,6 +14,8 @@ export interface EnquiryNotificationParams {
   companyName?: string;
   email: string;
   phone: string;
+  state?: string;
+  city?: string;
   categoryName?: string;
   message: string;
   sourcePage?: string;
@@ -133,6 +135,12 @@ export async function sendCustomerEnquiryConfirmation(params: EnquiryNotificatio
                           <td style="padding: 10px 0; color: #78716c; font-weight: 600;">Contact Telephone</td>
                           <td style="padding: 10px 0; color: #1c1917;">${params.phone}</td>
                         </tr>
+                        ${(params.city || params.state) ? `
+                        <tr style="border-bottom: 1px solid #f5f5f4;">
+                          <td style="padding: 10px 0; color: #78716c; font-weight: 600;">Location (City / State)</td>
+                          <td style="padding: 10px 0; color: #1c1917; font-weight: 600;">${[params.city, params.state].filter(Boolean).join(', ')}</td>
+                        </tr>
+                        ` : ''}
                         <tr>
                           <td style="padding: 10px 0; color: #78716c; font-weight: 600;">Registered Email</td>
                           <td style="padding: 10px 0; color: #ea580c; font-weight: 600;">${params.email}</td>
@@ -398,6 +406,12 @@ export async function sendEnquiryEmailNotification(params: EnquiryNotificationPa
               <td style="padding: 10px 0; color: #78716c; font-weight: 600; text-transform: uppercase; font-size: 11px;">Telephone Number</td>
               <td style="padding: 10px 0; color: #1c1917; font-weight: 600;"><a href="tel:${params.phone}" style="color: #1c1917; text-decoration: none;">${params.phone}</a></td>
             </tr>
+            ${(params.city || params.state) ? `
+            <tr style="border-bottom: 1px solid #f5f5f4;">
+              <td style="padding: 10px 0; color: #78716c; font-weight: 600; text-transform: uppercase; font-size: 11px;">City / State</td>
+              <td style="padding: 10px 0; color: #1c1917; font-weight: 600;">${[params.city, params.state].filter(Boolean).join(', ')}</td>
+            </tr>
+            ` : ''}
             <tr style="border-bottom: 1px solid #f5f5f4;">
               <td style="padding: 10px 0; color: #78716c; font-weight: 600; text-transform: uppercase; font-size: 11px;">Interested Category</td>
               <td style="padding: 10px 0; color: #1c1917;">${params.categoryName || 'General Corporate Enquiry'}</td>

@@ -24,6 +24,8 @@ interface EnquiryItem {
   companyName?: string;
   email: string;
   phone: string;
+  state?: string;
+  city?: string;
   categoryId?: {
     _id: string;
     name: string;
@@ -411,6 +413,14 @@ function EnquiriesContent() {
                 >
                   {selectedEnquiry.phone}
                 </a>
+              </div>
+              <div>
+                <span className="text-stone-400 block font-semibold uppercase text-[10px]">
+                  City / State
+                </span>
+                <span className="font-bold text-stone-900 text-sm">
+                  {[selectedEnquiry.city, selectedEnquiry.state].filter(Boolean).join(', ') || 'Not specified'}
+                </span>
               </div>
               <div>
                 <span className="text-stone-400 block font-semibold uppercase text-[10px]">

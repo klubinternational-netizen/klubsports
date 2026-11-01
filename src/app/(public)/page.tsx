@@ -106,8 +106,8 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          {/* Dynamic Category Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Dynamic Category Cards - Mobile 2-by-2 Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
             {categories.map((cat: any) => {
               let coverImg = cat.coverImage || `/categories/${cat.slug}.webp`;
               if (
@@ -134,28 +134,30 @@ export default async function HomePage() {
                       alt={safeAlt}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-stone-950/5 group-hover:bg-transparent transition-colors duration-300" />
                     {cat.slug === 'bamboo-socks' && (
-                      <div className="absolute top-3 left-3 bg-emerald-800/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider shadow-md flex items-center gap-1.5 z-10">
+                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-emerald-800/90 backdrop-blur-md px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-bold text-white uppercase tracking-wider shadow-md flex items-center gap-1 sm:gap-1.5 z-10">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
-                        Eco Launch · 3 Pairs ₹499
+                        <span className="hidden sm:inline">Eco Launch · 3 Pairs ₹499</span>
+                        <span className="sm:hidden">Eco 3-Pack</span>
                       </div>
                     )}
                   </div>
-                  <div className="p-7 flex flex-col flex-grow justify-between">
+                  <div className="p-3 sm:p-5 lg:p-7 flex flex-col flex-grow justify-between">
                     <div>
-                      <h3 className="font-display text-xl font-bold uppercase tracking-tight text-stone-950 group-hover:text-brand-orange transition-colors">
+                      <h3 className="font-display text-sm sm:text-lg lg:text-xl font-bold uppercase tracking-tight text-stone-950 group-hover:text-brand-orange transition-colors line-clamp-1 sm:line-clamp-none">
                         {cat.name}
                       </h3>
-                      <p className="text-xs sm:text-sm text-stone-600 mt-2 line-clamp-2 leading-relaxed">
+                      <p className="text-[11px] sm:text-xs lg:text-sm text-stone-600 mt-1 sm:mt-2 line-clamp-2 leading-relaxed">
                         {cat.description || 'Specialized athletic footwear engineered for professional sports performance.'}
                       </p>
                     </div>
-                    <div className="mt-6 pt-4 border-t border-stone-200/80 flex items-center justify-between text-[11px] font-bold uppercase tracking-[0.14em] text-brand-orange group-hover:text-stone-950 transition-colors">
-                      <span>Explore Category</span>
-                      <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    <div className="mt-3 sm:mt-6 pt-2 sm:pt-4 border-t border-stone-200/80 flex items-center justify-between text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.14em] text-brand-orange group-hover:text-stone-950 transition-colors">
+                      <span className="hidden sm:inline">Explore Category</span>
+                      <span className="sm:hidden">Explore</span>
+                      <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                     </div>
                   </div>
                 </Link>
@@ -186,7 +188,8 @@ export default async function HomePage() {
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Featured Products - Mobile 2-by-2 Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
               {featuredProducts.map((product: any) => {
                 let primaryImg =
                   product.images?.find((img: any) => img.isPrimary)?.url ||
@@ -216,23 +219,24 @@ export default async function HomePage() {
                         alt={safeName}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
                       />
-                      <div className="absolute top-3 left-3 bg-stone-950/80 backdrop-blur-sm px-2.5 py-1 rounded text-[10px] font-bold text-white uppercase tracking-wider">
+                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-stone-950/80 backdrop-blur-sm px-2 py-0.5 sm:px-2.5 sm:py-1 rounded text-[9px] sm:text-[10px] font-bold text-white uppercase tracking-wider">
                         {product.categoryId?.name || 'Footwear'}
                       </div>
                     </div>
-                    <div className="p-6 flex flex-col flex-grow justify-between">
+                    <div className="p-3 sm:p-4 lg:p-6 flex flex-col flex-grow justify-between">
                       <div>
-                        <h3 className="font-display text-lg font-bold uppercase tracking-tight text-stone-950 group-hover:text-brand-orange transition-colors">
+                        <h3 className="font-display text-xs sm:text-base lg:text-lg font-bold uppercase tracking-tight text-stone-950 group-hover:text-brand-orange transition-colors line-clamp-1 sm:line-clamp-none">
                           {safeName}
                         </h3>
-                        <p className="text-xs text-stone-600 mt-2 line-clamp-2 leading-relaxed">
+                        <p className="text-[11px] sm:text-xs text-stone-600 mt-1 sm:mt-2 line-clamp-2 leading-relaxed">
                           {product.shortDescription}
                         </p>
                       </div>
-                      <div className="mt-5 pt-4 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-stone-700 group-hover:text-brand-orange transition-colors">
-                        <span className="uppercase text-[11px] font-bold tracking-wider">View Specifications</span>
+                      <div className="mt-3 sm:mt-5 pt-2 sm:pt-4 border-t border-stone-100 flex items-center justify-between text-[10px] sm:text-xs font-semibold text-stone-700 group-hover:text-brand-orange transition-colors">
+                        <span className="uppercase text-[10px] sm:text-[11px] font-bold tracking-wider hidden sm:inline">View Specifications</span>
+                        <span className="uppercase text-[10px] font-bold tracking-wider sm:hidden">Details</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </div>
                     </div>

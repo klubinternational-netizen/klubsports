@@ -397,7 +397,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-stone-500 text-xs sm:text-sm font-normal">
-              Making high quality shoes since 2012
+              Crafting performance sports footwear since 2015
             </p>
           </div>
 
@@ -523,7 +523,7 @@ export default function Footer() {
         {/* Legal & Terms bar matching template */}
         <div className="mt-14 pt-6 border-t border-stone-200/60 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-stone-500">
           <div className="text-center md:text-left">
-            <span>© KSports International. All Rights Reserved</span>
+            <span>© 2015–2026 KSports International. All Rights Reserved</span>
           </div>
 
           {/* Centered Built by uxitech credit */}

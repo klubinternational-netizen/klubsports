@@ -9,6 +9,8 @@ export const publicEnquirySchema = z.object({
     .min(7, 'Please provide a valid phone or mobile number')
     .max(25)
     .trim(),
+  state: z.string().max(100).optional().default(''),
+  city: z.string().max(100).optional().default(''),
   categoryId: z.string().optional().default(''),
   categoryName: z.string().optional().default(''),
   message: z.string().min(10, 'Message must be at least 10 characters').max(3000).trim(),

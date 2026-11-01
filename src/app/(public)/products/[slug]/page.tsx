@@ -201,7 +201,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
               {serializedRelated.map((item: any) => {
                 let relImg =
                   item.images?.find((img: any) => img.isPrimary)?.url ||
@@ -230,19 +230,19 @@ export default async function ProductDetailPage({ params }: Props) {
                         alt={relName}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
                       />
                     </div>
-                    <div className="p-4 flex flex-col flex-grow justify-between">
+                    <div className="p-3 sm:p-4 flex flex-col flex-grow justify-between">
                       <div>
-                        <h4 className="text-sm font-bold text-stone-900 group-hover:text-brand-orange transition-colors">
+                        <h4 className="text-xs sm:text-sm font-bold text-stone-900 group-hover:text-brand-orange transition-colors line-clamp-1 sm:line-clamp-none">
                           {relName}
                         </h4>
-                        <p className="text-xs text-stone-500 mt-1 line-clamp-2">
+                        <p className="text-[11px] sm:text-xs text-stone-500 mt-1 line-clamp-2">
                           {item.shortDescription}
                         </p>
                       </div>
-                      <div className="mt-3 pt-2 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-stone-600 group-hover:text-brand-orange">
+                      <div className="mt-2.5 sm:mt-3 pt-2 border-t border-stone-100 flex items-center justify-between text-[11px] sm:text-xs font-semibold text-stone-600 group-hover:text-brand-orange">
                         <span>Details</span>
                         <ArrowRight className="w-3 h-3" />
                       </div>

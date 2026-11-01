@@ -51,7 +51,7 @@ export default async function AboutPage() {
           <div className="max-w-3xl space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-white text-[11px] font-bold uppercase tracking-[0.16em]">
               <Target className="w-3.5 h-3.5 text-brand-orange" />
-              <span>Corporate Profile</span>
+              <span>Since 2015 · Corporate Profile</span>
             </div>
             <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight uppercase">
               About KSports
@@ -76,7 +76,7 @@ export default async function AboutPage() {
               </h2>
               <div className="text-stone-600 text-base space-y-4 leading-relaxed">
                 <p>
-                  <strong>KSports</strong> is the official corporate brand name representing our footwear manufacturing enterprise. Our operations focus on bridging the gap between premium performance athletic footwear and accessible, high-volume institutional procurement.
+                  Established in <strong>2015</strong>, <strong>KSports</strong> is an official Indian corporate sports footwear manufacturer. Over more than a decade of athletic footwear engineering, our operations have bridged the gap between tournament-grade performance athletic footwear and accessible, high-volume institutional procurement.
                 </p>
                 <p>
                   Whether supplying statewide school sports programs, corporate sporting events, competitive running clubs, or regional athletic academies, KSports ensures consistent adherence to dimensional stability, shock absorption, and sole traction standards.
@@ -86,7 +86,7 @@ export default async function AboutPage() {
               <div className="p-4 rounded-xl bg-stone-50 border border-stone-200">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-stone-800">
                   <ShieldCheck className="w-4 h-4 text-brand-orange" />
-                  <span>Official Brand Assurance</span>
+                  <span>Official Brand Assurance · Est. 2015</span>
                 </div>
                 <p className="text-xs text-stone-600 mt-1">
                   KSports operates with strict brand authenticity. All corporate communications, product labelling, and institutional contracts are executed under the registered <strong>KSports</strong> identity.
@@ -95,10 +95,10 @@ export default async function AboutPage() {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-stone-200">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-stone-200 bg-stone-100">
                 <Image
-                  src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=80"
-                  alt="KSports Athletic Footwear"
+                  src="/categories/running-shoes.webp"
+                  alt="KSports Performance Athletic Footwear"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 40vw"
@@ -154,7 +154,11 @@ export default async function AboutPage() {
             <p className="text-sm text-stone-600 leading-relaxed">
               Based on our client presentation parameters, KSports is anchored by an industrial infrastructure featuring 4 dedicated manufacturing units with an aggregate factory floor area of approximately 130,000 sq. ft., supporting a monthly output capacity of four lakh units across 12 Indian states.
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-stone-200">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 pt-4 border-t border-stone-200">
+              <div>
+                <div className="text-2xl font-extrabold text-brand-orange">2015</div>
+                <div className="text-xs text-stone-500 font-medium">Established Year</div>
+              </div>
               <div>
                 <div className="text-2xl font-extrabold text-stone-900">4</div>
                 <div className="text-xs text-stone-500 font-medium">Production Facilities*</div>

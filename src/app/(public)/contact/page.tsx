@@ -79,7 +79,7 @@ export default async function ContactPage({ searchParams }: Props) {
           <div className="lg:col-span-5 space-y-8">
             <div>
               <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange block">
-                INSTITUTIONAL DESK
+                SINCE 2015 · INSTITUTIONAL DESK
               </span>
 
               {/* Our Actual Heading with Flowing Words Blur/Slide Animation */}

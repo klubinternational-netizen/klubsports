@@ -41,6 +41,8 @@ export default function EnquiryForm({
       companyName: '',
       email: '',
       phone: '',
+      state: '',
+      city: '',
       categoryId: defaultCategoryObj?._id || '',
       categoryName: defaultCategoryObj?.name || '',
       message: initialProduct
@@ -189,6 +191,37 @@ export default function EnquiryForm({
             }`}
           />
           {errors.phone && <p className="text-[11px] text-red-500 mt-1 pl-1">{errors.phone.message}</p>}
+        </div>
+      </div>
+
+      {/* State and City Fields */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {/* State */}
+        <div>
+          <label htmlFor="state" className="block text-xs font-medium text-stone-600 mb-1.5 uppercase tracking-wider">
+            State
+          </label>
+          <input
+            id="state"
+            type="text"
+            placeholder="e.g. Maharashtra, Karnataka, Delhi"
+            {...register('state')}
+            className="w-full px-4 py-3.5 text-sm bg-[#f5f5f5] rounded-2xl text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-[#005eff] focus:bg-white transition-all"
+          />
+        </div>
+
+        {/* City */}
+        <div>
+          <label htmlFor="city" className="block text-xs font-medium text-stone-600 mb-1.5 uppercase tracking-wider">
+            City
+          </label>
+          <input
+            id="city"
+            type="text"
+            placeholder="e.g. Mumbai, Bengaluru, Hyderabad"
+            {...register('city')}
+            className="w-full px-4 py-3.5 text-sm bg-[#f5f5f5] rounded-2xl text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-[#005eff] focus:bg-white transition-all"
+          />
         </div>
       </div>
 

@@ -378,8 +378,8 @@ export default function TempoHeroSection({
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           
           {/* Bottom Left: The 3 Category Switcher Options */}
-          <div className="flex items-center">
-            <div className="inline-flex items-center gap-1.5 p-1.5 rounded-full bg-black/15 backdrop-blur-md border border-white/40 shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
+          <div className="flex items-center max-w-full overflow-x-auto pb-1 sm:pb-0">
+            <div className="inline-flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-full bg-black/15 backdrop-blur-md border border-white/40 shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
               {Object.values(variants).map((v) => {
                 const isActive = selectedVariant === v.id;
                 return (
@@ -387,7 +387,7 @@ export default function TempoHeroSection({
                     key={v.id}
                     type="button"
                     onClick={() => setSelectedVariant(v.id)}
-                    className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-300 cursor-pointer focus:outline-none ${
+                    className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all duration-300 cursor-pointer focus:outline-none ${
                       isActive
                         ? 'bg-white text-stone-950 shadow-md scale-100 font-bold'
                         : 'text-stone-700 hover:text-stone-950 hover:bg-white/40 opacity-80'
@@ -395,7 +395,7 @@ export default function TempoHeroSection({
                     aria-label={`Switch to ${v.categoryLabel}`}
                   >
                     <span
-                      className={`w-3.5 h-3.5 rounded-full shrink-0 shadow-xs transition-transform duration-300 ${
+                      className={`w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full shrink-0 shadow-xs transition-transform duration-300 ${
                         isActive ? 'scale-110 ring-2 ring-stone-900/10' : ''
                       }`}
                       style={{ backgroundColor: v.dotColor }}

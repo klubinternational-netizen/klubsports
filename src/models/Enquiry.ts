@@ -7,6 +7,8 @@ export interface IEnquiry extends Document {
   companyName?: string;
   email: string;
   phone: string;
+  state?: string;
+  city?: string;
   categoryId?: mongoose.Types.ObjectId;
   categoryName?: string;
   message: string;
@@ -40,6 +42,16 @@ const EnquirySchema = new Schema<IEnquiry>(
     phone: {
       type: String,
       required: true,
+      trim: true,
+    },
+    state: {
+      type: String,
+      default: '',
+      trim: true,
+    },
+    city: {
+      type: String,
+      default: '',
       trim: true,
     },
     categoryId: {

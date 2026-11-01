@@ -112,14 +112,14 @@ export default function BrandsShowcaseSection() {
               <Sparkles className="w-3 h-3 text-white" />
               Original
             </span>
-            <h2 className="font-ranchers text-white text-6xl sm:text-8xl md:text-9xl lg:text-[145px] xl:text-[170px] leading-[0.88] uppercase tracking-normal drop-shadow-[0_4px_24px_rgba(0,0,0,0.15)]">
+            <h2 className="font-ranchers text-white text-4xl xs:text-5xl sm:text-8xl md:text-9xl lg:text-[145px] xl:text-[170px] leading-[0.88] uppercase tracking-normal drop-shadow-[0_4px_24px_rgba(0,0,0,0.15)]">
               100%
             </h2>
           </div>
 
           {/* RIGHT CONTENT: "KSports" / "Brands" Wordmark */}
           <div className="relative z-10 flex flex-col justify-center items-end max-w-[42%] text-right">
-            <h2 className="font-ranchers text-white text-5xl sm:text-7xl md:text-8xl lg:text-[135px] xl:text-[155px] leading-[0.88] uppercase tracking-normal drop-shadow-[0_4px_24px_rgba(0,0,0,0.15)]">
+            <h2 className="font-ranchers text-white text-3xl xs:text-4xl sm:text-7xl md:text-8xl lg:text-[135px] xl:text-[155px] leading-[0.88] uppercase tracking-normal drop-shadow-[0_4px_24px_rgba(0,0,0,0.15)]">
               KSports
             </h2>
             <span className="text-white/80 text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] mt-1 sm:mt-2">

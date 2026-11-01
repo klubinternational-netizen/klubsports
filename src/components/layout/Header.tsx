@@ -58,9 +58,14 @@ export default function Header() {
               sizes="24px"
             />
           </div>
-          <span className="font-sans text-sm sm:text-base font-black tracking-tight text-stone-950 uppercase transition-colors group-hover:text-brand-orange">
-            KSPORTS
-          </span>
+          <div className="flex flex-col items-start leading-none">
+            <span className="font-sans text-sm sm:text-base font-black tracking-tight text-stone-950 uppercase transition-colors group-hover:text-brand-orange">
+              KSPORTS
+            </span>
+            <span className="text-[9px] font-bold tracking-[0.14em] text-stone-400 uppercase hidden sm:block mt-0.5">
+              Since 2015
+            </span>
+          </div>
         </Link>
 
         {/* ======================================================== */}
