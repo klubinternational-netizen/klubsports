@@ -13,11 +13,16 @@ interface TempoHeroProps {
   videoUrl?: string;
 }
 
-type ColorVariantKey = 'beige' | 'blue' | 'orange';
+type CategoryVariantKey = 'shoes' | 'bamboo-socks' | 'volt-runner';
 
-interface ColorVariant {
-  id: ColorVariantKey;
+interface CategoryVariant {
+  id: CategoryVariantKey;
   name: string;
+  categoryLabel: string;
+  badgeTag: string;
+  badgeTitle: string;
+  headline: string;
+  subheadline: string;
   dotColor: string;
   badgeBg: string;
   badgeBorder: string;
@@ -25,7 +30,8 @@ interface ColorVariant {
   wordmarkColor: string;
   glowColor: string;
   bgGradient: string;
-  shoeImage: string;
+  image: string;
+  imageAlt: string;
   pedestal: {
     top: string;
     left: string;
@@ -34,10 +40,15 @@ interface ColorVariant {
   };
 }
 
-const variants: Record<ColorVariantKey, ColorVariant> = {
-  beige: {
-    id: 'beige',
-    name: 'Beige',
+const variants: Record<CategoryVariantKey, CategoryVariant> = {
+  shoes: {
+    id: 'shoes',
+    name: 'Air Flexs',
+    categoryLabel: 'Shoes',
+    badgeTag: 'New',
+    badgeTitle: 'Limited edition shoes',
+    headline: 'AIR FLEXS',
+    subheadline: 'A comfort elegance that your foot needs.',
     dotColor: '#e3cfb3',
     badgeBg: '#f7ede1',
     badgeBorder: '#e3cfb3',
@@ -45,7 +56,8 @@ const variants: Record<ColorVariantKey, ColorVariant> = {
     wordmarkColor: '#e3cfb3',
     glowColor: 'rgba(227, 207, 179, 0.55)',
     bgGradient: 'from-[#fbf8f4] via-[#f7f2ea] to-[#ffffff]',
-    shoeImage: '/hero-shoes/sneako-1.png',
+    image: '/hero-shoes/sneako-1.png',
+    imageAlt: 'KSports Air Flexs Athletic Footwear',
     pedestal: {
       top: 'linear-gradient(135deg, #f0e6d6 0%, #e3cfb3 100%)',
       left: 'linear-gradient(180deg, #d4baa0 0%, #b8997c 100%)',
@@ -53,50 +65,62 @@ const variants: Record<ColorVariantKey, ColorVariant> = {
       shadowColor: '#4a3a2a',
     },
   },
-  blue: {
-    id: 'blue',
-    name: 'Sky Blue',
-    dotColor: '#91d9ff',
-    badgeBg: '#ccedff',
-    badgeBorder: '#91d9ff',
-    badgeText: '#0066cc',
-    wordmarkColor: '#91d9ff',
-    glowColor: 'rgba(145, 217, 255, 0.55)',
-    bgGradient: 'from-[#eaf4fc] via-[#f3f8fd] to-[#ffffff]',
-    shoeImage: '/hero-shoes/sneako-3.png',
+  'bamboo-socks': {
+    id: 'bamboo-socks',
+    name: 'Bamboo Socks (3-Pack)',
+    categoryLabel: 'Bamboo Socks',
+    badgeTag: 'Eco Launch',
+    badgeTitle: '100% Organic Bamboo Fiber',
+    headline: 'BAMBOO',
+    subheadline: 'Naturally antibacterial & ultra-soft in recyclable cylindrical eco-tubes.',
+    dotColor: '#2e7d32',
+    badgeBg: '#e8f5e9',
+    badgeBorder: '#a5d6a7',
+    badgeText: '#1b5e20',
+    wordmarkColor: '#c8e6c9',
+    glowColor: 'rgba(129, 199, 132, 0.55)',
+    bgGradient: 'from-[#f2f8f3] via-[#f5faf6] to-[#ffffff]',
+    image: '/hero-shoes/bamboo-socks-cutout.png',
+    imageAlt: 'KSports 100% Bamboo Athletic Socks (3-Pack Eco Tube)',
     pedestal: {
-      top: 'linear-gradient(135deg, #d8edf9 0%, #badff5 100%)',
-      left: 'linear-gradient(180deg, #99c9e8 0%, #76a8cc 100%)',
-      right: 'linear-gradient(180deg, #b0d4ee 0%, #8dbbdc 100%)',
-      shadowColor: '#1c3854',
+      top: 'linear-gradient(135deg, #dcedc8 0%, #c5e1a5 100%)',
+      left: 'linear-gradient(180deg, #81c784 0%, #4caf50 100%)',
+      right: 'linear-gradient(180deg, #a5d6a7 0%, #66bb6a 100%)',
+      shadowColor: '#1b5e20',
     },
   },
-  orange: {
-    id: 'orange',
-    name: 'Orange',
-    dotColor: '#ffa230',
-    badgeBg: '#ffe5cc',
-    badgeBorder: '#ffa230',
-    badgeText: '#c25e00',
-    wordmarkColor: '#ffb366',
-    glowColor: 'rgba(255, 162, 48, 0.55)',
-    bgGradient: 'from-[#fff5eb] via-[#fff9f2] to-[#ffffff]',
-    shoeImage: '/hero-shoes/sneako-2.png',
+  'volt-runner': {
+    id: 'volt-runner',
+    name: 'Volt Speed Runner',
+    categoryLabel: 'Speed Runner',
+    badgeTag: 'Pro Series',
+    badgeTitle: 'Multi-Surface Sprint Runner',
+    headline: 'SPEED PRO',
+    subheadline: 'Aerodynamic lightweight footwear engineered for explosive acceleration & high mileage.',
+    dotColor: '#aeea00',
+    badgeBg: '#f9fbe7',
+    badgeBorder: '#d4e157',
+    badgeText: '#558b2f',
+    wordmarkColor: '#e6ee9c',
+    glowColor: 'rgba(205, 220, 57, 0.50)',
+    bgGradient: 'from-[#fbfdef] via-[#f7fae8] to-[#ffffff]',
+    image: '/hero-shoes/another-shoe-volt.png',
+    imageAlt: 'KSports Volt Speed Runner Carbon Footwear',
     pedestal: {
-      top: 'linear-gradient(135deg, #ffe0b8 0%, #ffc37a 100%)',
-      left: 'linear-gradient(180deg, #e69122 0%, #c2700e 100%)',
-      right: 'linear-gradient(180deg, #ffab40 0%, #de8214 100%)',
-      shadowColor: '#5c3008',
+      top: 'linear-gradient(135deg, #f0f4c3 0%, #e6ee9c 100%)',
+      left: 'linear-gradient(180deg, #9e9d24 0%, #827717 100%)',
+      right: 'linear-gradient(180deg, #c0ca33 0%, #9e9d24 100%)',
+      shadowColor: '#33691e',
     },
   },
 };
 
 export default function TempoHeroSection({
-  headline = 'Air Flexs',
-  subheadline = 'A comfort elegance that your foot needs.',
+  headline,
+  subheadline,
 }: TempoHeroProps) {
-  const [selectedColor, setSelectedColor] = useState<ColorVariantKey>('beige');
-  const currentVariant = variants[selectedColor];
+  const [selectedVariant, setSelectedVariant] = useState<CategoryVariantKey>('shoes');
+  const currentVariant = variants[selectedVariant];
 
   // 3D Mouse Parallax Tracking
   const containerRef = useRef<HTMLDivElement>(null);
@@ -194,7 +218,7 @@ export default function TempoHeroSection({
         }
       `}</style>
 
-      {/* 1. TOP PILL BADGE: [New] Limited edition shoes (CENTERED HORIZONTALLY, NO 3D/VIDEO BUTTONS) */}
+      {/* 1. TOP PILL BADGE (DYNAMIC FOR EACH CATEGORY) */}
       <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-center">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-white/80 shadow-[0_2px_12px_rgba(0,0,0,0.04)] text-xs font-medium text-stone-700 tracking-wide transition-all duration-300 hover:scale-105">
           <span
@@ -204,26 +228,27 @@ export default function TempoHeroSection({
               color: currentVariant.badgeText,
             }}
           >
-            New
+            {currentVariant.badgeTag}
           </span>
-          <span>Limited edition shoes</span>
+          <span>{currentVariant.badgeTitle}</span>
         </div>
       </div>
 
-      {/* 2. GIANT BACKGROUND WORDMARK "Air Flexs" (COLOR-SYNCHRONIZED WITH ACTIVE SHOE) */}
+      {/* 2. GIANT BACKGROUND WORDMARK (DYNAMIC FOR EACH CATEGORY: "AIR FLEXS" / "BAMBOO" / "SPEED PRO") */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
         <span
-          className="font-ranchers leading-none select-none text-[22vw] sm:text-[18vw] lg:text-[15.5vw] tracking-tight uppercase transform -translate-y-16 sm:-translate-y-20 transition-colors duration-700 drop-shadow-[0_4px_30px_rgba(0,0,0,0.04)]"
+          key={currentVariant.headline}
+          className="font-ranchers leading-none select-none text-[22vw] sm:text-[18vw] lg:text-[15.5vw] tracking-tight uppercase transform -translate-y-16 sm:-translate-y-20 transition-all duration-700 drop-shadow-[0_4px_30px_rgba(0,0,0,0.04)]"
           style={{
             letterSpacing: '-0.02em',
             color: currentVariant.wordmarkColor,
           }}
         >
-          {headline || 'Air Flexs'}
+          {currentVariant.headline}
         </span>
       </div>
 
-      {/* Ambient Celestial Glow behind sneaker */}
+      {/* Ambient Celestial Glow behind product */}
       <div
         className="absolute left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 w-[600px] h-[360px] pointer-events-none blur-[85px] z-0 transition-all duration-700"
         style={{
@@ -231,7 +256,7 @@ export default function TempoHeroSection({
         }}
       />
 
-      {/* 3. CENTERPIECE: 3D FLOATING SNEAKER, ISOMETRIC PEDESTAL & DYNAMIC SHADOW */}
+      {/* 3. CENTERPIECE: 3D FLOATING PRODUCT, ISOMETRIC PEDESTAL & DYNAMIC SHADOW */}
       <div className="relative z-10 my-auto py-2 flex flex-col items-center justify-center">
         <div className="relative w-full max-w-5xl flex flex-col items-center justify-center">
           
@@ -305,7 +330,7 @@ export default function TempoHeroSection({
               </div>
             </div>
 
-            {/* 3D FLOATING SNEAKER (Hovering directly over the Pedestal) */}
+            {/* 3D FLOATING PRODUCT (Hovering directly over the Pedestal) */}
             <div
               className="relative z-20 w-[300px] sm:w-[420px] md:w-[500px] lg:w-[560px] h-[200px] sm:h-[280px] md:h-[340px] lg:h-[380px] -mt-16 sm:-mt-24 transition-transform duration-200 ease-out"
               style={{
@@ -316,9 +341,9 @@ export default function TempoHeroSection({
               {/* Levitation harmonic loop */}
               <div className="relative w-full h-full animate-sneako-float transform-gpu">
                 <Image
-                  key={currentVariant.shoeImage}
-                  src={currentVariant.shoeImage}
-                  alt={`Air Flexs ${currentVariant.name} Performance Footwear`}
+                  key={currentVariant.image}
+                  src={currentVariant.image}
+                  alt={currentVariant.imageAlt}
                   fill
                   priority
                   className="object-contain filter drop-shadow-[0_20px_35px_rgba(20,50,80,0.18)] select-none pointer-events-none transition-opacity duration-300"
@@ -348,41 +373,47 @@ export default function TempoHeroSection({
         </div>
       </div>
 
-      {/* 4. SNEAKO SIGNATURE BOTTOM BAR: 3 COLOR DOTS (LEFT) & PRODUCT INFO (RIGHT) */}
+      {/* 4. SNEAKO SIGNATURE BOTTOM BAR: 3 CATEGORY SWITCHER (LEFT) & PRODUCT INFO (RIGHT) */}
       <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-2">
-        <div className="flex flex-row items-end justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           
-          {/* Bottom Left: The 3 Color Switcher Dots (Glass Pill) */}
+          {/* Bottom Left: The 3 Category Switcher Options */}
           <div className="flex items-center">
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-black/15 backdrop-blur-md border border-white/40 shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
+            <div className="inline-flex items-center gap-1.5 p-1.5 rounded-full bg-black/15 backdrop-blur-md border border-white/40 shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
               {Object.values(variants).map((v) => {
-                const isActive = selectedColor === v.id;
+                const isActive = selectedVariant === v.id;
                 return (
                   <button
                     key={v.id}
                     type="button"
-                    onClick={() => setSelectedColor(v.id)}
-                    className={`w-4 h-4 rounded-full transition-all duration-300 cursor-pointer focus:outline-none ${
+                    onClick={() => setSelectedVariant(v.id)}
+                    className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-300 cursor-pointer focus:outline-none ${
                       isActive
-                        ? 'scale-125 ring-2 ring-white shadow-md'
-                        : 'opacity-75 hover:opacity-100 hover:scale-110'
+                        ? 'bg-white text-stone-950 shadow-md scale-100 font-bold'
+                        : 'text-stone-700 hover:text-stone-950 hover:bg-white/40 opacity-80'
                     }`}
-                    style={{ backgroundColor: v.dotColor }}
-                    aria-label={`Select ${v.name} color`}
-                    title={v.name}
-                  />
+                    aria-label={`Switch to ${v.categoryLabel}`}
+                  >
+                    <span
+                      className={`w-3.5 h-3.5 rounded-full shrink-0 shadow-xs transition-transform duration-300 ${
+                        isActive ? 'scale-110 ring-2 ring-stone-900/10' : ''
+                      }`}
+                      style={{ backgroundColor: v.dotColor }}
+                    />
+                    <span className="tracking-tight whitespace-nowrap">{v.categoryLabel}</span>
+                  </button>
                 );
               })}
             </div>
           </div>
 
-          {/* Bottom Right: Product Title & Description (No Buy Now Button, matching user request) */}
-          <div className="flex flex-col items-end text-right space-y-1 max-w-xs sm:max-w-sm">
+          {/* Bottom Right: Product Title & Description */}
+          <div className="flex flex-col sm:items-end sm:text-right space-y-1 max-w-xs sm:max-w-sm">
             <h2 className="font-sans text-xl sm:text-2xl font-bold text-stone-900 tracking-tight transition-all duration-300">
               {currentVariant.name}
             </h2>
             <p className="text-stone-600 text-xs sm:text-sm font-normal leading-relaxed">
-              {subheadline || 'A comfort elegance that your foot needs.'}
+              {currentVariant.subheadline}
             </p>
           </div>
 
