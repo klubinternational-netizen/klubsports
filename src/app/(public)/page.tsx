@@ -48,7 +48,9 @@ async function getHomeData() {
 }
 
 export default async function HomePage() {
-  const { categories, page, featuredProducts } = await getHomeData();
+  const { categories, page } = await getHomeData();
+  const shoeCategories = categories.filter((cat: any) => cat.slug !== 'bamboo-socks');
+  const socksCategory = categories.find((cat: any) => cat.slug === 'bamboo-socks');
   const hero = page?.sections?.hero || {
     headline: 'SHOES FOR EVERY SPORT',
     subheadline: 'Explore sports footwear designed around performance, comfort and the demands of the game.',
@@ -79,36 +81,46 @@ export default async function HomePage() {
       {/* SECTION 3.6: 100% KSPORTS ORIGINAL PERFORMANCE SHOWCASE (BLUE BANNER WITH 3D FLOATING TRACTION SOLE) */}
       <BrandsShowcaseSection />
 
-      {/* SECTION 3.8: BAMBOO SOCKS SPOTLIGHT (HIGHLIGHTED ACCESSORY WITH SHOES) */}
-      <BambooSocksSpotlight />
+      {/* SECTION 3.8: BAMBOO SOCKS DEDICATED CATEGORY SPOTLIGHT */}
+      <div id="bamboo-socks">
+        <BambooSocksSpotlight />
+      </div>
 
-      {/* SECTION 4: FOOTWEAR CATEGORIES */}
-      <section className="py-24 bg-white">
+      {/* SECTION 4: SPORTS FOOTWEAR CATEGORIES (SHOES ONLY) */}
+      <section id="sports-shoes" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange">
-                Multi-Sport Catalogue
-              </span>
-              <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-stone-950 uppercase tracking-tight mt-1.5">
-                Footwear Designed for Every Discipline
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-[11px] font-bold tracking-[0.16em] uppercase mb-3 shadow-xs">
+                <span>Sports Footwear · 11 Disciplines</span>
+              </div>
+              <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-stone-950 uppercase tracking-tight mt-1">
+                Performance Shoes by Sport
               </h2>
               <p className="text-stone-600 text-sm sm:text-base mt-2.5 max-w-2xl font-normal leading-relaxed">
                 Explore sport-specific footwear engineered to the surface demands, traction dynamics, and biomechanics of competitive athletes.
               </p>
             </div>
-            <Link
-              href="/products"
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-stone-950 hover:text-brand-orange transition-colors group self-start md:self-auto border-b-2 border-stone-950 hover:border-brand-orange pb-0.5"
-            >
-              <span>View Full Catalogue</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-            </Link>
+            <div className="flex items-center gap-3 self-start md:self-auto">
+              <a
+                href="#bamboo-socks"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-emerald-900 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 transition-colors shadow-2xs"
+              >
+                <span>🧦 Bamboo Socks Category</span>
+              </a>
+              <Link
+                href="/products?type=shoes"
+                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-stone-950 hover:text-brand-orange transition-colors group border-b-2 border-stone-950 hover:border-brand-orange pb-0.5 ml-2"
+              >
+                <span>View All Shoes</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
           </div>
 
-          {/* Dynamic Category Cards - Mobile 2-by-2 Grid */}
+          {/* Dynamic Category Cards - Mobile 2-by-2 Grid (Shoes Only) */}
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
-            {categories.map((cat: any) => {
+            {shoeCategories.map((cat: any) => {
               let coverImg = cat.coverImage || `/categories/${cat.slug}.webp`;
               if (
                 coverImg.includes('unsplash.com') ||
@@ -137,13 +149,6 @@ export default async function HomePage() {
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-stone-950/5 group-hover:bg-transparent transition-colors duration-300" />
-                    {cat.slug === 'bamboo-socks' && (
-                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-emerald-800/90 backdrop-blur-md px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-bold text-white uppercase tracking-wider shadow-md flex items-center gap-1 sm:gap-1.5 z-10">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
-                        <span className="hidden sm:inline">Eco Launch · 3 Pairs ₹499</span>
-                        <span className="sm:hidden">Eco 3-Pack</span>
-                      </div>
-                    )}
                   </div>
                   <div className="p-3 sm:p-5 lg:p-7 flex flex-col flex-grow justify-between">
                     <div>

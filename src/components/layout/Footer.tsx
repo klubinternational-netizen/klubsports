@@ -437,33 +437,33 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Site */}
+            {/* Categories & Navigation */}
             <div className="space-y-3">
-              <h4 className="font-bold text-stone-950">Site</h4>
+              <h4 className="font-bold text-stone-950">Categories</h4>
               <ul className="space-y-2 text-stone-600">
                 <li>
-                  <Link href="/" className="hover:text-stone-950 hover:underline transition-colors block">
-                    Home
-                  </Link>
-                </li>
-                <li>
                   <Link href="/products" className="hover:text-stone-950 hover:underline transition-colors block">
-                    Products
+                    Sports Shoes (11 Sports)
                   </Link>
                 </li>
                 <li>
-                  <Link href="/manufacturing" className="hover:text-stone-950 hover:underline transition-colors block">
-                    Stores
+                  <Link href="/categories/bamboo-socks" className="text-emerald-700 font-semibold hover:text-emerald-950 hover:underline transition-colors block">
+                    100% Bamboo Socks (₹499)
                   </Link>
                 </li>
                 <li>
                   <Link href="/about" className="hover:text-stone-950 hover:underline transition-colors block">
-                    About
+                    About The Brand
                   </Link>
                 </li>
                 <li>
-                  <Link href="/products" className="hover:text-stone-950 hover:underline transition-colors block">
-                    Magazine
+                  <Link href="/manufacturing" className="hover:text-stone-950 hover:underline transition-colors block">
+                    Manufacturing &amp; Scale
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact" className="hover:text-stone-950 hover:underline transition-colors block">
+                    Bulk Enquiries
                   </Link>
                 </li>
               </ul>

@@ -8,8 +8,8 @@ import { Menu, X } from 'lucide-react';
 import { LiquidMetalButton } from '@/components/ui/liquid-metal-button';
 
 const navItems = [
-  { label: 'Shop', href: '/products' },
-  { label: 'Bamboo Socks', href: '/products/bamboo-socks-3-pack', highlight: true },
+  { label: 'Shoes', href: '/products' },
+  { label: 'Bamboo Socks', href: '/categories/bamboo-socks', highlight: true },
   { label: 'About', href: '/about' },
   { label: 'Manufacturing', href: '/manufacturing' },
   { label: 'Contact', href: '/contact' },

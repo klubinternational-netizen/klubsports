@@ -67,15 +67,23 @@ export default function BambooSocksSpotlight() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header Pill */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-900 text-[11px] font-bold tracking-[0.16em] uppercase shadow-xs">
-            <Leaf className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
-            <span>New Launch · Pair With Footwear</span>
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/90 border border-emerald-300 text-emerald-950 text-[11px] font-bold tracking-[0.16em] uppercase shadow-xs">
+              <Leaf className="w-3.5 h-3.5 text-emerald-700 animate-pulse" />
+              <span>Organic Range · Bamboo Socks Category</span>
+            </div>
+            <a
+              href="#sports-shoes"
+              className="text-[11px] font-bold text-stone-600 hover:text-stone-950 hover:underline uppercase tracking-wider hidden sm:inline"
+            >
+              Browse Sports Shoes ↓
+            </a>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-stone-900 text-white shadow-xs">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-900 text-white shadow-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              MRP ₹499 / 3-Pairs
+              MRP ₹499 / 3-Pairs Tube
             </span>
           </div>
         </div>
@@ -158,13 +166,13 @@ export default function BambooSocksSpotlight() {
           <div className="lg:col-span-6 space-y-6">
             <div>
               <span className="text-[12px] font-bold uppercase tracking-[0.2em] text-emerald-700 block mb-1.5">
-                COMFORT NATURALLY · NATURALLY BETTER
+                ORGANIC ACCESSORIES · BAMBOO SOCKS CATEGORY
               </span>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-stone-950 tracking-tight leading-tight uppercase">
-                KSports Bamboo Socks
+                100% Organic Bamboo Socks
               </h2>
               <p className="text-stone-600 text-sm sm:text-base mt-3 leading-relaxed">
-                The ultimate companion for competitive athletic footwear. Knitted from <strong>100% natural organic bamboo yarn</strong> to deliver superior breathability, thermo-regulating comfort, and natural anti-microbial odor prevention.
+                Our dedicated organic accessories line knitted from <strong>100% natural organic bamboo yarn</strong>. Delivering superior breathability, thermo-regulating comfort, and natural anti-microbial odor protection for competitive athletes and daily active wear.
               </p>
             </div>
 
@@ -252,9 +260,9 @@ export default function BambooSocksSpotlight() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
               <Link
                 href="/products/bamboo-socks-3-pack"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-stone-950 hover:bg-brand-orange transition-all duration-300 shadow-md hover:shadow-lg group"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-emerald-800 hover:bg-emerald-900 transition-all duration-300 shadow-md hover:shadow-lg group"
               >
-                <span>View Product Specs</span>
+                <span>Explore Socks Specs &amp; Order</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
 
@@ -272,7 +280,7 @@ export default function BambooSocksSpotlight() {
                 href="/contact?category=bamboo-socks&product=KSports%20100%25%20Bamboo%20Socks%20(3-Pack)"
                 className="inline-flex items-center justify-center gap-1 text-xs font-bold uppercase tracking-wider text-stone-600 hover:text-stone-950 hover:underline px-3 py-2 transition-colors text-center"
               >
-                Institutional Desk →
+                Bulk Supply Desk →
               </Link>
             </div>
           </div>
