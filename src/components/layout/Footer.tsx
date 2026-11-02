@@ -442,13 +442,18 @@ export default function Footer() {
               <h4 className="font-bold text-stone-950">Categories</h4>
               <ul className="space-y-2 text-stone-600">
                 <li>
-                  <Link href="/products" className="hover:text-stone-950 hover:underline transition-colors block">
-                    Sports Shoes (11 Sports)
+                  <Link href="/products?group=shoes" className="hover:text-stone-950 hover:underline transition-colors block">
+                    Sports Shoes (Jogging, Walk, Badminton, Cricket)
                   </Link>
                 </li>
                 <li>
-                  <Link href="/categories/bamboo-socks" className="text-emerald-700 font-semibold hover:text-emerald-950 hover:underline transition-colors block">
-                    100% Bamboo Socks (₹499)
+                  <Link href="/products?group=socks" className="text-emerald-700 font-semibold hover:text-emerald-950 hover:underline transition-colors block">
+                    Socks Collection (From ₹119)
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/products?group=insoles" className="hover:text-stone-950 hover:underline transition-colors block">
+                    High-Performance Insoles
                   </Link>
                 </li>
                 <li>

@@ -35,37 +35,60 @@ interface Props {
   initialProducts: ProductItem[];
   categories: CategoryItem[];
   initialCategorySlug?: string;
+  initialGroup?: string;
 }
 
 export default function ProductCatalogView({
   initialProducts,
   categories,
   initialCategorySlug = '',
+  initialGroup = '',
 }: Props) {
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategorySlug);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [activeGroup, setActiveGroup] = useState<'all' | 'shoes' | 'socks'>(
-    initialCategorySlug === 'bamboo-socks' ? 'socks' : initialCategorySlug ? 'shoes' : 'all'
+  
+  const getInitialActiveGroup = (): 'all' | 'shoes' | 'socks' | 'insoles' => {
+    if (initialGroup === 'shoes' || initialGroup === 'socks' || initialGroup === 'insoles') {
+      return initialGroup;
+    }
+    if (initialCategorySlug === 'socks' || initialCategorySlug === 'bamboo-socks') return 'socks';
+    if (initialCategorySlug === 'insoles') return 'insoles';
+    if (initialCategorySlug) return 'shoes';
+    return 'all';
+  };
+
+  const [activeGroup, setActiveGroup] = useState<'all' | 'shoes' | 'socks' | 'insoles'>(
+    getInitialActiveGroup()
   );
 
+  const isShoeCategory = (slug: string) => slug !== 'socks' && slug !== 'bamboo-socks' && slug !== 'insoles';
+  const isSocksCategory = (slug: string) => slug === 'socks' || slug === 'bamboo-socks';
+  const isInsoleCategory = (slug: string) => slug === 'insoles';
+
   const shoeCategories = useMemo(
-    () => categories.filter((c) => c.slug !== 'bamboo-socks'),
+    () => categories.filter((c) => isShoeCategory(c.slug)),
     [categories]
   );
   const socksCategories = useMemo(
-    () => categories.filter((c) => c.slug === 'bamboo-socks'),
+    () => categories.filter((c) => isSocksCategory(c.slug)),
+    [categories]
+  );
+  const insoleCategories = useMemo(
+    () => categories.filter((c) => isInsoleCategory(c.slug)),
     [categories]
   );
 
   const filteredProducts = useMemo(() => {
     return initialProducts.filter((product) => {
-      // Group filter (Shoes vs Socks)
-      const isSocks = product.categoryId?.slug === 'bamboo-socks';
-      if (activeGroup === 'shoes' && isSocks) return false;
-      if (activeGroup === 'socks' && !isSocks) return false;
+      const slug = product.categoryId?.slug || '';
+      
+      // Group filter (Sports Shoes vs Socks vs Insoles)
+      if (activeGroup === 'shoes' && !isShoeCategory(slug)) return false;
+      if (activeGroup === 'socks' && !isSocksCategory(slug)) return false;
+      if (activeGroup === 'insoles' && !isInsoleCategory(slug)) return false;
 
       // Category match
-      if (selectedCategory && product.categoryId?.slug !== selectedCategory) {
+      if (selectedCategory && slug !== selectedCategory) {
         return false;
       }
       // Search match
@@ -83,9 +106,9 @@ export default function ProductCatalogView({
 
   return (
     <div>
-      {/* 2 DEDICATED HIGHLIGHTED CATEGORY CARDS (SHOES VS SOCKS) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-        {/* SHOES CATEGORY CARD */}
+      {/* 3 DEDICATED PRODUCT DIVISION CARDS: SPORTS SHOES | SOCKS | INSOLES */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+        {/* 1. SPORTS SHOES */}
         <button
           type="button"
           onClick={() => {
@@ -105,24 +128,24 @@ export default function ProductCatalogView({
         >
           <div className="flex items-center justify-between mb-2">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-orange/15 text-brand-orange">
-              Category 01 · Footwear
+              Division 01 · Footwear
             </span>
             <span className={`text-xs font-bold ${activeGroup === 'shoes' ? 'text-stone-300' : 'text-stone-500'}`}>
-              11 Sports Disciplines
+              Sports Shoes
             </span>
           </div>
-          <h3 className="font-display text-base sm:text-xl font-black uppercase tracking-tight">
+          <h3 className="font-display text-base sm:text-lg font-black uppercase tracking-tight">
             Sports Shoes Collection
           </h3>
-          <p className={`text-xs mt-1.5 line-clamp-1 ${activeGroup === 'shoes' ? 'text-stone-300' : 'text-stone-500'}`}>
-            Running, Marathon, Football Cleats, Kabaddi, Badminton, Tennis, Spikes &amp; more.
+          <p className={`text-xs mt-1.5 line-clamp-2 ${activeGroup === 'shoes' ? 'text-stone-300' : 'text-stone-500'}`}>
+            Jogging (Men/Women), Walk (Men/Women), Badminton &amp; Cricket.
           </p>
           <div className="mt-3 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-orange">
-            <span>{activeGroup === 'shoes' ? '✓ Showing Shoes Only (Click to show all)' : 'Filter by Shoes →'}</span>
+            <span>{activeGroup === 'shoes' ? '✓ Showing Shoes Only' : 'Filter Shoes →'}</span>
           </div>
         </button>
 
-        {/* SOCKS CATEGORY CARD */}
+        {/* 2. SOCKS */}
         <button
           type="button"
           onClick={() => {
@@ -131,31 +154,68 @@ export default function ProductCatalogView({
               setSelectedCategory('');
             } else {
               setActiveGroup('socks');
-              setSelectedCategory('bamboo-socks');
+              setSelectedCategory('');
             }
           }}
           className={`p-4 sm:p-5 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden group ${
             activeGroup === 'socks'
               ? 'bg-emerald-950 text-white border-emerald-900 shadow-lg ring-2 ring-emerald-800/30'
-              : 'bg-emerald-50/50 text-stone-900 border-emerald-200 hover:border-emerald-400 hover:shadow-md'
+              : 'bg-emerald-50/40 text-stone-900 border-emerald-200 hover:border-emerald-400 hover:shadow-md'
           }`}
         >
           <div className="flex items-center justify-between mb-2">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800">
-              Category 02 · Organic
+              Division 02 · Packs
             </span>
             <span className={`text-xs font-bold ${activeGroup === 'socks' ? 'text-emerald-200' : 'text-emerald-700'}`}>
-              Eco Pack · ₹499
+              From ₹119
             </span>
           </div>
-          <h3 className="font-display text-base sm:text-xl font-black uppercase tracking-tight">
-            100% Bamboo Socks Category
+          <h3 className="font-display text-base sm:text-lg font-black uppercase tracking-tight">
+            Socks Collection
           </h3>
-          <p className={`text-xs mt-1.5 line-clamp-1 ${activeGroup === 'socks' ? 'text-emerald-200' : 'text-stone-600'}`}>
-            Antibacterial organic bamboo yarn in 5 recyclable designer cylinder tubes.
+          <p className={`text-xs mt-1.5 line-clamp-2 ${activeGroup === 'socks' ? 'text-emerald-200' : 'text-stone-600'}`}>
+            3 Pairs Basic (₹119), Economy (₹249), 7 Days (₹499) &amp; Bamboo.
           </p>
           <div className="mt-3 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-700">
-            <span>{activeGroup === 'socks' ? '✓ Showing Socks Only (Click to show all)' : 'Filter by Bamboo Socks →'}</span>
+            <span>{activeGroup === 'socks' ? '✓ Showing Socks Only' : 'Filter Socks →'}</span>
+          </div>
+        </button>
+
+        {/* 3. INSOLES */}
+        <button
+          type="button"
+          onClick={() => {
+            if (activeGroup === 'insoles') {
+              setActiveGroup('all');
+              setSelectedCategory('');
+            } else {
+              setActiveGroup('insoles');
+              setSelectedCategory('');
+            }
+          }}
+          className={`p-4 sm:p-5 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden group ${
+            activeGroup === 'insoles'
+              ? 'bg-blue-950 text-white border-blue-900 shadow-lg ring-2 ring-blue-800/30'
+              : 'bg-blue-50/40 text-stone-900 border-blue-200 hover:border-blue-400 hover:shadow-md'
+          }`}
+        >
+          <div className="flex items-center justify-between mb-2">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-800">
+              Division 03 · Ortho &amp; Sport
+            </span>
+            <span className={`text-xs font-bold ${activeGroup === 'insoles' ? 'text-blue-200' : 'text-blue-700'}`}>
+              High-Performance
+            </span>
+          </div>
+          <h3 className="font-display text-base sm:text-lg font-black uppercase tracking-tight">
+            Insoles Collection
+          </h3>
+          <p className={`text-xs mt-1.5 line-clamp-2 ${activeGroup === 'insoles' ? 'text-blue-200' : 'text-stone-600'}`}>
+            Ergonomic Arch Support &amp; Dual-Gel High-Impact Shock Cushioning.
+          </p>
+          <div className="mt-3 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-700">
+            <span>{activeGroup === 'insoles' ? '✓ Showing Insoles Only' : 'Filter Insoles →'}</span>
           </div>
         </button>
       </div>
@@ -187,13 +247,18 @@ export default function ProductCatalogView({
               className="text-sm bg-stone-50 border border-stone-200 rounded-lg px-3.5 py-2.5 text-stone-800 font-medium focus:outline-none focus:ring-2 focus:ring-brand-orange transition-all"
             >
               <option value="">All Categories ({filteredProducts.length})</option>
-              {(activeGroup === 'socks' ? socksCategories : activeGroup === 'shoes' ? shoeCategories : categories).map(
-                (cat) => (
-                  <option key={cat._id} value={cat.slug}>
-                    {cat.name}
-                  </option>
-                )
-              )}
+              {(activeGroup === 'socks'
+                ? socksCategories
+                : activeGroup === 'shoes'
+                ? shoeCategories
+                : activeGroup === 'insoles'
+                ? insoleCategories
+                : categories
+              ).map((cat) => (
+                <option key={cat._id} value={cat.slug}>
+                  {cat.name}
+                </option>
+              ))}
             </select>
 
             {(selectedCategory || searchQuery || activeGroup !== 'all') && (
@@ -228,22 +293,27 @@ export default function ProductCatalogView({
           >
             All Products
           </button>
-          {(activeGroup === 'socks' ? socksCategories : activeGroup === 'shoes' ? shoeCategories : categories).map(
-            (cat) => (
-              <button
-                key={cat._id}
-                type="button"
-                onClick={() => setSelectedCategory(cat.slug)}
-                className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
-                  selectedCategory === cat.slug
-                    ? 'bg-brand-orange text-white'
-                    : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
-                }`}
-              >
-                {cat.name}
-              </button>
-            )
-          )}
+          {(activeGroup === 'socks'
+            ? socksCategories
+            : activeGroup === 'shoes'
+            ? shoeCategories
+            : activeGroup === 'insoles'
+            ? insoleCategories
+            : categories
+          ).map((cat) => (
+            <button
+              key={cat._id}
+              type="button"
+              onClick={() => setSelectedCategory(cat.slug)}
+              className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
+                selectedCategory === cat.slug
+                  ? 'bg-brand-orange text-white'
+                  : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+              }`}
+            >
+              {cat.name}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -274,6 +344,7 @@ export default function ProductCatalogView({
               primaryImg = `/categories/${product.categoryId?.slug || 'running-shoes'}.webp`;
             }
             const safeName = (product.name || 'KSports Footwear').replace(/Klub /gi, 'KSports ');
+            const priceMatch = (product.name + ' ' + product.shortDescription).match(/₹\s*(\d+)/)?.[0];
 
             return (
               <div
@@ -292,6 +363,11 @@ export default function ProductCatalogView({
                   <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-white/95 backdrop-blur-sm px-2 py-0.5 sm:px-2.5 sm:py-1 rounded text-[9px] sm:text-[11px] font-bold text-stone-800 uppercase tracking-wider shadow-sm">
                     {product.categoryId?.name || 'Footwear'}
                   </div>
+                  {priceMatch && (
+                    <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-brand-orange text-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded text-[9px] sm:text-[11px] font-black uppercase tracking-wider shadow-md">
+                      MRP {priceMatch}
+                    </div>
+                  )}
                 </Link>
 
                 {/* Content */}

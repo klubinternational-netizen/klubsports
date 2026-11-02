@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 interface Props {
   searchParams: {
     category?: string;
+    group?: string;
   };
 }
 
@@ -106,6 +107,7 @@ export default async function ProductsPage({ searchParams }: Props) {
           initialProducts={serializedProducts}
           categories={serializedCategories}
           initialCategorySlug={searchParams?.category || ''}
+          initialGroup={searchParams?.group || ''}
         />
       </div>
     </div>

@@ -35,11 +35,14 @@ async function getHomeData() {
     console.warn('Database connection unavailable for home page, using fallback defaults:', error);
     return {
       categories: [
-        { name: 'Bamboo Socks', slug: 'bamboo-socks', coverImage: '/products/bamboo-socks-pristine.jpg', description: '100% natural organic bamboo fiber athletic socks in recyclable cylindrical eco-tubes. Naturally anti-bacterial, breathable, and ultra-soft.' },
-        { name: 'Running Shoes', slug: 'running-shoes', coverImage: '/categories/running-shoes.webp', description: 'Precision-engineered athletic runners designed for maximum energy return.' },
-        { name: 'Marathon Shoes', slug: 'marathon-shoes', coverImage: '/categories/marathon-shoes.webp', description: 'Ultra-lightweight high-mileage footwear with responsive carbon-infused foam.' },
-        { name: 'Track & Field Shoes', slug: 'track-field-shoes', coverImage: '/categories/track-field-shoes.webp', description: 'Aerodynamic spike-plate footwear engineered for explosive acceleration.' },
-        { name: 'Football Shoes', slug: 'football-shoes', coverImage: '/categories/football-shoes.webp', description: 'Molded firm-ground cleats crafted for tactile ball control and sudden directional bursts.' },
+        { name: 'Jogging Shoes (Men)', slug: 'jogging-shoes-men', coverImage: '/categories/jogging-shoes-men.webp', description: 'Lightweight breathable jacquard mesh jogging shoes engineered for men.' },
+        { name: 'Jogging Shoes (Women)', slug: 'jogging-shoes-women', coverImage: '/categories/jogging-shoes-women.webp', description: 'Plush athletic jogging shoes designed with responsive cushioning for women.' },
+        { name: 'Walk Shoes (Men)', slug: 'walk-shoes-men', coverImage: '/categories/walk-shoes-men.webp', description: 'All-day ergonomic walking footwear for men featuring flexible groove outsoles.' },
+        { name: 'Walk Shoes (Women)', slug: 'walk-shoes-women', coverImage: '/categories/walk-shoes-women.webp', description: 'Featherlight comfort walking shoes for women with memory-foam footbeds.' },
+        { name: 'Badminton Shoes', slug: 'badminton-shoes', coverImage: '/categories/badminton-shoes.webp', description: 'Non-marking gum rubber court shoes engineered for rapid lateral transitions.' },
+        { name: 'Cricket Shoes', slug: 'cricket-shoes', coverImage: '/categories/cricket-shoes.webp', description: 'High-traction rubber turf stud cricket shoes engineered with reinforced toe-shielding.' },
+        { name: 'Socks', slug: 'socks', coverImage: '/products/bamboo-socks-pristine.jpg', description: '3 Pairs Pouch Basic (₹119), Economy (₹249), 7 Days Signature (₹499) & Bamboo Tubes.' },
+        { name: 'Insoles', slug: 'insoles', coverImage: '/categories/insoles.webp', description: 'Orthopedic ergonomic arch support and shock-absorbing dual-gel sports insoles.' },
       ],
       page: {},
       featuredProducts: [],
@@ -49,8 +52,8 @@ async function getHomeData() {
 
 export default async function HomePage() {
   const { categories, page } = await getHomeData();
-  const shoeCategories = categories.filter((cat: any) => cat.slug !== 'bamboo-socks');
-  const socksCategory = categories.find((cat: any) => cat.slug === 'bamboo-socks');
+  const shoeCategories = categories.filter((cat: any) => cat.slug !== 'bamboo-socks' && cat.slug !== 'socks' && cat.slug !== 'insoles');
+  const socksCategory = categories.find((cat: any) => cat.slug === 'socks' || cat.slug === 'bamboo-socks');
   const hero = page?.sections?.hero || {
     headline: 'SHOES FOR EVERY SPORT',
     subheadline: 'Explore sports footwear designed around performance, comfort and the demands of the game.',
