@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, ShieldCheck, Factory, Award, Target, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Factory, Award, Target, CheckCircle2, ChevronRight, Zap, Sparkles } from 'lucide-react';
 import { connectToDatabase } from '@/lib/db/connection';
 import { Page } from '@/models/Page';
 
@@ -44,21 +44,222 @@ export default async function AboutPage() {
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-[#0c0d0e] text-white pt-32 pb-20 lg:pt-36 lg:pb-24 relative overflow-hidden border-b border-stone-800">
-        <div className="absolute -top-32 right-1/4 w-96 h-96 bg-brand-orange/10 rounded-full blur-[120px] pointer-events-none"></div>
+      {/* Dynamic Keyframe Animations for Smooth Left-to-Right Entrance & Ambient Sports Lighting */}
+      <style>{`
+        @keyframes slideLeftToRight {
+          0% {
+            opacity: 0;
+            transform: translateX(-70px);
+            filter: blur(4px);
+          }
+          60% {
+            opacity: 0.95;
+            transform: translateX(4px);
+            filter: blur(0px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0);
+            filter: blur(0px);
+          }
+        }
+
+        @keyframes slideRightToLeft {
+          0% {
+            opacity: 0;
+            transform: translateX(70px);
+            filter: blur(4px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0);
+            filter: blur(0px);
+          }
+        }
+
+        @keyframes sportsGlowPulse {
+          0%, 100% {
+            opacity: 0.3;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.55;
+            transform: scale(1.08);
+          }
+        }
+
+        .anim-slide-left-1 {
+          animation: slideLeftToRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+        }
+        .anim-slide-left-2 {
+          animation: slideLeftToRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
+        }
+        .anim-slide-left-3 {
+          animation: slideLeftToRight 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+        }
+        .anim-slide-left-4 {
+          animation: slideLeftToRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.42s both;
+        }
+        .anim-slide-left-5 {
+          animation: slideLeftToRight 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.54s both;
+        }
+        .anim-slide-right {
+          animation: slideRightToLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+        }
+        .anim-sports-pulse {
+          animation: sportsGlowPulse 6s ease-in-out infinite;
+        }
+      `}</style>
+
+      {/* Hero Section: Athletic Stadium Heritage Atmosphere */}
+      <section className="bg-gradient-to-br from-[#060b17] via-[#0c1833] to-[#081224] text-white pt-28 pb-16 lg:pt-36 lg:pb-24 relative overflow-hidden border-b border-blue-900/40">
+        {/* Athletic Mesh Grid Background */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-20"
+          style={{
+            backgroundImage: 'radial-gradient(rgba(249, 115, 22, 0.25) 1px, transparent 1px)',
+            backgroundSize: '32px 32px',
+          }}
+        />
+
+        {/* Ambient Sports Floodlights & Warm Heritage Orange Glows */}
+        <div className="absolute -top-32 -right-10 w-[550px] h-[550px] bg-brand-orange/20 rounded-full blur-[140px] pointer-events-none anim-sports-pulse" />
+        <div className="absolute top-1/4 -left-20 w-[450px] h-[450px] bg-blue-600/15 rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute -bottom-20 right-1/3 w-[380px] h-[380px] bg-amber-500/10 rounded-full blur-[110px] pointer-events-none" />
+
+        {/* Dynamic Running Track Vector Arcs & Kinetic Velocity Lines */}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none opacity-25"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          viewBox="0 0 1440 600"
+        >
+          <defs>
+            <linearGradient id="trackGradAbout1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#f97316" stopOpacity="0.45" />
+              <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#f97316" stopOpacity="0.05" />
+            </linearGradient>
+            <linearGradient id="trackGradAbout2" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity="0.02" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M-100,550 C300,480 600,600 1100,280 C1300,150 1500,80 1600,0"
+            fill="none"
+            stroke="url(#trackGradAbout1)"
+            strokeWidth="2.5"
+            strokeDasharray="8 6"
+          />
+          <path
+            d="M-100,590 C320,520 620,640 1120,320 C1320,190 1520,120 1620,40"
+            fill="none"
+            stroke="url(#trackGradAbout1)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M-100,630 C340,560 640,680 1140,360 C1340,230 1540,160 1640,80"
+            fill="none"
+            stroke="url(#trackGradAbout2)"
+            strokeWidth="1"
+          />
+          <line x1="12%" y1="0" x2="28%" y2="100%" stroke="url(#trackGradAbout2)" strokeWidth="1" opacity="0.4" />
+          <line x1="48%" y1="0" x2="64%" y2="100%" stroke="url(#trackGradAbout2)" strokeWidth="1" opacity="0.3" />
+        </svg>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-white text-[11px] font-bold uppercase tracking-[0.16em]">
-              <Target className="w-3.5 h-3.5 text-brand-orange" />
-              <span>Since 2015 · Corporate Profile</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            {/* Left Column: Animated Text Content (Smooth Left-to-Right Entrance) */}
+            <div className="lg:col-span-8 space-y-5">
+              {/* Breadcrumb Navigation */}
+              <nav className="anim-slide-left-1 flex items-center gap-2 text-xs font-semibold text-slate-400">
+                <Link href="/" className="hover:text-white transition-colors">
+                  Home
+                </Link>
+                <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
+                <span className="text-brand-orange font-bold">About Us</span>
+              </nav>
+
+              {/* Heritage Badge */}
+              <div className="anim-slide-left-2 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-orange/15 border border-brand-orange/30 text-white text-[11px] font-bold uppercase tracking-[0.18em] shadow-sm backdrop-blur-md">
+                <Target className="w-3.5 h-3.5 text-brand-orange" />
+                <span>Since 2015 · Indian Footwear Engineering</span>
+              </div>
+
+              {/* Main Headline */}
+              <h1 className="anim-slide-left-3 font-display text-4xl sm:text-6xl font-extrabold tracking-tight uppercase leading-[1.08]">
+                About <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-orange-100 to-brand-orange">KSports</span>
+              </h1>
+
+              {/* Description Paragraph */}
+              <p className="anim-slide-left-4 text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+                Engineering high-performance corporate sports footwear designed to meet the rigorous demands of athletes, academies, and institutional sporting programs across India.
+              </p>
+
+              {/* Credibility Highlights */}
+              <div className="anim-slide-left-5 pt-2 flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-medium text-slate-300">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.06] border border-white/10 backdrop-blur-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-ping" />
+                  Since 2015
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.06] border border-white/10 backdrop-blur-sm">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                  Pan-India Institutional Reach
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.06] border border-white/10 backdrop-blur-sm">
+                  <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
+                  Sport-Specific Construction
+                </span>
+              </div>
             </div>
-            <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight uppercase">
-              About KSports
-            </h1>
-            <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-              Engineering high-performance corporate sports footwear designed to meet the rigorous demands of athletes, academies, and institutional sporting programs across India.
-            </p>
+
+            {/* Right Column: Athletic Heritage Glassmorphic Card (Slide Right-to-Left) */}
+            <div className="lg:col-span-4 anim-slide-right hidden lg:block">
+              <div className="relative rounded-2xl bg-white/[0.05] border border-white/10 p-6 backdrop-blur-xl shadow-2xl space-y-4">
+                <div className="flex items-center justify-between pb-4 border-b border-white/10">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-xl bg-brand-orange/20 border border-brand-orange/40 flex items-center justify-center text-brand-orange font-bold">
+                      <Zap className="w-4 h-4 text-brand-orange" />
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold uppercase tracking-wider text-white">KSports Heritage</div>
+                      <div className="text-[11px] text-slate-400">Established 2015 · India</div>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded bg-brand-orange/20 text-brand-orange border border-brand-orange/30">
+                    Official
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 pt-1">
+                  <div className="p-3 rounded-xl bg-white/[0.04] border border-white/5">
+                    <div className="text-xl font-extrabold text-white">10+ Yrs</div>
+                    <div className="text-[11px] text-slate-400 font-medium">Industry Experience</div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-white/[0.04] border border-white/5">
+                    <div className="text-xl font-extrabold text-brand-orange">4 Plants</div>
+                    <div className="text-[11px] text-slate-400 font-medium">Manufacturing Base</div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-white/[0.04] border border-white/5">
+                    <div className="text-xl font-extrabold text-white">4,00,000</div>
+                    <div className="text-[11px] text-slate-400 font-medium">Pairs / Month</div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-white/[0.04] border border-white/5">
+                    <div className="text-xl font-extrabold text-blue-400">12 States</div>
+                    <div className="text-[11px] text-slate-400 font-medium">Distribution Reach</div>
+                  </div>
+                </div>
+
+                <Link
+                  href="/manufacturing"
+                  className="mt-2 w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-brand-orange hover:bg-brand-orange-dark text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md group"
+                >
+                  <span>View Infrastructure</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -183,17 +384,18 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-stone-900 text-white text-center">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          <h2 className="text-3xl sm:text-4xl font-bold">Partner with KSports</h2>
-          <p className="text-stone-300 text-base max-w-xl mx-auto leading-relaxed">
+      {/* CTA Section: Athletic Stadium Footer Accent */}
+      <section className="py-20 bg-gradient-to-br from-[#060b17] via-[#0c1833] to-[#081224] text-white text-center relative overflow-hidden border-t border-blue-900/40">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-brand-orange/15 rounded-full blur-[140px] pointer-events-none" />
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Partner with KSports</h2>
+          <p className="text-slate-300 text-base max-w-xl mx-auto leading-relaxed">
             Connect with our corporate team to explore institutional bulk procurement, distribution channels, and athletic partnership programs.
           </p>
           <div className="pt-2">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-orange-dark rounded-md transition-colors shadow-md"
+              className="inline-flex items-center gap-2 px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-orange-dark rounded-xl transition-all shadow-lg hover:shadow-brand-orange/25"
             >
               <span>Contact Corporate Desk</span>
               <ArrowRight className="w-4 h-4" />
