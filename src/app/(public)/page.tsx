@@ -95,10 +95,10 @@ export default async function HomePage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
             <div>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-[11px] font-bold tracking-[0.16em] uppercase mb-3 shadow-xs">
-                <span>Sports Footwear · 11 Disciplines</span>
+                <span>Sports Footwear · 6 Categories</span>
               </div>
               <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-stone-950 uppercase tracking-tight mt-1">
-                Performance Shoes by Sport
+                Performance Shoes by Category
               </h2>
               <p className="text-stone-600 text-sm sm:text-base mt-2.5 max-w-2xl font-normal leading-relaxed">
                 Explore sport-specific footwear engineered to the surface demands, traction dynamics, and biomechanics of competitive athletes.
@@ -112,7 +112,7 @@ export default async function HomePage() {
                 <span>🧦 Bamboo Socks Category</span>
               </a>
               <Link
-                href="/products?type=shoes"
+                href="/products?group=shoes"
                 className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-stone-950 hover:text-brand-orange transition-colors group border-b-2 border-stone-950 hover:border-brand-orange pb-0.5 ml-2"
               >
                 <span>View All Shoes</span>
