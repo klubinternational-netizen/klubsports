@@ -45,15 +45,131 @@ export default async function CategoryDetailPage({ params }: Props) {
 
   const serializedCategory = JSON.parse(JSON.stringify(category));
   const serializedProducts = JSON.parse(JSON.stringify(products));
+  const isBamboo = serializedCategory.slug === 'bamboo-socks';
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Category Hero Banner */}
-      <section className="relative bg-[#0c0d0e] text-white pt-32 pb-16 lg:pt-36 lg:pb-24 overflow-hidden border-b border-stone-800">
-        <div className="absolute -top-32 right-1/4 w-96 h-96 bg-brand-orange/10 rounded-full blur-[120px] pointer-events-none"></div>
+      {/* Category Hero Banner with Custom Theme & Left-to-Right Entrance Animations */}
+      <section
+        className={`relative text-white pt-32 pb-16 lg:pt-36 lg:pb-24 overflow-hidden border-b ${
+          isBamboo
+            ? 'bg-gradient-to-br from-[#06170e] via-[#0c2617] to-[#081c11] border-emerald-900/60'
+            : 'bg-gradient-to-br from-[#0c0e12] via-[#141822] to-[#0a0d14] border-stone-800'
+        }`}
+      >
+        <style>{`
+          @keyframes slideLeftToRight {
+            0% {
+              opacity: 0;
+              transform: translateX(-70px);
+              filter: blur(4px);
+            }
+            60% {
+              opacity: 0.95;
+              transform: translateX(4px);
+              filter: blur(0px);
+            }
+            100% {
+              opacity: 1;
+              transform: translateX(0);
+              filter: blur(0px);
+            }
+          }
+
+          @keyframes slideRightToLeft {
+            0% {
+              opacity: 0;
+              transform: translateX(70px);
+              filter: blur(4px);
+            }
+            100% {
+              opacity: 1;
+              transform: translateX(0);
+              filter: blur(0px);
+            }
+          }
+
+          @keyframes bambooGlowPulse {
+            0%, 100% {
+              opacity: 0.35;
+              transform: scale(1);
+            }
+            50% {
+              opacity: 0.6;
+              transform: scale(1.08);
+            }
+          }
+
+          .anim-slide-left-1 {
+            animation: slideLeftToRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+          }
+          .anim-slide-left-2 {
+            animation: slideLeftToRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
+          }
+          .anim-slide-left-3 {
+            animation: slideLeftToRight 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+          }
+          .anim-slide-left-4 {
+            animation: slideLeftToRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.42s both;
+          }
+          .anim-slide-left-5 {
+            animation: slideLeftToRight 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.54s both;
+          }
+          .anim-slide-right {
+            animation: slideRightToLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+          }
+          .anim-bamboo-pulse {
+            animation: bambooGlowPulse 6s ease-in-out infinite;
+          }
+        `}</style>
+
+        {/* Dynamic Background Effects: Organic Bamboo silhouetting & emerald glows */}
+        {isBamboo ? (
+          <>
+            {/* Fine Organic Fiber Canvas Weave Texture */}
+            <div
+              className="absolute inset-0 pointer-events-none opacity-25"
+              style={{
+                backgroundImage: 'radial-gradient(rgba(52, 211, 153, 0.2) 1px, transparent 1px)',
+                backgroundSize: '28px 28px',
+              }}
+            />
+
+            {/* Glowing Natural Bamboo Emerald Ambient Blurs */}
+            <div className="absolute -top-32 -right-16 w-[550px] h-[550px] bg-emerald-500/20 rounded-full blur-[140px] pointer-events-none anim-bamboo-pulse" />
+            <div className="absolute -bottom-24 left-1/4 w-[420px] h-[420px] bg-lime-400/15 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute top-1/2 left-0 w-72 h-72 bg-emerald-600/15 rounded-full blur-[100px] pointer-events-none" />
+
+            {/* Natural Bamboo Stalk / Leaf Silhouettes (Vector Art Layer) */}
+            <svg
+              className="absolute right-0 top-0 h-full w-auto opacity-15 pointer-events-none text-emerald-400"
+              viewBox="0 0 400 500"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* Bamboo Stalk 1 */}
+              <line x1="120" y1="0" x2="120" y2="500" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
+              <line x1="110" y1="120" x2="130" y2="120" stroke="currentColor" strokeWidth="4" />
+              <line x1="110" y1="260" x2="130" y2="260" stroke="currentColor" strokeWidth="4" />
+              <line x1="110" y1="400" x2="130" y2="400" stroke="currentColor" strokeWidth="4" />
+              {/* Bamboo Stalk 2 */}
+              <line x1="280" y1="0" x2="280" y2="500" stroke="currentColor" strokeWidth="8" strokeLinecap="round" />
+              <line x1="268" y1="160" x2="292" y2="160" stroke="currentColor" strokeWidth="4" />
+              <line x1="268" y1="320" x2="292" y2="320" stroke="currentColor" strokeWidth="4" />
+              {/* Bamboo Leaves */}
+              <path d="M120 120 C 170 110, 220 140, 260 120 C 220 160, 160 140, 120 120 Z" fill="currentColor" opacity="0.7" />
+              <path d="M120 260 C 180 240, 230 270, 270 250 C 230 290, 170 280, 120 260 Z" fill="currentColor" opacity="0.6" />
+              <path d="M280 160 C 330 150, 370 170, 390 150 C 370 190, 320 180, 280 160 Z" fill="currentColor" opacity="0.7" />
+              <path d="M280 320 C 340 300, 380 330, 400 310 C 380 350, 330 340, 280 320 Z" fill="currentColor" opacity="0.6" />
+            </svg>
+          </>
+        ) : (
+          <div className="absolute -top-32 right-1/4 w-96 h-96 bg-brand-orange/15 rounded-full blur-[140px] pointer-events-none" />
+        )}
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumbs */}
-          <nav className="flex items-center space-x-2 text-xs text-stone-400 mb-6">
+          {/* Breadcrumbs - Animated from Left */}
+          <nav className="flex items-center space-x-2 text-xs text-stone-400 mb-6 anim-slide-left-1">
             <Link href="/" className="hover:text-white transition-colors">
               Home
             </Link>
@@ -62,23 +178,75 @@ export default async function CategoryDetailPage({ params }: Props) {
               Categories
             </Link>
             <ChevronRight className="w-3 h-3 text-stone-500" />
-            <span className="text-brand-orange font-semibold">{serializedCategory.name}</span>
+            <span className={isBamboo ? 'text-emerald-400 font-semibold' : 'text-brand-orange font-semibold'}>
+              {serializedCategory.name}
+            </span>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Column: Heading, Descriptions & Badges - ANIMATED LEFT TO RIGHT */}
             <div className="lg:col-span-8 space-y-4">
-              <span className="inline-block text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange">
-                Footwear Category
-              </span>
-              <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white uppercase">
-                {serializedCategory.name}
-              </h1>
-              <p className="text-stone-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+              {/* Category Eyebrow Badge */}
+              <div className="anim-slide-left-2">
+                <span
+                  className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-[0.18em] shadow-sm ${
+                    isBamboo
+                      ? 'bg-emerald-900/60 border border-emerald-400/30 text-emerald-300 backdrop-blur-md'
+                      : 'bg-stone-900/70 border border-brand-orange/30 text-brand-orange'
+                  }`}
+                >
+                  {isBamboo && <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />}
+                  <span>
+                    {isBamboo
+                      ? 'Organic Performance Accessories · 100% Bamboo Fiber'
+                      : 'Performance Footwear · 11 Disciplines'}
+                  </span>
+                </span>
+              </div>
+
+              {/* Main Headline - Animated Left to Right */}
+              <div className="anim-slide-left-3">
+                <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white uppercase leading-none">
+                  {serializedCategory.name}
+                </h1>
+                {isBamboo && (
+                  <div className="mt-2.5 inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-emerald-200">
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 font-bold">
+                      Eco Launch
+                    </span>
+                    <span>MRP ₹499 · 3 Pairs in Recyclable Cylinder Tube</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Description - Animated Left to Right */}
+              <p className="text-stone-300 text-base sm:text-lg max-w-2xl leading-relaxed anim-slide-left-4">
                 {serializedCategory.description ||
-                  'Precision-engineered athletic sports footwear for tournament play, institutional procurement, and elite performance.'}
+                  (isBamboo
+                    ? '100% natural organic bamboo fiber athletic socks in cylindrical recyclable eco-tubes. Naturally anti-bacterial, breathable, thermo-regulating, and ultra-soft.'
+                    : 'Precision-engineered athletic sports footwear for tournament play, institutional procurement, and elite performance.')}
               </p>
+
+              {/* Specific Bamboo Features Bar - Animated Left to Right */}
+              {isBamboo && (
+                <div className="pt-2 flex flex-wrap items-center gap-2 sm:gap-2.5 anim-slide-left-5">
+                  <span className="px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 text-xs font-semibold text-stone-200 flex items-center gap-1.5">
+                    🌿 Naturally Anti-Bacterial
+                  </span>
+                  <span className="px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 text-xs font-semibold text-stone-200 flex items-center gap-1.5">
+                    ♻️ Recyclable Kraft Paper Tube
+                  </span>
+                  <span className="px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 text-xs font-semibold text-stone-200 flex items-center gap-1.5">
+                    🧦 3 Color Pairs (Black, Tan, Navy)
+                  </span>
+                  <span className="px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 text-xs font-semibold text-stone-200 flex items-center gap-1.5">
+                    ⚡ Odor-Resistant &amp; Ultra-Soft
+                  </span>
+                </div>
+              )}
             </div>
 
+            {/* Right Column: Hero Category Image - ANIMATED RIGHT TO LEFT */}
             {serializedCategory.coverImage && (() => {
               let imgUrl = serializedCategory.coverImage;
               if (
@@ -93,8 +261,14 @@ export default async function CategoryDetailPage({ params }: Props) {
               }
               const safeAlt = (serializedCategory.imageAlt || serializedCategory.name || 'KSports Athletic Footwear').replace(/Klub /gi, 'KSports ');
               return (
-                <div className="lg:col-span-4">
-                  <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-stone-700 shadow-xl bg-stone-900">
+                <div className="lg:col-span-4 anim-slide-right">
+                  <div
+                    className={`relative aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-2xl transition-transform duration-500 hover:scale-[1.02] ${
+                      isBamboo
+                        ? 'border-2 border-emerald-400/40 bg-emerald-950/30 ring-4 ring-emerald-500/10 shadow-[0_20px_60px_-15px_rgba(5,40,20,0.6)]'
+                        : 'border border-stone-700 bg-stone-900 shadow-xl'
+                    }`}
+                  >
                     <Image
                       src={imgUrl}
                       alt={safeAlt}
@@ -103,6 +277,11 @@ export default async function CategoryDetailPage({ params }: Props) {
                       className="object-cover"
                       sizes="(max-width: 1024px) 100vw, 33vw"
                     />
+                    {isBamboo && (
+                      <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-full bg-emerald-950/85 backdrop-blur-md border border-emerald-400/40 text-[9px] sm:text-[10px] font-bold text-emerald-200 uppercase tracking-wider shadow-md">
+                        Official 3-Pack Eco Edition
+                      </div>
+                    )}
                   </div>
                 </div>
               );
