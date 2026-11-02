@@ -78,11 +78,11 @@ export default async function AdminDashboardPage() {
             <span>Add Product</span>
           </Link>
           <Link
-            href="/admin/content"
+            href="/admin/categories"
             className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-stone-700 bg-white hover:bg-stone-50 border border-stone-200 rounded-lg transition-colors shadow-sm"
           >
-            <FileEdit className="w-4 h-4" />
-            <span>Edit Content</span>
+            <Folders className="w-4 h-4 text-stone-600" />
+            <span>Categories</span>
           </Link>
         </div>
       </div>

@@ -24,7 +24,6 @@ const navLinks = [
   { label: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
   { label: 'Products', href: '/admin/products', icon: Footprints },
   { label: 'Categories', href: '/admin/categories', icon: Folders },
-  { label: 'Website Content', href: '/admin/content', icon: FileEdit },
   { label: 'Enquiries', href: '/admin/enquiries', icon: Inbox },
   { label: 'Media Library', href: '/admin/media', icon: ImageIcon },
   { label: 'Settings', href: '/admin/settings', icon: Settings },
