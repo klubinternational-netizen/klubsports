@@ -43,12 +43,12 @@ interface CategoryVariant {
 const variants: Record<CategoryVariantKey, CategoryVariant> = {
   shoes: {
     id: 'shoes',
-    name: 'Air Flexs',
+    name: 'KSports Classic Pro',
     categoryLabel: 'Shoes',
-    badgeTag: 'New',
-    badgeTitle: 'Limited edition shoes',
-    headline: 'AIR FLEXS',
-    subheadline: 'A comfort elegance that your foot needs.',
+    badgeTag: 'Official',
+    badgeTitle: 'Official KSports Athletic Footwear',
+    headline: 'KSPORTS',
+    subheadline: 'Engineered with signature athletic precision, ergonomic leather & shock-absorbing midsole.',
     dotColor: '#e3cfb3',
     badgeBg: '#f7ede1',
     badgeBorder: '#e3cfb3',
@@ -57,7 +57,7 @@ const variants: Record<CategoryVariantKey, CategoryVariant> = {
     glowColor: 'rgba(227, 207, 179, 0.55)',
     bgGradient: 'from-[#fbf8f4] via-[#f7f2ea] to-[#ffffff]',
     image: '/hero-shoes/sneako-1.png',
-    imageAlt: 'KSports Air Flexs Athletic Footwear',
+    imageAlt: 'Official KSports Classic Pro Athletic Footwear',
     pedestal: {
       top: 'linear-gradient(135deg, #f0e6d6 0%, #e3cfb3 100%)',
       left: 'linear-gradient(180deg, #d4baa0 0%, #b8997c 100%)',

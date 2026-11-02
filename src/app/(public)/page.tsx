@@ -66,9 +66,9 @@ export default async function HomePage() {
     <div className="flex flex-col">
       {/* SECTION 2: SNEAKO-STYLE 3D HERO (MATCHING SNEAKO FRAMER EFFECTS & ANIMATION) */}
       <TempoHeroSection
-        headline="Air Flexs"
-        subheadline="A comfort elegance that your foot needs."
-        primaryCtaText="Buy now"
+        headline="KSPORTS"
+        subheadline="Engineered with signature athletic precision, ergonomic leather & shock-absorbing midsole."
+        primaryCtaText="Explore Products"
         primaryCtaLink="/products"
         secondaryCtaText="Business Enquiry"
         secondaryCtaLink="/contact"
