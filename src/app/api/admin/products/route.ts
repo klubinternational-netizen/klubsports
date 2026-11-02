@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
+import mongoose from 'mongoose';
 import { requireAdminAuth, recordAdminActivity } from '@/lib/security/adminAuth';
 import { connectToDatabase } from '@/lib/db/connection';
 import { Product } from '@/models/Product';
@@ -23,14 +24,20 @@ export async function GET(req: NextRequest) {
     const skip = (page - 1) * limit;
 
     const query: any = {};
-    if (search) {
+    if (search.trim()) {
+      const trimmed = search.trim();
       query.$or = [
-        { name: { $regex: search, $options: 'i' } },
-        { shortDescription: { $regex: search, $options: 'i' } },
+        { name: { $regex: trimmed, $options: 'i' } },
+        { slug: { $regex: trimmed, $options: 'i' } },
+        { shortDescription: { $regex: trimmed, $options: 'i' } },
       ];
     }
     if (categoryId) {
-      query.categoryId = categoryId;
+      if (mongoose.Types.ObjectId.isValid(categoryId)) {
+        query.categoryId = new mongoose.Types.ObjectId(categoryId);
+      } else {
+        query.categoryId = categoryId;
+      }
     }
     if (status === 'published') {
       query.isPublished = true;

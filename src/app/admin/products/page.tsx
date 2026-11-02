@@ -78,8 +78,11 @@ export default function AdminProductsPage() {
   };
 
   useEffect(() => {
-    fetchProducts();
-  }, [categoryFilter, statusFilter]);
+    const timer = setTimeout(() => {
+      fetchProducts();
+    }, 200);
+    return () => clearTimeout(timer);
+  }, [search, categoryFilter, statusFilter]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -220,6 +223,20 @@ export default function AdminProductsPage() {
             <option value="published">Published</option>
             <option value="unpublished">Draft / Unpublished</option>
           </select>
+
+          {(search || categoryFilter || statusFilter) && (
+            <button
+              type="button"
+              onClick={() => {
+                setSearch('');
+                setCategoryFilter('');
+                setStatusFilter('');
+              }}
+              className="text-xs font-semibold text-brand-orange hover:text-brand-orange-dark underline px-1 py-1"
+            >
+              Reset Filters
+            </button>
+          )}
         </div>
       </div>
 
