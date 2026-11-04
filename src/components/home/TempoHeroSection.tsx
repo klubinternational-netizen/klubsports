@@ -49,20 +49,20 @@ const variants: Record<CategoryVariantKey, CategoryVariant> = {
     badgeTitle: 'Official KSports Athletic Footwear',
     headline: 'KSPORTS',
     subheadline: 'Engineered with signature athletic precision, ergonomic leather & shock-absorbing midsole.',
-    dotColor: '#334155',
-    badgeBg: '#f1f5f9',
-    badgeBorder: '#cbd5e1',
-    badgeText: '#0f172a',
-    wordmarkColor: '#e2e8f0',
-    glowColor: 'rgba(148, 163, 184, 0.45)',
-    bgGradient: 'from-[#f8fafc] via-[#f1f5f9] to-[#ffffff]',
+    dotColor: '#ee7700',
+    badgeBg: '#fff7ed',
+    badgeBorder: '#fed7aa',
+    badgeText: '#c2410c',
+    wordmarkColor: '#fed7aa',
+    glowColor: 'rgba(238, 119, 0, 0.42)',
+    bgGradient: 'from-[#ffedd5] via-[#fff7ed] to-[#ffffff]',
     image: '/hero-shoes/ksports-hero-shoe-1.png',
     imageAlt: 'Official KSports Classic Pro Athletic Footwear',
     pedestal: {
-      top: 'linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%)',
-      left: 'linear-gradient(180deg, #94a3b8 0%, #64748b 100%)',
-      right: 'linear-gradient(180deg, #cbd5e1 0%, #94a3b8 100%)',
-      shadowColor: '#1e293b',
+      top: 'linear-gradient(135deg, #ffffff 0%, #ffedd5 100%)',
+      left: 'linear-gradient(180deg, #ea580c 0%, #c2410c 100%)',
+      right: 'linear-gradient(180deg, #fb923c 0%, #ea580c 100%)',
+      shadowColor: '#7c2d12',
     },
   },
   'bamboo-socks': {
@@ -97,20 +97,20 @@ const variants: Record<CategoryVariantKey, CategoryVariant> = {
     badgeTitle: 'Multi-Surface Sprint Runner',
     headline: 'SPEED PRO',
     subheadline: 'Aerodynamic lightweight footwear engineered for explosive acceleration & high mileage.',
-    dotColor: '#0f172a',
-    badgeBg: '#f8fafc',
-    badgeBorder: '#cbd5e1',
-    badgeText: '#0f172a',
-    wordmarkColor: '#e2e8f0',
-    glowColor: 'rgba(249, 115, 22, 0.40)',
-    bgGradient: 'from-[#fafafa] via-[#f4f4f5] to-[#ffffff]',
+    dotColor: '#ea580c',
+    badgeBg: '#fff7ed',
+    badgeBorder: '#fed7aa',
+    badgeText: '#c2410c',
+    wordmarkColor: '#fed7aa',
+    glowColor: 'rgba(238, 119, 0, 0.42)',
+    bgGradient: 'from-[#ffedd5] via-[#fff7ed] to-[#ffffff]',
     image: '/hero-shoes/ksports-hero-shoe-2.png',
     imageAlt: 'Official KSports Speed Runner Athletic Footwear',
     pedestal: {
-      top: 'linear-gradient(135deg, #f4f4f5 0%, #e4e4e7 100%)',
-      left: 'linear-gradient(180deg, #71717a 0%, #52525b 100%)',
-      right: 'linear-gradient(180deg, #a1a1aa 0%, #71717a 100%)',
-      shadowColor: '#18181b',
+      top: 'linear-gradient(135deg, #ffffff 0%, #ffedd5 100%)',
+      left: 'linear-gradient(180deg, #ea580c 0%, #c2410c 100%)',
+      right: 'linear-gradient(180deg, #fb923c 0%, #ea580c 100%)',
+      shadowColor: '#7c2d12',
     },
   },
 };
@@ -234,11 +234,11 @@ export default function TempoHeroSection({
         </div>
       </div>
 
-      {/* 2. GIANT BACKGROUND WORDMARK (DYNAMIC FOR EACH CATEGORY: "AIR FLEXS" / "BAMBOO" / "SPEED PRO") */}
+      {/* 2. GIANT BACKGROUND WORDMARK (DYNAMIC FOR EACH CATEGORY: "KSPORTS" / "BAMBOO" / "SPEED PRO") */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
         <span
           key={currentVariant.headline}
-          className="font-ranchers leading-none select-none text-[22vw] sm:text-[18vw] lg:text-[15.5vw] tracking-tight uppercase transform -translate-y-16 sm:-translate-y-20 transition-all duration-700 drop-shadow-[0_4px_30px_rgba(0,0,0,0.04)]"
+          className="font-ranchers leading-none select-none text-[22vw] sm:text-[18vw] lg:text-[15.5vw] tracking-tight uppercase transform -translate-y-16 sm:-translate-y-20 transition-all duration-700 drop-shadow-[0_4px_30px_rgba(238,119,0,0.12)]"
           style={{
             letterSpacing: '-0.02em',
             color: currentVariant.wordmarkColor,
@@ -248,9 +248,17 @@ export default function TempoHeroSection({
         </span>
       </div>
 
+      {/* Top Ambient Glow matching current variant */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[920px] h-[360px] pointer-events-none blur-[100px] z-0 opacity-70 transition-all duration-700"
+        style={{
+          background: `radial-gradient(ellipse at top, ${currentVariant.glowColor} 0%, transparent 70%)`,
+        }}
+      />
+
       {/* Ambient Celestial Glow behind product */}
       <div
-        className="absolute left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 w-[600px] h-[360px] pointer-events-none blur-[85px] z-0 transition-all duration-700"
+        className="absolute left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 w-[760px] h-[440px] pointer-events-none blur-[95px] z-0 transition-all duration-700"
         style={{
           background: `radial-gradient(ellipse, ${currentVariant.glowColor} 0%, transparent 70%)`,
         }}
@@ -346,7 +354,7 @@ export default function TempoHeroSection({
                   alt={currentVariant.imageAlt}
                   fill
                   priority
-                  className="object-contain filter drop-shadow-[0_20px_35px_rgba(20,50,80,0.18)] select-none pointer-events-none transition-opacity duration-300"
+                  className="object-contain filter drop-shadow-[0_20px_35px_rgba(28,25,23,0.22)] select-none pointer-events-none transition-opacity duration-300"
                   sizes="(max-width: 640px) 300px, (max-width: 1024px) 500px, 560px"
                 />
 
