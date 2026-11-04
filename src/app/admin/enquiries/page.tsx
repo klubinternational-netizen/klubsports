@@ -261,7 +261,7 @@ function EnquiriesContent() {
           </div>
         ) : enquiries.length > 0 ? (
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse text-xs">
+            <table className="w-full text-left border-collapse text-xs min-w-[680px] sm:min-w-full">
               <thead>
                 <tr className="bg-stone-50 border-b border-stone-200 text-stone-500 font-bold uppercase tracking-wider">
                   <th className="py-3.5 px-4">Submitter & Organization</th>

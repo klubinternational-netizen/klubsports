@@ -105,6 +105,14 @@ export default function Header() {
         {/* 3. RIGHT CORNER: ENQUIRY BUTTON (OUR LIQUID METAL EFFECT)*/}
         {/* ======================================================== */}
         <div className="flex items-center gap-2">
+          {/* Quick Enquiry Link for Mobile */}
+          <Link
+            href="/contact"
+            className="sm:hidden px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider text-white bg-gradient-to-r from-orange-500 to-amber-600 shadow-xs active:scale-95 transition-transform"
+          >
+            Enquiry
+          </Link>
+
           {/* Desktop & Tablet: Our Liquid Metal Shader Button */}
           <div className="hidden sm:flex items-center shrink-0">
             <LiquidMetalButton

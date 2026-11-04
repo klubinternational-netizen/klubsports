@@ -270,7 +270,7 @@ export default function TempoHeroSection({
           
           {/* The 3D Composition Stage */}
           <div
-            className="relative w-[340px] sm:w-[480px] md:w-[600px] lg:w-[700px] h-[380px] sm:h-[460px] md:h-[520px] flex items-center justify-center"
+            className="relative w-[300px] sm:w-[480px] md:w-[600px] lg:w-[700px] h-[360px] sm:h-[460px] md:h-[520px] flex items-center justify-center"
             style={{ perspective: 1200 }}
           >
             
@@ -288,7 +288,7 @@ export default function TempoHeroSection({
 
             {/* 3D ISOMETRIC PEDESTAL / PODIUM */}
             <div
-              className="absolute -bottom-4 sm:-bottom-8 left-1/2 -translate-x-1/2 w-[320px] sm:w-[420px] md:w-[480px] lg:w-[520px] h-[220px] sm:h-[280px] md:h-[320px] z-10 transition-transform duration-200 ease-out"
+              className="absolute -bottom-4 sm:-bottom-8 left-1/2 -translate-x-1/2 w-[280px] sm:w-[420px] md:w-[480px] lg:w-[520px] h-[200px] sm:h-[280px] md:h-[320px] z-10 transition-transform duration-200 ease-out"
               style={{
                 transform: `translateX(-50%) rotateX(${tilt.rotateX * 0.25}deg) rotateY(${tilt.rotateY * 0.25}deg)`,
                 transformStyle: 'preserve-3d',
@@ -340,7 +340,7 @@ export default function TempoHeroSection({
 
             {/* 3D FLOATING PRODUCT (Hovering directly over the Pedestal) */}
             <div
-              className="relative z-20 w-[300px] sm:w-[420px] md:w-[500px] lg:w-[560px] h-[200px] sm:h-[280px] md:h-[340px] lg:h-[380px] -mt-16 sm:-mt-24 transition-transform duration-200 ease-out"
+              className="relative z-20 w-[270px] sm:w-[420px] md:w-[500px] lg:w-[560px] h-[190px] sm:h-[280px] md:h-[340px] lg:h-[380px] -mt-14 sm:-mt-24 transition-transform duration-200 ease-out"
               style={{
                 transform: `rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg) translateX(${tilt.x}px) translateY(${tilt.y}px)`,
                 transformStyle: 'preserve-3d',
