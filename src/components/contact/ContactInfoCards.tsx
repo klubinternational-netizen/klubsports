@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, ShieldCheck, Copy, Check, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, ShieldCheck, Copy, Check, ArrowUpRight } from 'lucide-react';
 
 interface ContactDetails {
   email: string;

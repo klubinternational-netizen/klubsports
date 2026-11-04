@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, ShieldCheck, Factory, Award, Target, CheckCircle2, ChevronRight, Zap, Sparkles } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Factory, Award, Target, CheckCircle2, ChevronRight, Zap } from 'lucide-react';
 import { connectToDatabase } from '@/lib/db/connection';
 import { Page } from '@/models/Page';
 

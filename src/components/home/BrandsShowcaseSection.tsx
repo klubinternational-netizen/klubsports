@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function BrandsShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -108,8 +108,7 @@ export default function BrandsShowcaseSection() {
 
           {/* LEFT CONTENT: Tag & "100%" */}
           <div className="relative z-10 flex flex-col justify-center items-start max-w-[42%]">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-white text-[10px] sm:text-xs font-bold tracking-wider uppercase backdrop-blur-sm mb-2 sm:mb-3">
-              <Sparkles className="w-3 h-3 text-white" />
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/15 border border-white/20 text-white text-[10px] sm:text-xs font-bold tracking-wider uppercase backdrop-blur-sm mb-2 sm:mb-3">
               Original
             </span>
             <h2 className="font-ranchers text-white text-4xl xs:text-5xl sm:text-8xl md:text-9xl lg:text-[145px] xl:text-[170px] leading-[0.88] uppercase tracking-normal drop-shadow-[0_4px_24px_rgba(0,0,0,0.15)]">
