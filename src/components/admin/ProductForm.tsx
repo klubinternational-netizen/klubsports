@@ -11,6 +11,7 @@ import {
   AlertCircle,
   Loader2,
   ArrowLeft,
+  Star,
 } from 'lucide-react';
 import { productSchema, ProductInput } from '@/lib/validations/product';
 
@@ -92,38 +93,86 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
     setFeatures(updated);
   };
 
-  // Image upload
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, isGallery = false) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  const [uploadProgress, setUploadProgress] = useState<{ current: number; total: number } | null>(null);
+
+  // Multi-image direct upload (No URL needed)
+  const handleMultipleFilesUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length === 0) return;
 
     setIsUploading(true);
+    setUploadProgress({ current: 0, total: files.length });
     setError(null);
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('folder', 'products');
 
-      const res = await fetch('/api/admin/media/upload', {
-        method: 'POST',
-        body: formData,
+    try {
+      const uploadedUrls: string[] = [];
+
+      for (let i = 0; i < files.length; i++) {
+        setUploadProgress({ current: i + 1, total: files.length });
+        const file = files[i];
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('folder', 'products');
+
+        const res = await fetch('/api/admin/media/upload', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.error || `Upload failed for ${file.name}`);
+        }
+        uploadedUrls.push(data.media.url);
+      }
+
+      let newPrimary = primaryImageUrl;
+      const newGallery = [...galleryImages];
+
+      uploadedUrls.forEach((url) => {
+        if (!newPrimary) {
+          newPrimary = url;
+        } else {
+          newGallery.push({ url, alt: `${name || 'Product'} gallery` });
+        }
       });
 
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || 'Upload failed');
-      }
-
-      if (isGallery) {
-        setGalleryImages([...galleryImages, { url: data.media.url, alt: `${name} gallery` }]);
-      } else {
-        setPrimaryImageUrl(data.media.url);
-      }
+      setPrimaryImageUrl(newPrimary);
+      setGalleryImages(newGallery);
     } catch (err: any) {
       setError(err.message || 'Image upload failed');
     } finally {
       setIsUploading(false);
+      setUploadProgress(null);
+      e.target.value = '';
     }
+  };
+
+  const handleSetPrimary = (index: number) => {
+    const selected = galleryImages[index];
+    if (!selected) return;
+
+    const updatedGallery = galleryImages.filter((_, i) => i !== index);
+    if (primaryImageUrl) {
+      updatedGallery.unshift({ url: primaryImageUrl, alt: `${name || 'Product'} gallery` });
+    }
+
+    setPrimaryImageUrl(selected.url);
+    setGalleryImages(updatedGallery);
+  };
+
+  const handleRemovePrimary = () => {
+    if (galleryImages.length > 0) {
+      const [first, ...rest] = galleryImages;
+      setPrimaryImageUrl(first.url);
+      setGalleryImages(rest);
+    } else {
+      setPrimaryImageUrl('');
+    }
+  };
+
+  const handleRemoveGallery = (index: number) => {
+    setGalleryImages(galleryImages.filter((_, i) => i !== index));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -486,94 +535,141 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
             </button>
           </div>
 
-          {/* Primary Product Image */}
-          <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-sm space-y-4">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-stone-700 pb-2 border-b border-stone-100">
-              Primary Product Photograph
-            </h3>
-
-            {primaryImageUrl ? (
-              <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-stone-200 bg-stone-100">
-                <Image
-                  src={primaryImageUrl}
-                  alt={name || 'Primary product preview'}
-                  fill
-                  className="object-cover"
-                  sizes="300px"
-                />
+          {/* Product Photography & Gallery (Upload Only, No URLs, Multi-Selection) */}
+          <div className="bg-white p-5 sm:p-6 rounded-xl border border-stone-200 shadow-sm space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-stone-100">
+              <div>
+                <h3 className="text-xs font-bold uppercase tracking-wider text-stone-900">
+                  Product Photography
+                </h3>
+                <p className="text-[11px] text-stone-500 mt-0.5">
+                  Select one or multiple images from device (no URLs needed).
+                </p>
               </div>
-            ) : (
-              <div className="aspect-[4/3] rounded-lg border-2 border-dashed border-stone-200 flex flex-col items-center justify-center p-4 text-stone-400 text-center">
-                <Upload className="w-8 h-8 mb-2 text-stone-300" />
-                <span className="text-xs">No primary image selected</span>
-              </div>
-            )}
+              <span className="text-xs font-bold text-brand-orange bg-orange-50 px-2.5 py-1 rounded-full border border-orange-200">
+                {(primaryImageUrl ? 1 : 0) + galleryImages.length} Photos
+              </span>
+            </div>
 
-            <div>
-              <label htmlFor="primaryUrl" className="block text-[11px] font-semibold text-stone-600 mb-1">
-                Image URL
-              </label>
+            {/* Direct Multi-File Upload Dropzone / Button */}
+            <label className="w-full flex flex-col items-center justify-center p-6 sm:p-8 rounded-xl border-2 border-dashed border-orange-300 hover:border-brand-orange bg-orange-50/40 hover:bg-orange-50/80 cursor-pointer transition-all group text-center">
+              {isUploading ? (
+                <div className="flex flex-col items-center space-y-2">
+                  <Loader2 className="w-8 h-8 animate-spin text-brand-orange" />
+                  <span className="text-xs font-bold text-stone-800">
+                    {uploadProgress
+                      ? `Uploading Image ${uploadProgress.current} of ${uploadProgress.total}...`
+                      : 'Uploading Images...'}
+                  </span>
+                  <span className="text-[10px] text-stone-500">Optimizing and saving to media storage...</span>
+                </div>
+              ) : (
+                <div className="flex flex-col items-center space-y-2">
+                  <div className="w-12 h-12 rounded-full bg-white shadow-xs flex items-center justify-center text-brand-orange group-hover:scale-110 transition-transform">
+                    <Upload className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-xs sm:text-sm font-bold text-stone-900 block">
+                      Click or Tap to Select Product Images
+                    </span>
+                    <span className="text-[11px] text-stone-500 block mt-0.5">
+                      Supports selecting multiple images at once (JPG, PNG, WEBP)
+                    </span>
+                  </div>
+                  <span className="inline-flex items-center gap-1 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-orange bg-white rounded-full border border-orange-200 shadow-2xs">
+                    + Choose Multiple Images
+                  </span>
+                </div>
+              )}
               <input
-                id="primaryUrl"
-                type="url"
-                value={primaryImageUrl}
-                onChange={(e) => setPrimaryImageUrl(e.target.value)}
-                placeholder="https://... or /brand/..."
-                className="w-full px-3 py-1.5 text-xs bg-stone-50 border border-stone-200 rounded-lg text-stone-900"
+                type="file"
+                multiple
+                accept="image/jpeg,image/png,image/webp,image/svg+xml"
+                onChange={handleMultipleFilesUpload}
+                disabled={isUploading}
+                className="hidden"
               />
-            </div>
+            </label>
 
-            {/* Direct Image Upload */}
-            <div>
-              <label className="w-full flex items-center justify-center gap-2 px-3 py-2 text-xs font-semibold text-stone-700 bg-stone-100 hover:bg-stone-200 border border-stone-300 rounded-lg cursor-pointer transition-colors">
-                <Upload className="w-3.5 h-3.5" />
-                <span>{isUploading ? 'Uploading Image...' : 'Upload Image File'}</span>
-                <input
-                  type="file"
-                  accept="image/jpeg,image/png,image/webp,image/svg+xml"
-                  onChange={(e) => handleFileUpload(e, false)}
-                  disabled={isUploading}
-                  className="hidden"
-                />
-              </label>
-            </div>
-          </div>
-
-          {/* Additional Gallery Images */}
-          <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-sm space-y-4">
-            <div className="flex items-center justify-between pb-2 border-b border-stone-100">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-stone-700">
-                Additional Gallery ({galleryImages.length})
-              </h3>
-              <label className="text-xs font-bold text-brand-orange hover:underline cursor-pointer">
-                + Upload
-                <input
-                  type="file"
-                  accept="image/jpeg,image/png,image/webp"
-                  onChange={(e) => handleFileUpload(e, true)}
-                  disabled={isUploading}
-                  className="hidden"
-                />
-              </label>
-            </div>
-
-            {galleryImages.length > 0 ? (
-              <div className="grid grid-cols-2 gap-2">
-                {galleryImages.map((g, idx) => (
-                  <div key={idx} className="relative aspect-video rounded border overflow-hidden group">
-                    <Image src={g.url} alt={g.alt} fill className="object-cover" sizes="120px" />
+            {/* Uploaded Photos Grid */}
+            {primaryImageUrl ? (
+              <div className="space-y-4 pt-1">
+                {/* Primary Cover Image Preview */}
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1.5">
+                    Primary Cover Photo
+                  </span>
+                  <div className="relative aspect-[4/3] rounded-xl overflow-hidden border-2 border-brand-orange/40 bg-stone-100 shadow-sm group">
+                    <Image
+                      src={primaryImageUrl}
+                      alt={name || 'Primary product preview'}
+                      fill
+                      className="object-contain p-2"
+                      sizes="(max-width: 1024px) 100vw, 400px"
+                    />
+                    <div className="absolute top-2 left-2">
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-brand-orange text-white text-[10px] font-bold uppercase tracking-wider shadow-sm">
+                        <Star className="w-3 h-3 fill-white" />
+                        Primary Cover
+                      </span>
+                    </div>
                     <button
                       type="button"
-                      onClick={() => setGalleryImages(galleryImages.filter((_, i) => i !== idx))}
-                      className="absolute top-1 right-1 bg-black/70 hover:bg-red-600 text-white p-1 rounded transition-colors"
+                      onClick={handleRemovePrimary}
+                      className="absolute top-2 right-2 p-1.5 rounded-lg bg-black/70 hover:bg-red-600 text-white transition-colors"
+                      title="Remove primary image"
                     >
-                      <Trash2 className="w-3 h-3" />
+                      <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
-                ))}
+                </div>
+
+                {/* Additional Gallery Photos */}
+                {galleryImages.length > 0 && (
+                  <div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1.5">
+                      Additional Gallery Views ({galleryImages.length})
+                    </span>
+                    <div className="grid grid-cols-2 gap-2.5">
+                      {galleryImages.map((g, idx) => (
+                        <div
+                          key={idx}
+                          className="relative aspect-square rounded-lg border border-stone-200 overflow-hidden bg-stone-50 group hover:border-brand-orange/50 transition-colors"
+                        >
+                          <Image
+                            src={g.url}
+                            alt={g.alt || 'Gallery photo'}
+                            fill
+                            className="object-cover"
+                            sizes="180px"
+                          />
+                          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-between p-2">
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveGallery(idx)}
+                              className="self-end p-1 rounded bg-black/70 hover:bg-red-600 text-white transition-colors"
+                              title="Delete photo"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleSetPrimary(idx)}
+                              className="w-full py-1 px-1.5 rounded bg-brand-orange hover:bg-brand-orange-dark text-white text-[10px] font-bold uppercase tracking-wider transition-colors text-center shadow-xs"
+                            >
+                              Make Primary
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
-              <p className="text-xs text-stone-400 italic">No secondary gallery images.</p>
+              <div className="p-4 rounded-xl bg-stone-50 border border-stone-200 text-center text-xs text-stone-400">
+                No images uploaded yet. Select one or multiple images above.
+              </div>
             )}
           </div>
         </div>

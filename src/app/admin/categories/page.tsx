@@ -423,20 +423,46 @@ export default function AdminCategoriesPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">
-                  Cover Image URL
+                <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
+                  Category Cover Image
                 </label>
-                <div className="flex items-center gap-2">
-                  <input
-                    type="url"
-                    value={coverImage}
-                    onChange={(e) => setCoverImage(e.target.value)}
-                    placeholder="https://... or upload below"
-                    className="flex-1 px-3.5 py-2 text-xs bg-stone-50 border border-stone-200 rounded-lg text-stone-900"
-                  />
-                  <label className="px-3 py-2 text-xs font-semibold text-stone-700 bg-stone-100 hover:bg-stone-200 rounded-lg cursor-pointer transition-colors shrink-0">
-                    <Upload className="w-3.5 h-3.5 inline mr-1" />
-                    <span>{isUploading ? 'Uploading...' : 'Upload'}</span>
+                {coverImage ? (
+                  <div className="flex items-center gap-3 p-3 bg-stone-50 rounded-xl border border-stone-200">
+                    <div className="relative w-16 h-12 rounded-lg overflow-hidden bg-white border border-stone-200 shrink-0">
+                      <Image src={coverImage} alt="Cover preview" fill className="object-cover" sizes="64px" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <span className="text-xs font-bold text-stone-800 block truncate">Image Uploaded</span>
+                      <span className="text-[10px] text-emerald-600 font-medium">Ready for publishing</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <label className="px-2.5 py-1.5 text-xs font-semibold text-stone-700 bg-white hover:bg-stone-100 border border-stone-200 rounded-lg cursor-pointer transition-colors">
+                        Change
+                        <input type="file" accept="image/*" onChange={handleFileUpload} disabled={isUploading} className="hidden" />
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() => setCoverImage('')}
+                        className="p-1.5 text-stone-400 hover:text-red-600 rounded-lg transition-colors"
+                        title="Remove image"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <label className="w-full flex items-center justify-center gap-2 p-4 text-xs font-semibold text-stone-700 bg-stone-50 hover:bg-orange-50/60 border-2 border-dashed border-stone-300 hover:border-brand-orange rounded-xl cursor-pointer transition-colors">
+                    {isUploading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin text-brand-orange" />
+                        <span>Uploading Image...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Upload className="w-4 h-4 text-brand-orange" />
+                        <span>Click to Select & Upload Category Cover Photo</span>
+                      </>
+                    )}
                     <input
                       type="file"
                       accept="image/*"
@@ -445,7 +471,7 @@ export default function AdminCategoriesPage() {
                       className="hidden"
                     />
                   </label>
-                </div>
+                )}
               </div>
 
               <div className="grid grid-cols-2 gap-4">

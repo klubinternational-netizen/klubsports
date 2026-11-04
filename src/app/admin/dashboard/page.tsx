@@ -56,30 +56,30 @@ export default async function AdminDashboardPage() {
   return (
     <div className="space-y-8">
       {/* Top Welcome & Quick Actions */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
         <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">
+          <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-brand-orange">
             Control Center
           </span>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight mt-0.5">
+          <h1 className="text-xl sm:text-3xl font-extrabold text-stone-900 tracking-tight mt-0.5">
             Administration Dashboard
           </h1>
-          <p className="text-xs text-stone-500 mt-1">
+          <p className="text-xs text-stone-500 mt-0.5">
             Real-time catalog metrics, corporate enquiries, and publishing logs.
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2.5">
+        <div className="flex items-center gap-2">
           <Link
             href="/admin/products/new"
-            className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-orange-dark rounded-lg transition-colors shadow-sm"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-orange-dark rounded-lg transition-colors shadow-sm"
           >
             <PlusCircle className="w-4 h-4" />
             <span>Add Product</span>
           </Link>
           <Link
             href="/admin/categories"
-            className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-stone-700 bg-white hover:bg-stone-50 border border-stone-200 rounded-lg transition-colors shadow-sm"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-stone-700 bg-white hover:bg-stone-50 border border-stone-200 rounded-lg transition-colors shadow-sm"
           >
             <Folders className="w-4 h-4 text-stone-600" />
             <span>Categories</span>
@@ -87,75 +87,75 @@ export default async function AdminDashboardPage() {
         </div>
       </div>
 
-      {/* Primary Metrics Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {/* Primary Metrics Grid (2-by-2 on Mobile, 4 on Desktop) */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
         {/* Total Products */}
-        <div className="bg-white p-5 rounded-xl border border-stone-200 shadow-sm space-y-3">
+        <div className="bg-white p-3.5 sm:p-5 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-stone-500">
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-stone-500">
               Total Products
             </span>
-            <div className="p-2 rounded-lg bg-orange-50 text-brand-orange">
-              <Footprints className="w-4 h-4" />
+            <div className="p-1.5 sm:p-2 rounded-lg bg-orange-50 text-brand-orange">
+              <Footprints className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
           </div>
-          <div className="text-3xl font-extrabold text-stone-900">{totalProducts}</div>
-          <div className="text-xs text-stone-500 flex items-center justify-between pt-2 border-t border-stone-100">
-            <span className="text-emerald-700 font-semibold">{publishedProducts} Published</span>
+          <div className="text-2xl sm:text-3xl font-extrabold text-stone-900 my-1 sm:my-2">{totalProducts}</div>
+          <div className="text-[10px] sm:text-xs text-stone-500 flex items-center justify-between pt-1.5 sm:pt-2 border-t border-stone-100">
+            <span className="text-emerald-700 font-semibold">{publishedProducts} Pub</span>
             <span className="text-stone-400">{unpublishedProducts} Draft</span>
           </div>
         </div>
 
         {/* Categories */}
-        <div className="bg-white p-5 rounded-xl border border-stone-200 shadow-sm space-y-3">
+        <div className="bg-white p-3.5 sm:p-5 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-stone-500">
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-stone-500">
               Categories
             </span>
-            <div className="p-2 rounded-lg bg-stone-100 text-stone-700">
-              <Folders className="w-4 h-4" />
+            <div className="p-1.5 sm:p-2 rounded-lg bg-stone-100 text-stone-700">
+              <Folders className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
           </div>
-          <div className="text-3xl font-extrabold text-stone-900">{totalCategories}</div>
-          <div className="text-xs text-stone-500 pt-2 border-t border-stone-100">
-            Source deck footwear taxonomy
+          <div className="text-2xl sm:text-3xl font-extrabold text-stone-900 my-1 sm:my-2">{totalCategories}</div>
+          <div className="text-[10px] sm:text-xs text-stone-500 pt-1.5 sm:pt-2 border-t border-stone-100 truncate">
+            Footwear Taxonomy
           </div>
         </div>
 
         {/* New Enquiries */}
-        <div className="bg-white p-5 rounded-xl border border-stone-200 shadow-sm space-y-3">
+        <div className="bg-white p-3.5 sm:p-5 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-stone-500">
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-stone-500">
               New Enquiries
             </span>
-            <div className="p-2 rounded-lg bg-amber-50 text-amber-600">
-              <Inbox className="w-4 h-4" />
+            <div className="p-1.5 sm:p-2 rounded-lg bg-amber-50 text-amber-600">
+              <Inbox className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
           </div>
-          <div className="text-3xl font-extrabold text-brand-orange">{newEnquiries}</div>
-          <div className="text-xs text-stone-500 flex items-center justify-between pt-2 border-t border-stone-100">
-            <span>Requires review</span>
+          <div className="text-2xl sm:text-3xl font-extrabold text-brand-orange my-1 sm:my-2">{newEnquiries}</div>
+          <div className="text-[10px] sm:text-xs text-stone-500 flex items-center justify-between pt-1.5 sm:pt-2 border-t border-stone-100">
+            <span>Inbox</span>
             <Link href="/admin/enquiries" className="font-semibold text-brand-orange hover:underline">
-              View Inbox →
+              View →
             </Link>
           </div>
         </div>
 
         {/* Enquiries In-Progress / Total */}
-        <div className="bg-white p-5 rounded-xl border border-stone-200 shadow-sm space-y-3">
+        <div className="bg-white p-3.5 sm:p-5 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-stone-500">
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-stone-500">
               Total Inquiries
             </span>
-            <div className="p-2 rounded-lg bg-stone-100 text-stone-700">
-              <CheckCircle className="w-4 h-4" />
+            <div className="p-1.5 sm:p-2 rounded-lg bg-stone-100 text-stone-700">
+              <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
           </div>
-          <div className="text-3xl font-extrabold text-stone-900">
+          <div className="text-2xl sm:text-3xl font-extrabold text-stone-900 my-1 sm:my-2">
             {newEnquiries + inProgressEnquiries + closedEnquiries}
           </div>
-          <div className="text-xs text-stone-500 flex items-center justify-between pt-2 border-t border-stone-100">
-            <span>{inProgressEnquiries} In Progress</span>
+          <div className="text-[10px] sm:text-xs text-stone-500 flex items-center justify-between pt-1.5 sm:pt-2 border-t border-stone-100">
+            <span>{inProgressEnquiries} Active</span>
             <span>{closedEnquiries} Closed</span>
           </div>
         </div>
