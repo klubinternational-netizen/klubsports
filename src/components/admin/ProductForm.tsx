@@ -5,13 +5,15 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import {
   Upload,
-  Plus,
   Trash2,
   CheckCircle2,
   AlertCircle,
   Loader2,
   ArrowLeft,
   Star,
+  IndianRupee,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 import { productSchema, ProductInput } from '@/lib/validations/product';
 
@@ -28,32 +30,52 @@ interface Props {
 
 export default function ProductForm({ initialData, isEdit = false }: Props) {
   const router = useRouter();
+
+  // Categories
   const [categories, setCategories] = useState<CategoryOption[]>([]);
+
+  // 1. Product Name
   const [name, setName] = useState(initialData?.name || '');
-  const [slug, setSlug] = useState(initialData?.slug || '');
+
+  // 2. Category
   const [categoryId, setCategoryId] = useState(
     initialData?.categoryId?._id || initialData?.categoryId || ''
   );
-  const [shortDescription, setShortDescription] = useState(initialData?.shortDescription || '');
-  const [description, setDescription] = useState(initialData?.description || '');
-  const [features, setFeatures] = useState<string[]>(initialData?.features || ['']);
-  const [primaryImageUrl, setPrimaryImageUrl] = useState(
-    initialData?.images?.find((img: any) => img.isPrimary)?.url || initialData?.images?.[0]?.url || ''
+
+  // 3. Price
+  const [price, setPrice] = useState<string | number>(
+    initialData?.price !== undefined && initialData?.price !== null ? initialData.price : ''
+  );
+
+  // 4. Description
+  const [description, setDescription] = useState(
+    initialData?.description || initialData?.shortDescription || ''
+  );
+
+  // 5. Visibility on public website
+  const [isPublished, setIsPublished] = useState<boolean>(
+    initialData?.isPublished !== undefined ? initialData.isPublished : true
+  );
+
+  // 6. Multiple Images Upload
+  const [primaryImageUrl, setPrimaryImageUrl] = useState<string>(
+    initialData?.images?.find((img: any) => img.isPrimary)?.url ||
+      initialData?.images?.[0]?.url ||
+      ''
   );
   const [galleryImages, setGalleryImages] = useState<Array<{ url: string; alt: string }>>(
     initialData?.images?.filter((img: any) => !img.isPrimary) || []
   );
-  const [isPublished, setIsPublished] = useState<boolean>(initialData?.isPublished ?? true);
-  const [sortOrder, setSortOrder] = useState<number>(initialData?.sortOrder || 0);
-  const [seoTitle, setSeoTitle] = useState(initialData?.seo?.title || '');
-  const [seoDescription, setSeoDescription] = useState(initialData?.seo?.description || '');
 
+  // Slug (silently generated from name)
+  const [slug, setSlug] = useState(initialData?.slug || '');
+
+  // Status & Progress
   const [isUploading, setIsUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState<{ current: number; total: number } | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
-  const [isSlugManuallyEdited, setIsSlugManuallyEdited] = useState(Boolean(initialData?.slug));
-  const [showSlugField, setShowSlugField] = useState(false);
 
   const generateSlug = (text: string) =>
     text
@@ -62,40 +84,21 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '');
 
-  // Auto-generate slug continuously from name if not manually edited
-  const handleNameChange = (val: string) => {
-    setName(val);
-    if (!isSlugManuallyEdited && !isEdit) {
-      setSlug(generateSlug(val));
-    }
-  };
-
+  // Load categories
   useEffect(() => {
     fetch('/api/admin/categories')
       .then((res) => res.json())
       .then((data) => {
-        setCategories(data.categories || []);
-        if (!categoryId && data.categories?.length > 0) {
-          setCategoryId(data.categories[0]._id);
+        const list = data.categories || [];
+        setCategories(list);
+        if (!categoryId && list.length > 0) {
+          setCategoryId(list[0]._id);
         }
       })
       .catch((err) => console.error('Failed to load categories:', err));
   }, []);
 
-  // Feature handling
-  const handleAddFeature = () => setFeatures([...features, '']);
-  const handleRemoveFeature = (index: number) => {
-    setFeatures(features.filter((_, idx) => idx !== index));
-  };
-  const handleFeatureChange = (index: number, val: string) => {
-    const updated = [...features];
-    updated[index] = val;
-    setFeatures(updated);
-  };
-
-  const [uploadProgress, setUploadProgress] = useState<{ current: number; total: number } | null>(null);
-
-  // Multi-image direct upload (No URL needed)
+  // Multiple files upload
   const handleMultipleFilesUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     if (files.length === 0) return;
@@ -133,14 +136,14 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
         if (!newPrimary) {
           newPrimary = url;
         } else {
-          newGallery.push({ url, alt: `${name || 'Product'} gallery` });
+          newGallery.push({ url, alt: `${name || 'Product'} image` });
         }
       });
 
       setPrimaryImageUrl(newPrimary);
       setGalleryImages(newGallery);
     } catch (err: any) {
-      setError(err.message || 'Image upload failed');
+      setError(err.message || 'Image upload failed. Please try again.');
     } finally {
       setIsUploading(false);
       setUploadProgress(null);
@@ -182,14 +185,28 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
     setIsSubmitting(true);
 
     try {
-      const cleanedFeatures = features.map((f) => f.trim()).filter(Boolean);
+      if (!name.trim()) {
+        throw new Error('Please enter a product name');
+      }
+
+      if (!categoryId) {
+        throw new Error('Please select a product category');
+      }
+
+      const finalSlug = (slug || generateSlug(name) || `product-${Date.now()}`).trim().toLowerCase();
+      const numPrice = price === '' ? 0 : Number(price);
+
       const imagesPayload = [
-        {
-          url: primaryImageUrl || '/brand/logo-stacked.png',
-          alt: `${name} primary photo`,
-          isPrimary: true,
-          sortOrder: 0,
-        },
+        ...(primaryImageUrl
+          ? [
+              {
+                url: primaryImageUrl,
+                alt: `${name} primary photo`,
+                isPrimary: true,
+                sortOrder: 0,
+              },
+            ]
+          : []),
         ...galleryImages.map((g, idx) => ({
           url: g.url,
           alt: g.alt || `${name} gallery ${idx + 1}`,
@@ -198,24 +215,20 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
         })),
       ];
 
-      const finalSlug = (slug || generateSlug(name)).trim().toLowerCase();
-      if (!finalSlug) {
-        throw new Error('Please enter a product name to generate a URL web link');
-      }
-
       const payload: ProductInput = {
-        name,
+        name: name.trim(),
         slug: finalSlug,
         categoryId,
-        shortDescription,
-        description,
-        features: cleanedFeatures,
+        price: isNaN(numPrice) ? 0 : numPrice,
+        description: description.trim(),
+        shortDescription: description.trim().slice(0, 160),
+        features: initialData?.features || [],
         images: imagesPayload,
         isPublished,
-        sortOrder: Number(sortOrder) || 0,
+        sortOrder: initialData?.sortOrder || 0,
         seo: {
-          title: seoTitle || `${name} | KSports`,
-          description: seoDescription || shortDescription,
+          title: `${name.trim()} | KSports`,
+          description: description.trim().slice(0, 160),
         },
       };
 
@@ -225,9 +238,7 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
         throw new Error(firstError || 'Validation error in product fields');
       }
 
-      const endpoint = isEdit
-        ? `/api/admin/products/${initialData._id}`
-        : '/api/admin/products';
+      const endpoint = isEdit ? `/api/admin/products/${initialData._id}` : '/api/admin/products';
       const method = isEdit ? 'PATCH' : 'POST';
 
       const res = await fetch(endpoint, {
@@ -243,14 +254,14 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
 
       setSuccess(
         isEdit
-          ? 'Product updated successfully. Changes are now live on the website!'
-          : 'Product created and published immediately!'
+          ? 'Product updated successfully! Changes are live on the website.'
+          : 'Product created successfully and published to catalogue!'
       );
 
       setTimeout(() => {
         router.push('/admin/products');
         router.refresh();
-      }, 1200);
+      }, 1000);
     } catch (err: any) {
       setError(err.message || 'Failed to save product');
     } finally {
@@ -260,18 +271,19 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
 
   return (
     <div className="space-y-6">
+      {/* Top Navigation */}
       <div className="flex items-center justify-between">
         <button
           type="button"
           onClick={() => router.back()}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-600 hover:text-brand-orange transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-600 hover:text-brand-orange transition-colors cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Products</span>
         </button>
 
         <span className="text-xs text-stone-400">
-          * Immediate publishing workflow active
+          * Immediate live catalogue sync active
         </span>
       </div>
 
@@ -290,14 +302,14 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
       )}
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Left Column: Core Fields */}
-        <div className="lg:col-span-8 space-y-6">
-          <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-sm space-y-5">
+        {/* Left Column: Essential Details (Name, Category, Price, Description, Visibility) */}
+        <div className="lg:col-span-7 space-y-6">
+          <div className="bg-white p-6 sm:p-7 rounded-2xl border border-stone-200 shadow-sm space-y-5">
             <h2 className="text-sm font-bold text-stone-900 uppercase tracking-wider pb-3 border-b border-stone-100">
-              Basic Product Information
+              Product Details
             </h2>
 
-            {/* Product Name */}
+            {/* 1. Product Name */}
             <div>
               <label htmlFor="pname" className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
                 Product Name <span className="text-brand-orange">*</span>
@@ -307,194 +319,26 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
                 type="text"
                 required
                 value={name}
-                onChange={(e) => handleNameChange(e.target.value)}
-                placeholder="e.g. KSports Velocity Pro Carbon"
+                onChange={(e) => {
+                  setName(e.target.value);
+                  if (!isEdit) setSlug(generateSlug(e.target.value));
+                }}
+                placeholder="e.g. KSports StridePro Jogger (Men)"
                 className="w-full px-4 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white transition-colors"
               />
-
-              {/* Automated Web Link Preview */}
-              <div className="mt-2.5 flex flex-wrap items-center justify-between text-xs text-stone-500 gap-2">
-                <div className="flex items-center gap-1.5 overflow-hidden">
-                  <span className="text-stone-400 text-[11px] uppercase tracking-wider font-semibold">Web Link:</span>
-                  <span className="inline-flex items-center px-2 py-0.5 rounded bg-stone-100 text-stone-700 text-xs font-medium">
-                    /products/{slug || generateSlug(name) || 'product-name'}
-                  </span>
-                  <span className="text-[11px] text-emerald-600 font-medium">
-                    (Auto-generated)
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setShowSlugField(!showSlugField)}
-                  className="text-[11px] font-semibold text-stone-500 hover:text-stone-900 underline transition-colors"
-                >
-                  {showSlugField ? 'Hide custom link' : 'Customize link'}
-                </button>
-              </div>
-
-              {showSlugField && (
-                <div className="mt-3 p-3.5 bg-stone-50 rounded-lg border border-stone-200 space-y-1">
-                  <label htmlFor="pslug" className="block text-[11px] font-bold uppercase tracking-wider text-stone-600">
-                    Custom URL Slug (Optional)
-                  </label>
-                  <input
-                    id="pslug"
-                    type="text"
-                    value={slug}
-                    onChange={(e) => {
-                      setIsSlugManuallyEdited(true);
-                      setSlug(generateSlug(e.target.value));
-                    }}
-                    placeholder="e.g. ksports-velocity-pro-carbon"
-                    className="w-full px-3 py-1.5 text-xs bg-white border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange"
-                  />
-                  <p className="text-[10px] text-stone-400">
-                    Only change this if you want a custom link. Letters, numbers, and hyphens only.
-                  </p>
-                </div>
-              )}
             </div>
 
-            {/* Short Description */}
-            <div>
-              <label htmlFor="pshort" className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
-                Short Description (Catalogue Preview)
-              </label>
-              <textarea
-                id="pshort"
-                rows={2}
-                value={shortDescription}
-                onChange={(e) => setShortDescription(e.target.value)}
-                placeholder="Concise overview for catalogue cards..."
-                className="w-full px-4 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white"
-              />
-            </div>
-
-            {/* Full Description */}
-            <div>
-              <label htmlFor="pdesc" className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
-                Full Technical Description
-              </label>
-              <textarea
-                id="pdesc"
-                rows={4}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Comprehensive technical and engineering details..."
-                className="w-full px-4 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white"
-              />
-            </div>
-          </div>
-
-          {/* Features Builder */}
-          <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-sm space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-stone-100">
-              <h2 className="text-sm font-bold text-stone-900 uppercase tracking-wider">
-                Approved Features & Engineering Specs
-              </h2>
-              <button
-                type="button"
-                onClick={handleAddFeature}
-                className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-brand-orange bg-orange-50 hover:bg-orange-100 rounded transition-colors"
-              >
-                <Plus className="w-3.5 h-3.5" />
-                <span>Add Feature</span>
-              </button>
-            </div>
-
-            <div className="space-y-3">
-              {features.map((feature, idx) => (
-                <div key={idx} className="flex items-center gap-2">
-                  <input
-                    type="text"
-                    value={feature}
-                    onChange={(e) => handleFeatureChange(idx, e.target.value)}
-                    placeholder={`e.g. Curved carbon-composite propulsion plate`}
-                    className="flex-1 px-3.5 py-2 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white"
-                  />
-                  {features.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveFeature(idx)}
-                      className="p-2 text-stone-400 hover:text-red-600 rounded"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* SEO Metadata */}
-          <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-sm space-y-4">
-            <h2 className="text-sm font-bold text-stone-900 uppercase tracking-wider pb-3 border-b border-stone-100">
-              Search Engine Optimization (SEO)
-            </h2>
-            <div>
-              <label htmlFor="pseotitle" className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
-                SEO Title
-              </label>
-              <input
-                id="pseotitle"
-                type="text"
-                value={seoTitle}
-                onChange={(e) => setSeoTitle(e.target.value)}
-                placeholder={`${name || 'Footwear'} | KSports Catalogue`}
-                className="w-full px-4 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white"
-              />
-            </div>
-            <div>
-              <label htmlFor="pseodesc" className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
-                SEO Meta Description
-              </label>
-              <textarea
-                id="pseodesc"
-                rows={2}
-                value={seoDescription}
-                onChange={(e) => setSeoDescription(e.target.value)}
-                placeholder="Meta description for search results..."
-                className="w-full px-4 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Right Column: Taxonomy, Imagery, Publishing */}
-        <div className="lg:col-span-4 space-y-6">
-          {/* Publishing Controls */}
-          <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-sm space-y-4">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-stone-700 pb-2 border-b border-stone-100">
-              Publishing Settings
-            </h3>
-
-            {/* Publication Toggle */}
-            <div className="flex items-center justify-between p-3 rounded-lg bg-stone-50 border border-stone-200">
-              <div>
-                <span className="text-xs font-bold text-stone-800 block">Publication Status</span>
-                <span className="text-[11px] text-stone-500">
-                  {isPublished ? 'Live on public website' : 'Hidden from public'}
-                </span>
-              </div>
-              <input
-                type="checkbox"
-                checked={isPublished}
-                onChange={(e) => setIsPublished(e.target.checked)}
-                className="w-4 h-4 text-brand-orange rounded focus:ring-brand-orange accent-brand-orange cursor-pointer"
-              />
-            </div>
-
-            {/* Category Selector */}
+            {/* 2. Category Selector */}
             <div>
               <label htmlFor="pcat" className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
-                Category Taxonomy <span className="text-brand-orange">*</span>
+                Category <span className="text-brand-orange">*</span>
               </label>
               <select
                 id="pcat"
                 required
                 value={categoryId}
                 onChange={(e) => setCategoryId(e.target.value)}
-                className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-800 font-medium focus:outline-none focus:ring-2 focus:ring-brand-orange"
+                className="w-full px-4 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 font-medium focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white cursor-pointer"
               >
                 <option value="">Select Category</option>
                 {categories.map((c) => (
@@ -505,45 +349,81 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
               </select>
             </div>
 
-            {/* Sort Order */}
+            {/* 3. Product Price */}
             <div>
-              <label htmlFor="psort" className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
-                Catalogue Display Order
+              <label htmlFor="pprice" className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
+                Price (₹) <span className="text-stone-400 font-normal lowercase">(optional)</span>
               </label>
-              <input
-                id="psort"
-                type="number"
-                value={sortOrder}
-                onChange={(e) => setSortOrder(parseInt(e.target.value, 10) || 0)}
-                className="w-full px-3.5 py-2 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-800 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+              <div className="relative">
+                <IndianRupee className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <input
+                  id="pprice"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  placeholder="e.g. 2499"
+                  className="w-full pl-10 pr-4 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white"
+                />
+              </div>
+            </div>
+
+            {/* 4. Product Description */}
+            <div>
+              <label htmlFor="pdesc" className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
+                Product Description
+              </label>
+              <textarea
+                id="pdesc"
+                rows={5}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Enter footwear details, specifications, materials, or features..."
+                className="w-full px-4 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white resize-y"
               />
             </div>
 
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 text-xs font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-orange-dark active:scale-[0.98] rounded-lg transition-all shadow-md hover:shadow-lg disabled:opacity-60"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>Saving Changes...</span>
-                </>
-              ) : (
-                <span>{isEdit ? 'Update & Publish' : 'Create & Publish'}</span>
-              )}
-            </button>
+            {/* 5. Visibility on Public Website */}
+            <div className="pt-2">
+              <label className="flex items-center justify-between p-4 rounded-xl bg-orange-50/50 border border-orange-200 cursor-pointer hover:bg-orange-50/80 transition-colors">
+                <div className="flex items-center gap-3">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${isPublished ? 'bg-emerald-100 text-emerald-700' : 'bg-stone-200 text-stone-600'}`}>
+                    {isPublished ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold text-stone-900 block">
+                      Visible on Public Website
+                    </span>
+                    <span className="text-[11px] text-stone-500">
+                      {isPublished
+                        ? 'Published — Visible to customers on the website'
+                        : 'Hidden / Draft — Not visible on the public website'}
+                    </span>
+                  </div>
+                </div>
+                <input
+                  type="checkbox"
+                  checked={isPublished}
+                  onChange={(e) => setIsPublished(e.target.checked)}
+                  className="w-5 h-5 text-brand-orange rounded focus:ring-brand-orange accent-brand-orange cursor-pointer"
+                />
+              </label>
+            </div>
           </div>
+        </div>
 
-          {/* Product Photography & Gallery (Upload Only, No URLs, Multi-Selection) */}
-          <div className="bg-white p-5 sm:p-6 rounded-xl border border-stone-200 shadow-sm space-y-4">
+        {/* Right Column: Multiple Images Upload & Publish Action */}
+        <div className="lg:col-span-5 space-y-6">
+          {/* Product Photography Card */}
+          <div className="bg-white p-5 sm:p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-stone-100">
               <div>
                 <h3 className="text-xs font-bold uppercase tracking-wider text-stone-900">
-                  Product Photography
+                  Product Images
                 </h3>
                 <p className="text-[11px] text-stone-500 mt-0.5">
-                  Select one or multiple images from device (no URLs needed).
+                  Select one or multiple photos from your device
                 </p>
               </div>
               <span className="text-xs font-bold text-brand-orange bg-orange-50 px-2.5 py-1 rounded-full border border-orange-200">
@@ -551,33 +431,33 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
               </span>
             </div>
 
-            {/* Direct Multi-File Upload Dropzone / Button */}
-            <label className="w-full flex flex-col items-center justify-center p-6 sm:p-8 rounded-xl border-2 border-dashed border-orange-300 hover:border-brand-orange bg-orange-50/40 hover:bg-orange-50/80 cursor-pointer transition-all group text-center">
+            {/* Direct Multi-Image Upload Dropzone */}
+            <label className="w-full flex flex-col items-center justify-center p-6 rounded-xl border-2 border-dashed border-orange-300 hover:border-brand-orange bg-orange-50/40 hover:bg-orange-50/70 cursor-pointer transition-all group text-center">
               {isUploading ? (
-                <div className="flex flex-col items-center space-y-2">
+                <div className="flex flex-col items-center space-y-2 py-2">
                   <Loader2 className="w-8 h-8 animate-spin text-brand-orange" />
                   <span className="text-xs font-bold text-stone-800">
                     {uploadProgress
-                      ? `Uploading Image ${uploadProgress.current} of ${uploadProgress.total}...`
+                      ? `Uploading Photo ${uploadProgress.current} of ${uploadProgress.total}...`
                       : 'Uploading Images...'}
                   </span>
-                  <span className="text-[10px] text-stone-500">Optimizing and saving to media storage...</span>
+                  <span className="text-[10px] text-stone-500">Saving to media storage...</span>
                 </div>
               ) : (
-                <div className="flex flex-col items-center space-y-2">
-                  <div className="w-12 h-12 rounded-full bg-white shadow-xs flex items-center justify-center text-brand-orange group-hover:scale-110 transition-transform">
-                    <Upload className="w-6 h-6" />
+                <div className="flex flex-col items-center space-y-2 py-2">
+                  <div className="w-11 h-11 rounded-full bg-white shadow-xs flex items-center justify-center text-brand-orange group-hover:scale-110 transition-transform">
+                    <Upload className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-xs sm:text-sm font-bold text-stone-900 block">
-                      Click or Tap to Select Product Images
+                      Choose Multiple Images
                     </span>
                     <span className="text-[11px] text-stone-500 block mt-0.5">
-                      Supports selecting multiple images at once (JPG, PNG, WEBP)
+                      Select multiple photos at once (JPG, PNG, WEBP)
                     </span>
                   </div>
                   <span className="inline-flex items-center gap-1 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-orange bg-white rounded-full border border-orange-200 shadow-2xs">
-                    + Choose Multiple Images
+                    + Upload Images
                   </span>
                 </div>
               )}
@@ -591,13 +471,13 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
               />
             </label>
 
-            {/* Uploaded Photos Grid */}
+            {/* Photos Previews */}
             {primaryImageUrl ? (
-              <div className="space-y-4 pt-1">
-                {/* Primary Cover Image Preview */}
+              <div className="space-y-3 pt-2">
+                {/* Primary Cover Image */}
                 <div>
                   <span className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1.5">
-                    Primary Cover Photo
+                    Cover Photo (Primary)
                   </span>
                   <div className="relative aspect-[4/3] rounded-xl overflow-hidden border-2 border-brand-orange/40 bg-stone-100 shadow-sm group">
                     <Image
@@ -610,25 +490,25 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
                     <div className="absolute top-2 left-2">
                       <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-brand-orange text-white text-[10px] font-bold uppercase tracking-wider shadow-sm">
                         <Star className="w-3 h-3 fill-white" />
-                        Primary Cover
+                        Main Photo
                       </span>
                     </div>
                     <button
                       type="button"
                       onClick={handleRemovePrimary}
-                      className="absolute top-2 right-2 p-1.5 rounded-lg bg-black/70 hover:bg-red-600 text-white transition-colors"
-                      title="Remove primary image"
+                      className="absolute top-2 right-2 p-1.5 rounded-lg bg-black/70 hover:bg-red-600 text-white transition-colors cursor-pointer"
+                      title="Remove image"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
 
-                {/* Additional Gallery Photos */}
+                {/* Additional Photos */}
                 {galleryImages.length > 0 && (
                   <div>
                     <span className="text-[11px] font-bold uppercase tracking-wider text-stone-600 block mb-1.5">
-                      Additional Gallery Views ({galleryImages.length})
+                      Additional Photos ({galleryImages.length})
                     </span>
                     <div className="grid grid-cols-2 gap-2.5">
                       {galleryImages.map((g, idx) => (
@@ -647,7 +527,7 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
                             <button
                               type="button"
                               onClick={() => handleRemoveGallery(idx)}
-                              className="self-end p-1 rounded bg-black/70 hover:bg-red-600 text-white transition-colors"
+                              className="self-end p-1 rounded bg-black/70 hover:bg-red-600 text-white transition-colors cursor-pointer"
                               title="Delete photo"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
@@ -655,9 +535,9 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
                             <button
                               type="button"
                               onClick={() => handleSetPrimary(idx)}
-                              className="w-full py-1 px-1.5 rounded bg-brand-orange hover:bg-brand-orange-dark text-white text-[10px] font-bold uppercase tracking-wider transition-colors text-center shadow-xs"
+                              className="w-full py-1 px-1.5 rounded bg-brand-orange hover:bg-brand-orange-dark text-white text-[10px] font-bold uppercase tracking-wider transition-colors text-center shadow-xs cursor-pointer"
                             >
-                              Make Primary
+                              Set as Main
                             </button>
                           </div>
                         </div>
@@ -668,9 +548,27 @@ export default function ProductForm({ initialData, isEdit = false }: Props) {
               </div>
             ) : (
               <div className="p-4 rounded-xl bg-stone-50 border border-stone-200 text-center text-xs text-stone-400">
-                No images uploaded yet. Select one or multiple images above.
+                No images selected yet. Tap above to upload.
               </div>
             )}
+
+            {/* Save / Publish Button */}
+            <div className="pt-2">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full flex items-center justify-center gap-2 py-3.5 px-4 text-xs font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-orange-dark active:scale-[0.98] rounded-xl transition-all shadow-md hover:shadow-lg disabled:opacity-60 cursor-pointer"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Saving Product...</span>
+                  </>
+                ) : (
+                  <span>{isEdit ? 'Update Product' : 'Create & Publish Product'}</span>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </form>

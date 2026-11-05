@@ -12,7 +12,7 @@ export default function NewProductPage() {
           Add New Footwear Model
         </h1>
         <p className="text-xs text-stone-500 mt-1">
-          Create and immediately publish sports footwear to the public catalogue.
+          Add product name, category, price, description, images, and publish to the website.
         </p>
       </div>
 

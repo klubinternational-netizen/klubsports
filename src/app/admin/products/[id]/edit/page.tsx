@@ -30,7 +30,7 @@ export default async function EditProductPage({ params }: Props) {
           Edit Footwear Model
         </h1>
         <p className="text-xs text-stone-500 mt-1">
-          Modify technical specifications, gallery images, category classification, or SEO metadata.
+          Update product name, category, price, description, visibility, and images.
         </p>
       </div>
 

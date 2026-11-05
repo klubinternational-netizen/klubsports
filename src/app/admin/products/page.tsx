@@ -20,6 +20,7 @@ interface ProductItem {
   _id: string;
   name: string;
   slug: string;
+  price?: number;
   categoryId: {
     _id: string;
     name: string;
@@ -280,9 +281,16 @@ export default function AdminProductsPage() {
                             />
                           </div>
                           <div className="min-w-0">
-                            <span className="font-bold text-stone-900 block truncate max-w-xs sm:max-w-sm">
-                              {p.name}
-                            </span>
+                            <div className="flex items-center gap-2">
+                              <span className="font-bold text-stone-900 block truncate max-w-xs sm:max-w-sm">
+                                {p.name}
+                              </span>
+                              {Boolean(p.price) && (
+                                <span className="text-[11px] font-bold text-brand-orange bg-orange-50 px-1.5 py-0.5 rounded border border-orange-200 shrink-0">
+                                  ₹{p.price}
+                                </span>
+                              )}
+                            </div>
                             <span className="text-[11px] text-stone-400 line-clamp-1">
                               {p.shortDescription}
                             </span>
