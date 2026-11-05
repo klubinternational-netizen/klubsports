@@ -325,17 +325,19 @@ export default async function AboutPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-8">
             {pillars.map((pillar: any, idx: number) => (
               <div
                 key={idx}
-                className="bg-white p-8 rounded-xl border border-stone-200 shadow-sm space-y-4 hover:border-brand-orange/40 transition-colors"
+                className={`bg-white p-4 sm:p-8 rounded-xl border border-stone-200 shadow-sm space-y-2.5 sm:space-y-4 hover:border-brand-orange/40 transition-colors ${
+                  idx === 2 ? 'col-span-2 md:col-span-1' : ''
+                }`}
               >
-                <div className="w-10 h-10 rounded-lg bg-brand-orange-light text-brand-orange flex items-center justify-center font-bold">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-brand-orange-light text-brand-orange flex items-center justify-center font-bold text-xs sm:text-base">
                   0{idx + 1}
                 </div>
-                <h3 className="text-lg font-bold text-stone-900">{pillar.title}</h3>
-                <p className="text-sm text-stone-600 leading-relaxed">{pillar.description}</p>
+                <h3 className="text-sm sm:text-lg font-bold text-stone-900">{pillar.title}</h3>
+                <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">{pillar.description}</p>
               </div>
             ))}
           </div>

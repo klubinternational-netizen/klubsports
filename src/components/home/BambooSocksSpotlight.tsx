@@ -119,60 +119,60 @@ export default function BambooSocksSpotlight() {
               </p>
             </div>
 
-            {/* 4 Authentic Core Specification Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="p-3.5 rounded-2xl bg-white border border-emerald-100 shadow-xs flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+            {/* 4 Authentic Core Specification Cards - Mobile 2-by-2 Grid */}
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+              <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white border border-emerald-100 shadow-xs flex flex-col sm:flex-row items-start gap-2 sm:gap-3">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
                   <Leaf className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wide">
+                  <h4 className="text-[11px] sm:text-xs font-bold text-stone-900 uppercase tracking-wide">
                     100% Bamboo Yarn
                   </h4>
-                  <p className="text-[11px] text-stone-500 mt-0.5 leading-snug">
-                    Naturally hypoallergenic &amp; twice as soft as cotton.
+                  <p className="text-[10px] sm:text-[11px] text-stone-500 mt-0.5 leading-snug">
+                    Naturally hypoallergenic &amp; ultra soft.
                   </p>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white border border-emerald-100 shadow-xs flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+              <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white border border-emerald-100 shadow-xs flex flex-col sm:flex-row items-start gap-2 sm:gap-3">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wide">
+                  <h4 className="text-[11px] sm:text-xs font-bold text-stone-900 uppercase tracking-wide">
                     Bamboo Kun Anti-Bacterial
                   </h4>
-                  <p className="text-[11px] text-stone-500 mt-0.5 leading-snug">
-                    Naturally eliminates match sweat odor wash after wash.
+                  <p className="text-[10px] sm:text-[11px] text-stone-500 mt-0.5 leading-snug">
+                    Naturally eliminates match sweat odor.
                   </p>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white border border-emerald-100 shadow-xs flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+              <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white border border-emerald-100 shadow-xs flex flex-col sm:flex-row items-start gap-2 sm:gap-3">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
                   <PackageCheck className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wide">
+                  <h4 className="text-[11px] sm:text-xs font-bold text-stone-900 uppercase tracking-wide">
                     Zero-Plastic Eco Tube
                   </h4>
-                  <p className="text-[11px] text-stone-500 mt-0.5 leading-snug">
-                    Signature recyclable cylindrical kraft packaging.
+                  <p className="text-[10px] sm:text-[11px] text-stone-500 mt-0.5 leading-snug">
+                    Recyclable kraft tube packaging.
                   </p>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white border border-emerald-100 shadow-xs flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+              <div className="p-2.5 sm:p-3.5 rounded-2xl bg-white border border-emerald-100 shadow-xs flex flex-col sm:flex-row items-start gap-2 sm:gap-3">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wide">
-                    Athletic Arch Compression
+                  <h4 className="text-[11px] sm:text-xs font-bold text-stone-900 uppercase tracking-wide">
+                    Arch Compression
                   </h4>
-                  <p className="text-[11px] text-stone-500 mt-0.5 leading-snug">
-                    Reinforced heel &amp; seamless blister-free toe closure.
+                  <p className="text-[10px] sm:text-[11px] text-stone-500 mt-0.5 leading-snug">
+                    Reinforced heel &amp; blister-free closure.
                   </p>
                 </div>
               </div>

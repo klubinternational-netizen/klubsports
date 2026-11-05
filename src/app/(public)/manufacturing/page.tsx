@@ -88,25 +88,25 @@ export default async function ManufacturingPage() {
         </div>
       </section>
 
-      {/* Facilities Grid */}
+      {/* Facilities Grid - Mobile 2-by-2 Grid */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-3 sm:gap-8">
             {capabilities.map((cap: any, idx: number) => (
               <div
                 key={idx}
-                className="bg-stone-50 rounded-2xl p-8 border border-stone-200 hover:border-brand-orange/40 hover:shadow-premium transition-all duration-300 flex flex-col justify-between"
+                className="bg-stone-50 rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-stone-200 hover:border-brand-orange/40 hover:shadow-premium transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
+                  <div className="text-xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
                     {cap.figure}
                   </div>
-                  <h3 className="text-xl font-bold text-stone-900 mt-3">{cap.title}</h3>
-                  <p className="text-sm text-stone-600 mt-2 leading-relaxed">{cap.detail}</p>
+                  <h3 className="text-sm sm:text-xl font-bold text-stone-900 mt-1.5 sm:mt-3">{cap.title}</h3>
+                  <p className="text-[11px] sm:text-sm text-stone-600 mt-1 sm:mt-2 leading-relaxed">{cap.detail}</p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-stone-200/80 flex items-center gap-2 text-xs font-semibold text-brand-orange uppercase tracking-wider">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>Industrial Standard Manufacturing</span>
+                <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-stone-200/80 flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-semibold text-brand-orange uppercase tracking-wider">
+                  <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <span className="line-clamp-1">Industrial Standard</span>
                 </div>
               </div>
             ))}
@@ -134,16 +134,16 @@ export default async function ManufacturingPage() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="p-4 rounded-lg bg-stone-800/80 border border-stone-700">
-                  <Cpu className="w-5 h-5 text-brand-orange mb-2" />
-                  <h4 className="text-sm font-bold text-white">Sole Vulcanization & Bonding</h4>
-                  <p className="text-xs text-stone-400 mt-1">High-pressure hydraulic press bonding for zero sole separation.</p>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-2">
+                <div className="p-3 sm:p-4 rounded-lg bg-stone-800/80 border border-stone-700">
+                  <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-brand-orange mb-1.5 sm:mb-2" />
+                  <h4 className="text-xs sm:text-sm font-bold text-white">Sole Vulcanization & Bonding</h4>
+                  <p className="text-[11px] sm:text-xs text-stone-400 mt-1">High-pressure press bonding for zero separation.</p>
                 </div>
-                <div className="p-4 rounded-lg bg-stone-800/80 border border-stone-700">
-                  <ShieldCheck className="w-5 h-5 text-brand-orange mb-2" />
-                  <h4 className="text-sm font-bold text-white">Dimensional Quality Checks</h4>
-                  <p className="text-xs text-stone-400 mt-1">Strict tolerance verification across all standard size runs.</p>
+                <div className="p-3 sm:p-4 rounded-lg bg-stone-800/80 border border-stone-700">
+                  <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-brand-orange mb-1.5 sm:mb-2" />
+                  <h4 className="text-xs sm:text-sm font-bold text-white">Dimensional Quality Checks</h4>
+                  <p className="text-[11px] sm:text-xs text-stone-400 mt-1">Strict tolerance verification across all sizes.</p>
                 </div>
               </div>
             </div>

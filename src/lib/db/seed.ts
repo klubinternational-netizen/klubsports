@@ -579,8 +579,8 @@ For questions regarding this privacy policy or to update your business informati
         workingHours: 'Monday – Saturday: 9:00 AM – 6:00 PM IST',
       },
       socialLinks: {
-        linkedin: 'https://linkedin.com/company/ksports',
-        instagram: '',
+        instagram: 'https://www.instagram.com/ksports.india?utm_source=ig_web_button_share_sheet&vrfl=ZDNlZDc0MzIxNw==',
+        linkedin: '',
         facebook: '',
         twitter: '',
         youtube: '',

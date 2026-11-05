@@ -189,16 +189,16 @@ export default async function HomePage() {
               <p className="text-stone-600 text-base leading-relaxed">
                 KSports is an Indian corporate sports footwear manufacturer dedicated to producing athletic footwear built to the rigorous demands of athletes, competitive sports academies, and institutional programs nationwide.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="p-5 rounded-xl bg-stone-50 border border-stone-200">
-                  <Layers className="w-6 h-6 text-brand-orange mb-3" />
-                  <h4 className="text-sm font-bold uppercase tracking-wider text-stone-950">Surface-Specific Compounds</h4>
-                  <p className="text-xs text-stone-600 mt-1.5 leading-relaxed">Non-marking court gums, sprint Pebax plates, and cleated outsoles.</p>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-2">
+                <div className="p-3.5 sm:p-5 rounded-xl bg-stone-50 border border-stone-200">
+                  <Layers className="w-5 h-5 sm:w-6 sm:h-6 text-brand-orange mb-2 sm:mb-3" />
+                  <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-stone-950">Surface-Specific Compounds</h4>
+                  <p className="text-[11px] sm:text-xs text-stone-600 mt-1 sm:mt-1.5 leading-relaxed">Non-marking court gums, sprint Pebax plates, and cleated outsoles.</p>
                 </div>
-                <div className="p-5 rounded-xl bg-stone-50 border border-stone-200">
-                  <Award className="w-6 h-6 text-brand-orange mb-3" />
-                  <h4 className="text-sm font-bold uppercase tracking-wider text-stone-950">Institutional Supply</h4>
-                  <p className="text-xs text-stone-600 mt-1.5 leading-relaxed">Structured procurement processes for teams, tournaments, and distributors.</p>
+                <div className="p-3.5 sm:p-5 rounded-xl bg-stone-50 border border-stone-200">
+                  <Award className="w-5 h-5 sm:w-6 sm:h-6 text-brand-orange mb-2 sm:mb-3" />
+                  <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-stone-950">Institutional Supply</h4>
+                  <p className="text-[11px] sm:text-xs text-stone-600 mt-1 sm:mt-1.5 leading-relaxed">Structured procurement processes for teams, tournaments, and distributors.</p>
                 </div>
               </div>
               <div className="pt-2">
@@ -242,24 +242,30 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-stone-900/90 p-7 rounded-xl border border-stone-800">
-              <h3 className="font-display text-lg font-bold uppercase tracking-tight text-white mb-2">Sole Molding & Compounds</h3>
-              <p className="text-xs text-stone-400 leading-relaxed">
-                Precision tooling for dual-density EVA midsoles, virgin gum rubbers, and abrasion-resistant polyurethane outsoles tailored to sport-specific traction.
-              </p>
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-6">
+            <div className="bg-stone-900/90 p-4 sm:p-7 rounded-xl border border-stone-800 flex flex-col justify-between">
+              <div>
+                <h3 className="font-display text-sm sm:text-lg font-bold uppercase tracking-tight text-white mb-1.5 sm:mb-2">Sole Molding & Compounds</h3>
+                <p className="text-[11px] sm:text-xs text-stone-400 leading-relaxed">
+                  Precision tooling for dual-density EVA midsoles, virgin gum rubbers, and abrasion-resistant polyurethane outsoles tailored to sport-specific traction.
+                </p>
+              </div>
             </div>
-            <div className="bg-stone-900/90 p-7 rounded-xl border border-stone-800">
-              <h3 className="font-display text-lg font-bold uppercase tracking-tight text-white mb-2">Upper Construction & Mesh</h3>
-              <p className="text-xs text-stone-400 leading-relaxed">
-                Engineered jacquard meshes, reinforced synthetic toe caps, and high-abrasion stitch assemblies designed for torsional stability and longevity.
-              </p>
+            <div className="bg-stone-900/90 p-4 sm:p-7 rounded-xl border border-stone-800 flex flex-col justify-between">
+              <div>
+                <h3 className="font-display text-sm sm:text-lg font-bold uppercase tracking-tight text-white mb-1.5 sm:mb-2">Upper Construction & Mesh</h3>
+                <p className="text-[11px] sm:text-xs text-stone-400 leading-relaxed">
+                  Engineered jacquard meshes, reinforced synthetic toe caps, and high-abrasion stitch assemblies designed for torsional stability and longevity.
+                </p>
+              </div>
             </div>
-            <div className="bg-stone-900/90 p-7 rounded-xl border border-stone-800">
-              <h3 className="font-display text-lg font-bold uppercase tracking-tight text-white mb-2">High-Capacity Scaling</h3>
-              <p className="text-xs text-stone-400 leading-relaxed">
-                Configured to meet large-scale seasonal sports procurement, statewide distributor channels, and institutional tenders on strict delivery schedules.
-              </p>
+            <div className="col-span-2 md:col-span-1 bg-stone-900/90 p-4 sm:p-7 rounded-xl border border-stone-800 flex flex-col justify-between">
+              <div>
+                <h3 className="font-display text-sm sm:text-lg font-bold uppercase tracking-tight text-white mb-1.5 sm:mb-2">High-Capacity Scaling</h3>
+                <p className="text-[11px] sm:text-xs text-stone-400 leading-relaxed">
+                  Configured to meet large-scale seasonal sports procurement, statewide distributor channels, and institutional tenders on strict delivery schedules.
+                </p>
+              </div>
             </div>
           </div>
 

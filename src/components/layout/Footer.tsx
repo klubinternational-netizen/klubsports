@@ -480,42 +480,12 @@ export default function Footer() {
               <ul className="space-y-2 text-stone-600">
                 <li>
                   <a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/ksports.india?utm_source=ig_web_button_share_sheet&vrfl=ZDNlZDc0MzIxNw=="
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-stone-950 hover:underline transition-colors block"
+                    className="hover:text-stone-950 hover:underline transition-colors block font-medium"
                   >
                     Instagram
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-stone-950 hover:underline transition-colors block"
-                  >
-                    LinkedIn
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://youtube.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-stone-950 hover:underline transition-colors block"
-                  >
-                    YouTube
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://x.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-stone-950 hover:underline transition-colors block"
-                  >
-                    X
                   </a>
                 </li>
               </ul>
