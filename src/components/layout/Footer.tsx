@@ -3,6 +3,7 @@
 import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { MapPin } from 'lucide-react';
 
 export default function Footer() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -380,8 +381,8 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 pt-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16 items-start">
           
-          {/* Company Identity */}
-          <div className="md:col-span-6 space-y-2">
+          {/* Company Identity & Google Map Preview */}
+          <div className="md:col-span-5 space-y-3">
             <Link href="/" className="inline-flex items-center gap-2 group">
               <div className="relative w-5 h-5 transition-transform group-hover:scale-105">
                 <Image
@@ -399,10 +400,50 @@ export default function Footer() {
             <p className="text-stone-500 text-xs sm:text-sm font-normal">
               Crafting performance sports footwear since 2015
             </p>
+
+            {/* Google Map Card */}
+            <div className="pt-1 max-w-sm">
+              <a
+                href="https://maps.app.goo.gl/HEZbWDYk7ePQWgh58"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative block rounded-2xl overflow-hidden border border-stone-200/90 shadow-xs hover:shadow-md hover:border-brand-orange/40 transition-all bg-stone-50"
+              >
+                <div className="relative h-28 w-full bg-stone-100 overflow-hidden">
+                  <iframe
+                    src="https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1sKSPORTS+16.5153646,80.622418!6i15"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, pointerEvents: 'none' }}
+                    title="KSports Google Maps Facility"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-stone-950/10 group-hover:bg-transparent transition-colors" />
+                </div>
+                <div className="p-2.5 sm:p-3 bg-white flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg bg-orange-50 text-brand-orange flex items-center justify-center shrink-0">
+                      <MapPin className="w-3.5 h-3.5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-stone-900 block group-hover:text-brand-orange transition-colors">
+                        KSports Facility Location
+                      </span>
+                      <span className="text-[10px] text-stone-500 block">
+                        Get Directions on Google Maps
+                      </span>
+                    </div>
+                  </div>
+                  <span className="text-xs font-bold text-brand-orange group-hover:translate-x-0.5 transition-transform px-2 py-0.5 rounded bg-orange-50">
+                    ↗
+                  </span>
+                </div>
+              </a>
+            </div>
           </div>
 
           {/* Directory 3 Columns */}
-          <div className="md:col-span-6 grid grid-cols-3 gap-6 sm:gap-8 text-xs sm:text-sm">
+          <div className="md:col-span-7 grid grid-cols-3 gap-6 sm:gap-8 text-xs sm:text-sm">
             
             {/* Support */}
             <div className="space-y-3">
@@ -422,6 +463,18 @@ export default function Footer() {
                   <Link href="/contact" className="hover:text-stone-950 hover:underline transition-colors block">
                     Contact
                   </Link>
+                </li>
+                <li>
+                  <a
+                    href="https://maps.app.goo.gl/HEZbWDYk7ePQWgh58"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-brand-orange hover:underline transition-colors flex items-center gap-1 text-brand-orange font-semibold"
+                  >
+                    <MapPin className="w-3.5 h-3.5" />
+                    <span>Location Map</span>
+                    <span className="text-[10px]">↗</span>
+                  </a>
                 </li>
                 <li>
                   <a

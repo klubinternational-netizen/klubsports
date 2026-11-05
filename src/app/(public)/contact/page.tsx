@@ -180,15 +180,35 @@ export default async function ContactPage({ searchParams }: Props) {
                 </div>
               </div>
 
+              {/* Manufacturing Operations & Google Map Link */}
               <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#f5f5f5] hover:bg-[#ededed] transition-colors duration-200">
                 <div className="w-10 h-10 rounded-xl bg-white text-stone-900 flex items-center justify-center shrink-0 shadow-xs">
                   <MapPin className="w-5 h-5 text-brand-orange" />
                 </div>
-                <div>
-                  <h4 className="text-[11px] font-bold uppercase tracking-wider text-stone-500">
-                    MANUFACTURING OPERATIONS
-                  </h4>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-[11px] font-bold uppercase tracking-wider text-stone-500">
+                      MANUFACTURING OPERATIONS
+                    </h4>
+                    <a
+                      href="https://maps.app.goo.gl/HEZbWDYk7ePQWgh58"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[10px] font-bold text-brand-orange hover:text-brand-orange-dark uppercase tracking-wider hover:underline"
+                    >
+                      Map ↗
+                    </a>
+                  </div>
                   <p className="text-sm font-semibold text-stone-900 mt-0.5 leading-relaxed">{contact.address}</p>
+                  <a
+                    href="https://maps.app.goo.gl/HEZbWDYk7ePQWgh58"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-orange hover:underline mt-2"
+                  >
+                    <span>View on Google Maps</span>
+                    <span>↗</span>
+                  </a>
                 </div>
               </div>
 
@@ -235,6 +255,49 @@ export default async function ContactPage({ searchParams }: Props) {
                 initialProduct={searchParams.product}
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Google Map Section */}
+      <section className="py-16 sm:py-20 border-t border-stone-200/80 bg-stone-50/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange block">
+                HEADQUARTERS &amp; FACILITY LOCATION
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-950 uppercase tracking-tight mt-1">
+                Find KSports on Google Maps
+              </h2>
+              <p className="text-xs sm:text-sm text-stone-500 mt-1 max-w-2xl">
+                Navigate directly to our official corporate facilities, athletic footwear sample room, and distribution desk.
+              </p>
+            </div>
+            <a
+              href="https://maps.app.goo.gl/HEZbWDYk7ePQWgh58"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-orange hover:bg-brand-orange-dark text-white text-xs font-bold uppercase tracking-wider shadow-sm transition-all shrink-0 cursor-pointer"
+            >
+              <MapPin className="w-4 h-4" />
+              <span>Get Directions ↗</span>
+            </a>
+          </div>
+
+          {/* Map Embed Frame */}
+          <div className="relative rounded-3xl overflow-hidden border border-stone-200 shadow-xl bg-white aspect-[16/9] sm:aspect-[21/9] min-h-[380px] sm:min-h-[460px]">
+            <iframe
+              src="https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1sKSPORTS+16.5153646,80.622418!6i16"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="KSports Official Location Map"
+              className="absolute inset-0 w-full h-full"
+            />
           </div>
         </div>
       </section>
