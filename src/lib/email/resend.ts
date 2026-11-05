@@ -445,3 +445,125 @@ export async function sendEnquiryEmailNotification(params: EnquiryNotificationPa
     return { success: false, error: err.message || 'Unknown error during email dispatch' };
   }
 }
+
+/**
+ * 4. Dispatches an OTP verification code for Admin Password Reset.
+ */
+export async function sendAdminPasswordResetOtpEmail(params: {
+  toEmail: string;
+  otp: string;
+  expiresInMinutes?: number;
+}): Promise<{ success: boolean; id?: string; error?: string }> {
+  if (!resend || !process.env.RESEND_API_KEY) {
+    return { success: false, error: 'Resend API key is not configured.' };
+  }
+
+  const validity = params.expiresInMinutes || 10;
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: [params.toEmail],
+      replyTo: DESK_EMAIL,
+      subject: `${params.otp} is your KSports Admin Verification OTP Code`,
+      html: `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>KSports Admin Password Reset</title>
+        </head>
+        <body style="margin: 0; padding: 0; background-color: #f7f6f3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f7f6f3; padding: 32px 16px;">
+            <tr>
+              <td align="center">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 540px; background-color: #ffffff; border-radius: 20px; overflow: hidden; border: 1px solid #e7e5e4; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                  
+                  <!-- Top Brand Accent Bar -->
+                  <tr>
+                    <td style="height: 6px; background: linear-gradient(90deg, #ee7700 0%, #ff9933 100%);"></td>
+                  </tr>
+
+                  <!-- Header with Logo -->
+                  <tr>
+                    <td style="padding: 28px 32px 20px 32px; border-bottom: 1px solid #f2f0ec; text-align: left;">
+                      <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                          <td>
+                            <img src="${LOGO_URL}" alt="KSports" width="150" style="display: block; max-width: 150px; height: auto;" />
+                          </td>
+                          <td align="right">
+                            <span style="display: inline-block; padding: 4px 10px; background-color: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; border-radius: 999px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;">
+                              Security Verification
+                            </span>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <!-- Main Content -->
+                  <tr>
+                    <td style="padding: 32px 32px 24px 32px;">
+                      <h1 style="margin: 0 0 10px 0; color: #1c1917; font-size: 22px; font-weight: 800; letter-spacing: -0.02em;">
+                        Admin Password Reset Request
+                      </h1>
+                      <p style="margin: 0 0 24px 0; color: #57534e; font-size: 14px; line-height: 1.6;">
+                        A password reset request was initiated for your KSports Administration Portal account (<strong style="color: #1c1917;">${params.toEmail}</strong>). Use the one-time verification code below to authorize the password change:
+                      </p>
+
+                      <!-- The OTP Code Display Box -->
+                      <div style="background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); border: 2px dashed #f97316; border-radius: 16px; padding: 24px 16px; text-align: center; margin: 24px 0;">
+                        <span style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #c2410c; margin-bottom: 8px;">
+                          One-Time Verification Code (OTP)
+                        </span>
+                        <div style="font-family: 'Courier New', Courier, monospace, monospace; font-size: 38px; font-weight: 900; letter-spacing: 10px; color: #ea580c; text-indent: 10px; line-height: 1;">
+                          ${params.otp}
+                        </div>
+                        <span style="display: inline-block; margin-top: 10px; font-size: 11px; color: #7c2d12; font-weight: 500;">
+                          ⏱ Valid for the next <strong>${validity} minutes</strong>
+                        </span>
+                      </div>
+
+                      <div style="background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 10px; padding: 12px 16px; margin-bottom: 20px;">
+                        <p style="margin: 0; color: #991b1b; font-size: 12px; line-height: 1.5;">
+                          <strong>Security Reminder:</strong> Never share this OTP with anyone. KSports staff will never ask you for your verification code. If you did not initiate this request, your account remains secure and you can safely ignore this email.
+                        </p>
+                      </div>
+
+                      <p style="margin: 0; color: #78716c; font-size: 12px; line-height: 1.5;">
+                        Need assistance? Contact KSports Technical Operations at <a href="mailto:${DESK_EMAIL}" style="color: #ea580c; text-decoration: none; font-weight: 600;">${DESK_EMAIL}</a>.
+                      </p>
+                    </td>
+                  </tr>
+
+                  <!-- Footer -->
+                  <tr>
+                    <td style="background-color: #fafaf9; border-top: 1px solid #f2f0ec; padding: 16px 32px; text-align: center;">
+                      <p style="margin: 0; color: #a8a29e; font-size: 11px;">
+                        KSports Brand &amp; Digital Commerce Portal &copy; ${new Date().getFullYear()} &middot; Automated Security Notification
+                      </p>
+                    </td>
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+          </table>
+        </body>
+        </html>
+      `,
+    });
+
+    if (error) {
+      console.error('Password reset OTP email delivery error:', error);
+      return { success: false, error: error.message };
+    }
+
+    return { success: true, id: data?.id };
+  } catch (err: any) {
+    console.error('Password reset OTP email dispatch exception:', err);
+    return { success: false, error: err.message || 'Failed to dispatch verification email' };
+  }
+}

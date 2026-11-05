@@ -32,8 +32,12 @@ export async function POST(req: NextRequest) {
     await connectToDatabase();
     const cleanEmail = parsed.data.email.trim().toLowerCase();
     let admin = await Admin.findOne({ email: cleanEmail });
-    if (!admin && (cleanEmail === 'admin@ksports.co.in' || cleanEmail === 'admin@ksports.com')) {
-      admin = await Admin.findOne({ email: 'admin@klubsports.com' }) || await Admin.findOne({ isActive: true });
+    if (!admin) {
+      if (cleanEmail === 'klubinternational@gmail.com') {
+        admin = await Admin.findOne({ email: 'admin@ksports.co.in' }) || await Admin.findOne({ isActive: true });
+      } else if (cleanEmail === 'admin@ksports.co.in' || cleanEmail === 'admin@ksports.com') {
+        admin = await Admin.findOne({ email: 'klubinternational@gmail.com' }) || await Admin.findOne({ isActive: true });
+      }
     }
     if (!admin || !admin.isActive) {
       return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
