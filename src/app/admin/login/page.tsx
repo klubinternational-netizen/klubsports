@@ -25,22 +25,12 @@ export default function AdminLoginPage() {
   // Mode: login, forgot-request, forgot-verify, forgot-success
   const [mode, setMode] = useState<AuthViewMode>('login');
 
-  // Login form state - official admin email and default credentials pre-set
-  const [email, setEmail] = useState('klubinternational@gmail.com');
-  const [password, setPassword] = useState('KSportsAdmin2026!Secure');
+  // Login form state - starts completely empty, entered only by admin
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState<string | null>(null);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
-
-  // Guard against browser autofilling stale/cached credentials like admin@ksports.co.in
-  React.useEffect(() => {
-    if (!email || email.includes('admin@ksports.co.in') || email.includes('admin@ksports.com')) {
-      setEmail('klubinternational@gmail.com');
-    }
-    if (!password) {
-      setPassword('KSportsAdmin2026!Secure');
-    }
-  }, []);
 
   // Forgot password form state
   const [forgotEmail, setForgotEmail] = useState('klubinternational@gmail.com');
@@ -217,21 +207,9 @@ export default function AdminLoginPage() {
               <form onSubmit={handleLoginSubmit} className="space-y-5" autoComplete="off">
                 {/* Email Field */}
                 <div>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <label htmlFor="admin_official_email" className="block text-xs font-bold uppercase tracking-wider text-stone-700">
-                      Admin Email
-                    </label>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setEmail('klubinternational@gmail.com');
-                        setPassword('KSportsAdmin2026!Secure');
-                      }}
-                      className="text-[11px] text-[#ee7700] hover:text-[#d46500] font-semibold transition-colors focus:outline-none"
-                    >
-                      Fill Default
-                    </button>
-                  </div>
+                  <label htmlFor="admin_official_email" className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
+                    Admin Email
+                  </label>
                   <div className="relative">
                     <Mail className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
@@ -241,7 +219,7 @@ export default function AdminLoginPage() {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="klubinternational@gmail.com"
+                      placeholder="Enter administrator email"
                       autoComplete="off"
                       className="w-full pl-10 pr-4 py-2.5 text-sm bg-stone-50 border border-stone-200 rounded-lg text-stone-900 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-[#ee7700] focus:bg-white transition-all"
                     />
@@ -261,7 +239,7 @@ export default function AdminLoginPage() {
                         setForgotError(null);
                         setMode('forgot-request');
                       }}
-                      className="text-[11px] text-[#ee7700] hover:text-[#d46500] font-semibold transition-colors hover:underline focus:outline-none"
+                      className="text-[11px] text-[#ee7700] hover:text-[#d46500] font-semibold transition-colors hover:underline focus:outline-none cursor-pointer"
                     >
                       Forgot Password?
                     </button>
@@ -282,7 +260,7 @@ export default function AdminLoginPage() {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 transition-colors"
+                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 transition-colors cursor-pointer"
                       aria-label="Toggle password visibility"
                     >
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
