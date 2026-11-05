@@ -1,7 +1,19 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Save, CheckCircle2, AlertCircle, Loader2, KeyRound, ShieldCheck } from 'lucide-react';
+import {
+  Save,
+  CheckCircle2,
+  AlertCircle,
+  Loader2,
+  KeyRound,
+  ShieldCheck,
+  Mail,
+  RefreshCw,
+  Eye,
+  EyeOff,
+  Lock,
+} from 'lucide-react';
 
 export default function AdminSettingsPage() {
   const [loading, setLoading] = useState(true);
@@ -19,11 +31,27 @@ export default function AdminSettingsPage() {
   const [seoTitle, setSeoTitle] = useState('');
   const [seoDescription, setSeoDescription] = useState('');
 
-  // Password State
+  // Password & OTP Verification State
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [otp, setOtp] = useState('');
+  const [otpSent, setOtpSent] = useState(false);
+  const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [passwordUpdating, setPasswordUpdating] = useState(false);
   const [passwordFeedback, setPasswordFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [resendCooldown, setResendCooldown] = useState(0);
+
+  // Timer effect for resend cooldown
+  useEffect(() => {
+    if (resendCooldown <= 0) return;
+    const timer = setInterval(() => {
+      setResendCooldown((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [resendCooldown]);
 
   useEffect(() => {
     fetch('/api/admin/settings')
@@ -88,8 +116,72 @@ export default function AdminSettingsPage() {
     }
   };
 
+  const handleSendPasswordOtp = async () => {
+    setPasswordFeedback(null);
+
+    if (!currentPassword) {
+      setPasswordFeedback({ type: 'error', message: 'Please enter your current password.' });
+      return;
+    }
+
+    if (!newPassword || newPassword.length < 8) {
+      setPasswordFeedback({ type: 'error', message: 'New password must be at least 8 characters long.' });
+      return;
+    }
+
+    if (!confirmPassword) {
+      setPasswordFeedback({ type: 'error', message: 'Please confirm your new password.' });
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      setPasswordFeedback({ type: 'error', message: 'New password and confirm password do not match.' });
+      return;
+    }
+
+    if (currentPassword === newPassword) {
+      setPasswordFeedback({ type: 'error', message: 'New password cannot be identical to your current password.' });
+      return;
+    }
+
+    setIsSendingOtp(true);
+    try {
+      const res = await fetch('/api/admin/auth/change-password/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currentPassword }),
+      });
+
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || 'Failed to dispatch verification OTP');
+
+      setOtpSent(true);
+      setResendCooldown(60);
+      setPasswordFeedback({
+        type: 'success',
+        message: `Verification code sent to ${json.email || 'klubinternational@gmail.com'}. Please enter the 6-digit OTP below to authorize this change.`,
+      });
+    } catch (err: any) {
+      setPasswordFeedback({ type: 'error', message: err.message });
+    } finally {
+      setIsSendingOtp(false);
+    }
+  };
+
   const handleChangePassword = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!otpSent) {
+      await handleSendPasswordOtp();
+      return;
+    }
+
+    const cleanOtp = otp.trim();
+    if (!cleanOtp || cleanOtp.length !== 6) {
+      setPasswordFeedback({ type: 'error', message: 'Please enter the complete 6-digit verification code.' });
+      return;
+    }
+
     setPasswordUpdating(true);
     setPasswordFeedback(null);
 
@@ -97,15 +189,26 @@ export default function AdminSettingsPage() {
       const res = await fetch('/api/admin/auth/change-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ currentPassword, newPassword }),
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+          otp: cleanOtp,
+        }),
       });
 
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || 'Failed to update password');
 
-      setPasswordFeedback({ type: 'success', message: 'Administrator password updated successfully!' });
+      setPasswordFeedback({
+        type: 'success',
+        message: 'Administrator password updated successfully! Your new password is now active.',
+      });
       setCurrentPassword('');
       setNewPassword('');
+      setConfirmPassword('');
+      setOtp('');
+      setOtpSent(false);
+      setResendCooldown(0);
     } catch (err: any) {
       setPasswordFeedback({ type: 'error', message: err.message });
     } finally {
@@ -325,42 +428,177 @@ export default function AdminSettingsPage() {
               )}
 
               <form onSubmit={handleChangePassword} className="space-y-4">
+                {/* Current Password Field */}
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">
                     Current Password
                   </label>
-                  <input
-                    type="password"
-                    required
-                    value={currentPassword}
-                    onChange={(e) => setCurrentPassword(e.target.value)}
-                    placeholder="••••••••••••"
-                    className="w-full px-3 py-2 text-xs bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange"
-                  />
+                  <div className="relative">
+                    <input
+                      type={showCurrentPassword ? 'text' : 'password'}
+                      required
+                      value={currentPassword}
+                      onChange={(e) => setCurrentPassword(e.target.value)}
+                      placeholder="••••••••••••"
+                      disabled={otpSent}
+                      className="w-full pl-3 pr-9 py-2 text-xs bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange disabled:opacity-60"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600"
+                      tabIndex={-1}
+                    >
+                      {showCurrentPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+                    </button>
+                  </div>
                 </div>
 
+                {/* New Password Field */}
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">
                     New Password
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showNewPassword ? 'text' : 'password'}
+                      required
+                      minLength={8}
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      placeholder="Min 8 characters"
+                      disabled={otpSent}
+                      className="w-full pl-3 pr-9 py-2 text-xs bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange disabled:opacity-60"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowNewPassword(!showNewPassword)}
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600"
+                      tabIndex={-1}
+                    >
+                      {showNewPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Confirm New Password Field */}
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">
+                    Confirm New Password
                   </label>
                   <input
                     type="password"
                     required
                     minLength={8}
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    placeholder="Min 8 characters"
-                    className="w-full px-3 py-2 text-xs bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="Re-enter new password"
+                    disabled={otpSent}
+                    className="w-full px-3 py-2 text-xs bg-stone-50 border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange disabled:opacity-60"
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={passwordUpdating}
-                  className="w-full flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-stone-800 bg-stone-100 hover:bg-stone-200 rounded-lg transition-colors disabled:opacity-60"
-                >
-                  {passwordUpdating ? 'Updating Password...' : 'Update Password'}
-                </button>
+                {/* OTP Verification Section (Revealed once OTP is dispatched) */}
+                {otpSent ? (
+                  <div className="p-3.5 bg-orange-50/80 border border-orange-200 rounded-xl space-y-3 animate-in fade-in duration-200">
+                    <div className="flex items-center justify-between">
+                      <label htmlFor="settings_otp" className="block text-xs font-bold uppercase tracking-wider text-stone-800">
+                        Enter 6-Digit OTP
+                      </label>
+                      <span className="text-[10px] text-brand-orange font-bold uppercase tracking-wider bg-white px-2 py-0.5 rounded-full border border-orange-200">
+                        Check Email
+                      </span>
+                    </div>
+
+                    <div className="relative">
+                      <Lock className="w-4 h-4 text-brand-orange absolute left-3 top-1/2 -translate-y-1/2" />
+                      <input
+                        id="settings_otp"
+                        type="text"
+                        maxLength={6}
+                        required
+                        value={otp}
+                        onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
+                        placeholder="••••••"
+                        autoFocus
+                        className="w-full pl-9 pr-3 py-2 text-center text-lg font-mono tracking-[0.4em] font-bold bg-white border border-stone-300 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-orange shadow-inner"
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-between text-[11px] pt-1">
+                      <button
+                        type="button"
+                        disabled={resendCooldown > 0 || isSendingOtp}
+                        onClick={handleSendPasswordOtp}
+                        className="text-brand-orange hover:text-brand-orange-dark font-semibold disabled:text-stone-400 focus:outline-none flex items-center gap-1 cursor-pointer"
+                      >
+                        {isSendingOtp ? (
+                          <Loader2 className="w-3 h-3 animate-spin" />
+                        ) : (
+                          <RefreshCw className="w-3 h-3" />
+                        )}
+                        <span>{resendCooldown > 0 ? `Resend in ${resendCooldown}s` : 'Resend Code'}</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setOtpSent(false);
+                          setOtp('');
+                        }}
+                        className="text-stone-500 hover:text-stone-800 font-semibold focus:outline-none cursor-pointer"
+                      >
+                        Edit Details
+                      </button>
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={passwordUpdating || otp.trim().length !== 6}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-orange-dark rounded-lg transition-all shadow-md disabled:opacity-50 cursor-pointer"
+                    >
+                      {passwordUpdating ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Verifying & Saving...</span>
+                        </>
+                      ) : (
+                        <>
+                          <ShieldCheck className="w-4 h-4" />
+                          <span>Verify OTP & Update Password</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <div className="p-3 rounded-lg bg-stone-50 border border-stone-200 text-[11px] text-stone-600 flex items-start gap-2">
+                      <Mail className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
+                      <span>
+                        An OTP verification code will be dispatched to <strong>klubinternational@gmail.com</strong> to authorize password changes.
+                      </span>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={handleSendPasswordOtp}
+                      disabled={isSendingOtp || !currentPassword || !newPassword || !confirmPassword}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-brand-orange hover:bg-brand-orange-dark rounded-lg transition-all shadow-sm disabled:opacity-50 cursor-pointer"
+                    >
+                      {isSendingOtp ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Sending OTP to Admin Email...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Mail className="w-4 h-4" />
+                          <span>Send Verification OTP</span>
+                        </>
+                      )}
+                    </button>
+                  </>
+                )}
               </form>
             </div>
 
