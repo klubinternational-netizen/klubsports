@@ -11,7 +11,7 @@ const MONGODB_URI =
   process.env.MONGODB_URI ||
   'mongodb+srv://klubinternational_db_user:sNr5fKt7g5sYWJr3@cluster0.unco14l.mongodb.net/klub_sports?retryWrites=true&w=majority';
 
-const INITIAL_EMAIL = process.env.INITIAL_ADMIN_EMAIL || 'admin@ksports.co.in';
+const INITIAL_EMAIL = process.env.INITIAL_ADMIN_EMAIL || 'klubinternational@gmail.com';
 const INITIAL_PASSWORD = process.env.INITIAL_ADMIN_PASSWORD || 'KSportsAdmin2026!Secure';
 
 export async function runSeed() {
