@@ -329,7 +329,7 @@ export default function AdminSettingsPage() {
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">
-                  Manufacturing Facility Address
+                  Official Store &amp; Headquarters Address
                 </label>
                 <input
                   type="text"

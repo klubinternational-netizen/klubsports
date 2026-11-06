@@ -28,7 +28,7 @@ export default async function ContactPage({ searchParams }: Props) {
   let contact = {
     email: 'klubinternational@gmail.com',
     phone: '+91 88863 03030',
-    address: 'KSports Manufacturing Facilities, Industrial Footwear Hub, India',
+    address: '14-11-27B, Achuta Ramaiah St, Hanumanpet, Vijayawada, Andhra Pradesh 520003',
     workingHours: 'Monday – Saturday: 9:00 AM – 6:00 PM IST',
   };
 
@@ -47,7 +47,9 @@ export default async function ContactPage({ searchParams }: Props) {
       // Sanitize any legacy strings
       if (email.includes('klubsports.com') || email.includes('ksports.co.in') || email.includes('info@')) email = 'klubinternational@gmail.com';
       if (phone.includes('98765')) phone = '+91 88863 03030';
-      if (address.includes('Klub Sports')) address = address.replace(/Klub Sports/g, 'KSports');
+      if (address.includes('Klub Sports') || address.includes('Industrial Footwear Hub') || address.includes('Manufacturing Facilities')) {
+        address = '14-11-27B, Achuta Ramaiah St, Hanumanpet, Vijayawada, Andhra Pradesh 520003';
+      }
 
       contact = {
         email,
@@ -180,7 +182,7 @@ export default async function ContactPage({ searchParams }: Props) {
                 </div>
               </div>
 
-              {/* Manufacturing Operations & Google Map Link */}
+              {/* Official Store Location & Google Map Link */}
               <div className="flex items-start gap-4 p-5 rounded-2xl bg-[#f5f5f5] hover:bg-[#ededed] transition-colors duration-200">
                 <div className="w-10 h-10 rounded-xl bg-white text-stone-900 flex items-center justify-center shrink-0 shadow-xs">
                   <MapPin className="w-5 h-5 text-brand-orange" />
@@ -188,7 +190,7 @@ export default async function ContactPage({ searchParams }: Props) {
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <h4 className="text-[11px] font-bold uppercase tracking-wider text-stone-500">
-                      MANUFACTURING OPERATIONS
+                      OFFICIAL STORE &amp; HEADQUARTERS
                     </h4>
                     <a
                       href="https://maps.app.goo.gl/HEZbWDYk7ePQWgh58"
@@ -259,19 +261,19 @@ export default async function ContactPage({ searchParams }: Props) {
         </div>
       </section>
 
-      {/* Interactive Google Map Section */}
+      {/* Interactive Google Map Section: Shop Location */}
       <section className="py-16 sm:py-20 border-t border-stone-200/80 bg-stone-50/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange block">
-                HEADQUARTERS &amp; FACILITY LOCATION
+                OFFICIAL STORE LOCATION
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-950 uppercase tracking-tight mt-1">
-                Find KSports on Google Maps
+                Visit KSports Store in Vijayawada
               </h2>
               <p className="text-xs sm:text-sm text-stone-500 mt-1 max-w-2xl">
-                Navigate directly to our official corporate facilities, athletic footwear sample room, and distribution desk.
+                14-11-27B, Achuta Ramaiah St, Hanumanpet, Vijayawada, Andhra Pradesh 520003. Direct retail showcase, corporate sample room &amp; distribution desk.
               </p>
             </div>
             <a
@@ -285,17 +287,17 @@ export default async function ContactPage({ searchParams }: Props) {
             </a>
           </div>
 
-          {/* Map Embed Frame */}
+          {/* Map Embed Frame: Exact Shop Coordinates */}
           <div className="relative rounded-3xl overflow-hidden border border-stone-200 shadow-xl bg-white aspect-[16/9] sm:aspect-[21/9] min-h-[380px] sm:min-h-[460px]">
             <iframe
-              src="https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1sKSPORTS+16.5153646,80.622418!6i16"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.212!2d80.622418!3d16.5153646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35effcd942ca4f%3A0xd14bf8356d0e0dcc!2sKSPORTS!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="KSports Official Location Map"
+              title="KSports Official Store Location Map"
               className="absolute inset-0 w-full h-full"
             />
           </div>
