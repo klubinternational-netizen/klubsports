@@ -573,9 +573,9 @@ For questions regarding this privacy policy or to update your business informati
       },
       contactDetails: {
         email: 'klubinternational@gmail.com',
-        phone: '+91 88863 03030',
-        secondaryPhone: '+91 88863 03030',
-        address: 'KSports Manufacturing Facilities, Industrial Footwear Hub, India',
+        phone: '+91 91335 13030',
+        secondaryPhone: '+91 91335 13030',
+        address: '14-11-27B, Achuta Ramaiah St, Hanumanpet, Vijayawada, Andhra Pradesh 520003',
         workingHours: 'Monday – Saturday: 9:00 AM – 6:00 PM IST',
       },
       socialLinks: {

@@ -137,12 +137,12 @@ export default function ContactInfoCards({ contact }: Props) {
                 </span>
               </div>
               <a
-                href="https://wa.me/918886303030?text=Hello%20KSports!%20I%20would%20like%20to%20enquire%20about%20athletic%20footwear%20and%20bulk%20institutional%20orders."
+                href="https://wa.me/919133513030?text=Hello%20KSports!%20I%20would%20like%20to%20enquire%20about%20athletic%20footwear%20and%20bulk%20institutional%20orders."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-base font-bold text-stone-900 group-hover:text-emerald-600 transition-colors inline-flex items-center gap-1 mt-0.5"
               >
-                <span>+91 88863 03030</span>
+                <span>+91 91335 13030</span>
                 <ArrowUpRight className="w-4 h-4 text-emerald-600" />
               </a>
               <p className="text-xs text-stone-500 mt-0.5">Direct chat for specs &amp; bulk supply</p>
@@ -150,7 +150,7 @@ export default function ContactInfoCards({ contact }: Props) {
           </div>
 
           <a
-            href="https://wa.me/918886303030?text=Hello%20KSports!%20I%20would%20like%20to%20enquire%20about%20athletic%20footwear%20and%20bulk%20institutional%20orders."
+            href="https://wa.me/919133513030?text=Hello%20KSports!%20I%20would%20like%20to%20enquire%20about%20athletic%20footwear%20and%20bulk%20institutional%20orders."
             target="_blank"
             rel="noopener noreferrer"
             className="px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-[#25D366] text-emerald-700 hover:text-white font-bold text-xs transition-all shrink-0 active:scale-95 shadow-2xs border border-emerald-200 hover:border-[#25D366]"
@@ -160,7 +160,7 @@ export default function ContactInfoCards({ contact }: Props) {
         </div>
       </div>
 
-      {/* Manufacturing Operations Card */}
+      {/* Store & Headquarters Location Card */}
       <div className="group relative p-5 rounded-2xl bg-white/90 backdrop-blur-sm border border-stone-200/90 shadow-sm hover:shadow-md hover:border-orange-300 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
         <div className="flex items-start gap-4">
           <div className="w-11 h-11 rounded-xl bg-orange-50 border border-orange-100 text-brand-orange group-hover:bg-brand-orange group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300 shadow-xs">
@@ -168,7 +168,7 @@ export default function ContactInfoCards({ contact }: Props) {
           </div>
           <div>
             <h4 className="text-[11px] font-bold uppercase tracking-wider text-stone-500">
-              Manufacturing Operations
+              Official Store Location
             </h4>
             <p className="text-sm font-semibold text-stone-900 mt-0.5 leading-relaxed">{contact.address}</p>
           </div>

@@ -399,7 +399,7 @@ export default async function HomePage() {
               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
             <a
-              href="https://wa.me/918886303030?text=Hello%20KSports!%20I%20would%20like%20to%20discuss%20bulk%20sports%20footwear%20procurement."
+              href="https://wa.me/919133513030?text=Hello%20KSports!%20I%20would%20like%20to%20discuss%20bulk%20sports%20footwear%20procurement."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-4 text-xs font-bold uppercase tracking-[0.14em] text-emerald-800 hover:text-white bg-emerald-100/80 hover:bg-emerald-600 border border-emerald-300/80 rounded-xl transition-all shadow-sm"

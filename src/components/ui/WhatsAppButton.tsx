@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const WHATSAPP_NUMBER = '918886303030';
+const WHATSAPP_NUMBER = '919133513030';
 const DEFAULT_MESSAGE = 'Hello KSports! I would like to enquire about athletic footwear and bulk institutional orders.';
 
 export default function WhatsAppButton() {
@@ -14,7 +14,7 @@ export default function WhatsAppButton() {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Chat with KSports on WhatsApp (+91 88863 03030)"
+        aria-label="Chat with KSports on WhatsApp (+91 91335 13030)"
         title="Chat on WhatsApp"
         className="group relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#25D366] text-white shadow-[0_4px_16px_rgba(37,211,102,0.4)] hover:shadow-[0_8px_24px_rgba(37,211,102,0.55)] hover:scale-105 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2"
       >

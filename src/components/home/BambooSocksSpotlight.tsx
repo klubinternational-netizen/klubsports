@@ -206,7 +206,7 @@ export default function BambooSocksSpotlight() {
               </Link>
 
               <a
-                href="https://wa.me/918886303030?text=Hello%20KSports!%20I%20am%20interested%20in%20ordering%20KSports%20Bamboo%20Socks%20(Pack%20of%203%20-%20MRP%20%E2%82%B9499)%20for%20bulk/wholesale."
+                href="https://wa.me/919133513030?text=Hello%20KSports!%20I%20am%20interested%20in%20ordering%20KSports%20Bamboo%20Socks%20(Pack%20of%203%20-%20MRP%20%E2%82%B9499)%20for%20bulk/wholesale."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-emerald-950 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 transition-all duration-300 shadow-xs"

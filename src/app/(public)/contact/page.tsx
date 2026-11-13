@@ -27,7 +27,7 @@ export default async function ContactPage({ searchParams }: Props) {
   let serializedCategories: any[] = [];
   let contact = {
     email: 'klubinternational@gmail.com',
-    phone: '+91 88863 03030',
+    phone: '+91 91335 13030',
     address: '14-11-27B, Achuta Ramaiah St, Hanumanpet, Vijayawada, Andhra Pradesh 520003',
     workingHours: 'Monday – Saturday: 9:00 AM – 6:00 PM IST',
   };
@@ -46,7 +46,7 @@ export default async function ContactPage({ searchParams }: Props) {
 
       // Sanitize any legacy strings
       if (email.includes('klubsports.com') || email.includes('ksports.co.in') || email.includes('info@')) email = 'klubinternational@gmail.com';
-      if (phone.includes('98765')) phone = '+91 88863 03030';
+      if (phone.includes('98765') || phone.includes('88863')) phone = '+91 91335 13030';
       if (address.includes('Klub Sports') || address.includes('Industrial Footwear Hub') || address.includes('Manufacturing Facilities')) {
         address = '14-11-27B, Achuta Ramaiah St, Hanumanpet, Vijayawada, Andhra Pradesh 520003';
       }
@@ -130,12 +130,12 @@ export default async function ContactPage({ searchParams }: Props) {
                     </span>
                   </div>
                   <a
-                    href="https://wa.me/918886303030?text=Hello%20KSports!%20I%20would%20like%20to%20enquire%20about%20athletic%20footwear%20and%20bulk%20institutional%20orders."
+                    href="https://wa.me/919133513030?text=Hello%20KSports!%20I%20would%20like%20to%20enquire%20about%20athletic%20footwear%20and%20bulk%20institutional%20orders."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-base font-bold text-stone-900 hover:text-emerald-700 transition-colors inline-block mt-0.5"
                   >
-                    +91 88863 03030
+                    +91 91335 13030
                   </a>
                   <p className="text-xs text-stone-500 mt-0.5">Direct 24/7 institutional WhatsApp line</p>
                 </div>
