@@ -28,7 +28,7 @@ export default async function ContactPage({ searchParams }: Props) {
   let contact = {
     email: 'klubinternational@gmail.com',
     phone: '+91 91335 13030',
-    address: '14-11-27B, Achuta Ramaiah St, Hanumanpet, Vijayawada, Andhra Pradesh 520003',
+    address: 'KLUB INTERNATIONAL (DELHI), G-2, 2nd Floor, Pushkar Enclave, Paschim Vihar, New Delhi - 110063',
     workingHours: 'Monday – Saturday: 9:00 AM – 6:00 PM IST',
   };
 
@@ -47,8 +47,8 @@ export default async function ContactPage({ searchParams }: Props) {
       // Sanitize any legacy strings
       if (email.includes('klubsports.com') || email.includes('ksports.co.in') || email.includes('info@')) email = 'klubinternational@gmail.com';
       if (phone.includes('98765') || phone.includes('88863')) phone = '+91 91335 13030';
-      if (address.includes('Klub Sports') || address.includes('Industrial Footwear Hub') || address.includes('Manufacturing Facilities')) {
-        address = '14-11-27B, Achuta Ramaiah St, Hanumanpet, Vijayawada, Andhra Pradesh 520003';
+      if (address.includes('Klub Sports') || address.includes('Industrial Footwear Hub') || address.includes('Manufacturing Facilities') || address.includes('Hanumanpet') || address.includes('Vijayawada')) {
+        address = 'KLUB INTERNATIONAL (DELHI), G-2, 2nd Floor, Pushkar Enclave, Paschim Vihar, New Delhi - 110063';
       }
 
       contact = {
@@ -193,7 +193,7 @@ export default async function ContactPage({ searchParams }: Props) {
                       OFFICIAL STORE &amp; HEADQUARTERS
                     </h4>
                     <a
-                      href="https://maps.app.goo.gl/HEZbWDYk7ePQWgh58"
+                      href="https://maps.app.goo.gl/XrFBhMqBYiJU4QVM7"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[10px] font-bold text-brand-orange hover:text-brand-orange-dark uppercase tracking-wider hover:underline"
@@ -203,7 +203,7 @@ export default async function ContactPage({ searchParams }: Props) {
                   </div>
                   <p className="text-sm font-semibold text-stone-900 mt-0.5 leading-relaxed">{contact.address}</p>
                   <a
-                    href="https://maps.app.goo.gl/HEZbWDYk7ePQWgh58"
+                    href="https://maps.app.goo.gl/XrFBhMqBYiJU4QVM7"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-orange hover:underline mt-2"
@@ -267,17 +267,17 @@ export default async function ContactPage({ searchParams }: Props) {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-orange block">
-                OFFICIAL STORE LOCATION
+                OFFICIAL LOCATION
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-950 uppercase tracking-tight mt-1">
-                Visit KSports Store in Vijayawada
+                Visit KSports in New Delhi
               </h2>
               <p className="text-xs sm:text-sm text-stone-500 mt-1 max-w-2xl">
-                14-11-27B, Achuta Ramaiah St, Hanumanpet, Vijayawada, Andhra Pradesh 520003. Direct retail showcase, corporate sample room &amp; distribution desk.
+                KLUB INTERNATIONAL (DELHI), G-2, 2nd Floor, Pushkar Enclave, Paschim Vihar, New Delhi - 110063. Corporate headquarters, sample room &amp; distribution desk.
               </p>
             </div>
             <a
-              href="https://maps.app.goo.gl/HEZbWDYk7ePQWgh58"
+              href="https://maps.app.goo.gl/XrFBhMqBYiJU4QVM7"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-orange hover:bg-brand-orange-dark text-white text-xs font-bold uppercase tracking-wider shadow-sm transition-all shrink-0 cursor-pointer"
@@ -287,17 +287,17 @@ export default async function ContactPage({ searchParams }: Props) {
             </a>
           </div>
 
-          {/* Map Embed Frame: Exact Shop Coordinates */}
+          {/* Map Embed Frame: Exact Delhi Pinpoint */}
           <div className="relative rounded-3xl overflow-hidden border border-stone-200 shadow-xl bg-white aspect-[16/9] sm:aspect-[21/9] min-h-[380px] sm:min-h-[460px]">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.212!2d80.622418!3d16.5153646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35effcd942ca4f%3A0xd14bf8356d0e0dcc!2sKSPORTS!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.878!2d77.0900154!3d28.6647091!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDM5JzUzLjAiTiA3N8KwMDUnMzMuMyJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="KSports Official Store Location Map"
+              title="KSports Official Location Map"
               className="absolute inset-0 w-full h-full"
             />
           </div>

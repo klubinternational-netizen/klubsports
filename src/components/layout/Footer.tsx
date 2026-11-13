@@ -404,18 +404,18 @@ export default function Footer() {
             {/* Google Map Card */}
             <div className="pt-1 max-w-sm">
               <a
-                href="https://maps.app.goo.gl/HEZbWDYk7ePQWgh58"
+                href="https://maps.app.goo.gl/XrFBhMqBYiJU4QVM7"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative block rounded-2xl overflow-hidden border border-stone-200/90 shadow-xs hover:shadow-md hover:border-brand-orange/40 transition-all bg-stone-50"
               >
                 <div className="relative h-28 w-full bg-stone-100 overflow-hidden">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.212!2d80.622418!3d16.5153646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35effcd942ca4f%3A0xd14bf8356d0e0dcc!2sKSPORTS!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.878!2d77.0900154!3d28.6647091!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDM5JzUzLjAiTiA3N8KwMDUnMzMuMyJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                     width="100%"
                     height="100%"
                     style={{ border: 0, pointerEvents: 'none' }}
-                    title="KSports Official Store Map"
+                    title="KSports Official Location Map"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-stone-950/10 group-hover:bg-transparent transition-colors" />
@@ -427,10 +427,10 @@ export default function Footer() {
                     </div>
                     <div>
                       <span className="text-xs font-bold text-stone-900 block group-hover:text-brand-orange transition-colors">
-                        KSports Store Location
+                        KLUB INTERNATIONAL (DELHI)
                       </span>
                       <span className="text-[10px] text-stone-500 block">
-                        Hanumanpet, Vijayawada, AP 520003
+                        Paschim Vihar, New Delhi - 110063
                       </span>
                     </div>
                   </div>
@@ -466,7 +466,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href="https://maps.app.goo.gl/HEZbWDYk7ePQWgh58"
+                    href="https://maps.app.goo.gl/XrFBhMqBYiJU4QVM7"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-brand-orange hover:underline transition-colors flex items-center gap-1 text-brand-orange font-semibold"

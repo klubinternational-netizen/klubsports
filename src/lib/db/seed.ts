@@ -575,7 +575,7 @@ For questions regarding this privacy policy or to update your business informati
         email: 'klubinternational@gmail.com',
         phone: '+91 91335 13030',
         secondaryPhone: '+91 91335 13030',
-        address: '14-11-27B, Achuta Ramaiah St, Hanumanpet, Vijayawada, Andhra Pradesh 520003',
+        address: 'KLUB INTERNATIONAL (DELHI), G-2, 2nd Floor, Pushkar Enclave, Paschim Vihar, New Delhi - 110063',
         workingHours: 'Monday – Saturday: 9:00 AM – 6:00 PM IST',
       },
       socialLinks: {

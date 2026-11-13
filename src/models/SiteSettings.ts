@@ -57,7 +57,7 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
       email: { type: String, default: 'klubinternational@gmail.com' },
       phone: { type: String, default: '+91 91335 13030' },
       secondaryPhone: { type: String, default: '' },
-      address: { type: String, default: '14-11-27B, Achuta Ramaiah St, Hanumanpet, Vijayawada, Andhra Pradesh 520003' },
+      address: { type: String, default: 'KLUB INTERNATIONAL (DELHI), G-2, 2nd Floor, Pushkar Enclave, Paschim Vihar, New Delhi - 110063' },
       workingHours: { type: String, default: 'Monday – Saturday: 9:00 AM – 6:00 PM IST' },
     },
     socialLinks: {
