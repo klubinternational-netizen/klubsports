@@ -144,7 +144,7 @@ export default function Header() {
       {/* MOBILE DROPDOWN DRAWER                                   */}
       {/* ======================================================== */}
       {mobileMenuOpen && (
-        <div className="md:hidden max-w-md mx-auto mt-2 p-5 rounded-3xl bg-white/95 backdrop-blur-2xl border border-stone-200/90 shadow-2xl space-y-2 animate-in fade-in slide-in-from-top-3 duration-200 pointer-events-auto">
+        <div className="md:hidden max-w-md mx-auto mt-2 p-5 rounded-3xl bg-white/95 backdrop-blur-2xl border border-stone-200/90 shadow-2xl space-y-2 animate-in fade-in slide-in-from-top-3 duration-200 pointer-events-auto max-h-[85vh] overflow-y-auto">
           {navItems.map((item) => {
             const isActive =
               item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
@@ -152,6 +152,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
                 className={`flex items-center justify-between px-4 py-2.5 text-sm font-semibold rounded-xl transition-colors ${
                   isActive
                     ? 'bg-stone-950 text-white font-bold'
@@ -169,7 +170,7 @@ export default function Header() {
               </Link>
             );
           })}
-          <div className="pt-3 border-t border-stone-100 flex justify-center">
+          <div className="pt-3 border-t border-stone-100 flex justify-center" onClick={() => setMobileMenuOpen(false)}>
             <LiquidMetalButton
               label="Submit Enquiry"
               href="/contact"

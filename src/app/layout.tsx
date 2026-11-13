@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 
@@ -15,6 +15,13 @@ const jakarta = Plus_Jakarta_Sans({
   variable: '--font-jakarta',
   weight: ['400', '500', '600', '700', '800'],
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#ee7700',
+};
 
 export const metadata: Metadata = {
   title: 'KSports | Premium Sports Footwear Manufacturer',
@@ -33,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
-      <body className="min-h-screen bg-white font-sans text-stone-900 antialiased selection:bg-brand-orange-light selection:text-brand-orange-dark">
+      <body className="min-h-screen bg-white font-sans text-stone-900 antialiased selection:bg-brand-orange-light selection:text-brand-orange-dark overflow-x-hidden w-full max-w-full">
         {children}
       </body>
     </html>

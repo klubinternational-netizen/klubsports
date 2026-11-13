@@ -104,7 +104,7 @@ export default async function ContactPage({ searchParams }: Props) {
                   </h4>
                   <a
                     href={`mailto:${contact.email}`}
-                    className="text-base font-bold text-stone-900 hover:text-brand-orange transition-colors"
+                    className="text-base font-bold text-stone-900 hover:text-brand-orange transition-colors break-all sm:break-normal"
                   >
                     {contact.email}
                   </a>
@@ -241,7 +241,7 @@ export default async function ContactPage({ searchParams }: Props) {
 
           {/* Right Column: Send Requirement Details Card with Sneako Pill Inputs */}
           <div className="lg:col-span-7">
-            <div className="rounded-[32px] sm:rounded-[36px] bg-white border border-stone-200 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] p-7 sm:p-10">
+            <div className="rounded-2xl sm:rounded-[36px] bg-white border border-stone-200 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] p-5 sm:p-8 md:p-10">
               <div className="mb-6">
                 <h3 className="text-2xl sm:text-[28px] font-bold text-stone-950 tracking-tight">
                   Send Requirement Details

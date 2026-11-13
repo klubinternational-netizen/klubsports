@@ -215,7 +215,7 @@ export default async function AboutPage() {
             </div>
 
             {/* Right Column: Athletic Heritage Glassmorphic Card (Slide Right-to-Left) */}
-            <div className="lg:col-span-4 anim-slide-right hidden lg:block">
+            <div className="lg:col-span-4 anim-slide-right block mt-6 lg:mt-0">
               <div className="relative rounded-2xl bg-white/[0.05] border border-white/10 p-6 backdrop-blur-xl shadow-2xl space-y-4">
                 <div className="flex items-center justify-between pb-4 border-b border-white/10">
                   <div className="flex items-center gap-2.5">

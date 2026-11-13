@@ -220,7 +220,7 @@ export default function TempoHeroSection({
 
       {/* 1. TOP PILL BADGE (DYNAMIC FOR EACH CATEGORY) */}
       <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-white/80 shadow-[0_2px_12px_rgba(0,0,0,0.04)] text-xs font-medium text-stone-700 tracking-wide transition-all duration-300 hover:scale-105">
+        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-white/80 shadow-[0_2px_12px_rgba(0,0,0,0.04)] text-[11px] sm:text-xs font-medium text-stone-700 tracking-wide transition-all duration-300 hover:scale-105 max-w-[95vw]">
           <span
             className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-colors duration-500"
             style={{

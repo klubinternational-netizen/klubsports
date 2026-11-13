@@ -65,7 +65,7 @@ export default function BrandsShowcaseSection() {
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full bg-white overflow-visible select-none py-6 sm:py-10"
+      className="relative w-full bg-white overflow-hidden select-none py-6 sm:py-10"
       style={{ perspective: '1200px' }}
     >
       <style jsx>{`
@@ -131,7 +131,7 @@ export default function BrandsShowcaseSection() {
         {/* 2. CENTER FLOATING SHOE (BRIDGES BANNER AND BOTTOM)      */}
         {/* ======================================================== */}
         <div
-          className="absolute left-1/2 top-[44%] -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none w-[340px] sm:w-[500px] md:w-[620px] lg:w-[740px] xl:w-[820px] transition-transform duration-300 ease-out"
+          className="absolute left-1/2 top-[44%] -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none w-[280px] xs:w-[320px] sm:w-[500px] md:w-[620px] lg:w-[740px] xl:w-[820px] max-w-[92vw] transition-transform duration-300 ease-out"
           style={{
             transform: `translate(-50%, -50%) translate3d(${shoeTranslateX}px, ${shoeTranslateY}px, 0) rotateX(${shoeRotateX}deg) rotateY(${shoeRotateY}deg) scale(${isHovered ? 1.03 : 1})`,
             transformStyle: 'preserve-3d',

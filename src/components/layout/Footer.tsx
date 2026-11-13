@@ -442,8 +442,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Directory 3 Columns */}
-          <div className="md:col-span-7 grid grid-cols-3 gap-6 sm:gap-8 text-xs sm:text-sm">
+          {/* Directory Columns: 2 cols on mobile, 3 cols on sm/desktop */}
+          <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 text-xs sm:text-sm">
             
             {/* Support */}
             <div className="space-y-3">
@@ -528,7 +528,7 @@ export default function Footer() {
             </div>
 
             {/* Follow */}
-            <div className="space-y-3">
+            <div className="space-y-3 col-span-2 sm:col-span-1">
               <h4 className="font-bold text-stone-950">Follow</h4>
               <ul className="space-y-2 text-stone-600">
                 <li>
